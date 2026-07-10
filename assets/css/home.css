@@ -2145,12 +2145,22 @@ h1 {
   }
 
   .footer-inner {
-    grid-template-columns: 1fr;
-    align-items: start;
+    /* Emblem beside the lab text (a smaller emblem on mobile), copyright on its
+       own full-width row below — tidier than a single stacked column. */
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 14px 16px;
+    align-items: center;
+  }
+
+  .footer-emblem-wrap {
+    width: 56px;
   }
 
   .footer-copy {
-    grid-column: auto;
+    grid-column: 1 / -1;
+    justify-self: start;
+    max-width: none;
+    text-align: left;
   }
 }
 

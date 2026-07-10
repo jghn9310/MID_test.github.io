@@ -1,6 +1,6 @@
 /* Board / Gallery page. Reuses shared chrome, tokens, .eyebrow, .reveal-block,
    .section-label, .team-subnav and the footer from principal-advisor.css. */
-@import url("./principal-advisor.css?v=20260710-minimal-l");
+@import url("./principal-advisor.css?v=20260710-minimal-m");
 
 .gallery-page {
   min-height: 100vh;
