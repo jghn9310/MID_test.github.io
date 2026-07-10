@@ -1,7 +1,7 @@
 /* Alumni / Visiting reuses the shared Team-page layout (header, nav, hero,
    roster groups, footer) from students.css -> principal-advisor.css.
    Only the empty-state block is specific to this page for now. */
-@import url("./students.css?v=20260710-minimal-i");
+@import url("./students.css?v=20260710-minimal-l");
 
 .roster-empty {
   margin: 0;

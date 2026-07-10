@@ -144,6 +144,11 @@ html { background: #191c18; }
   background: rgba(233, 236, 230, 0.08);
 }
 
+/* Lab Log 구분 헤어라인은 다크 드롭다운에선 밝은 --line 대신 콘솔 엣지로. */
+.term-page .nav-dropdown a[href$="lab-log.html"] {
+  border-top-color: var(--term-edge);
+}
+
 .term-page .nav-dropdown-research .nav-primary-topic {
   color: var(--term-text);
   background: rgba(233, 236, 230, 0.05);

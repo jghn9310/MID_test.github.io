@@ -2,7 +2,7 @@
    projects, plus per-project detail pages. Reuses the shared chrome, tokens,
    .eyebrow, .reveal-block, .section-label, .profile-section and footer from
    principal-advisor.css, and mirrors the hero/subnav idiom of research.css. */
-@import url("./principal-advisor.css?v=20260710-minimal-i");
+@import url("./principal-advisor.css?v=20260710-minimal-l");
 
 .project-page {
   min-height: 100vh;
@@ -13,7 +13,7 @@
 .project-hero {
   display: grid;
   gap: clamp(16px, 1.8vw, 24px);
-  padding: clamp(150px, 13vw, 186px) clamp(22px, 6vw, 92px) clamp(28px, 3.6vw, 48px);
+  padding: clamp(154px, 13.4vw, 188px) clamp(22px, 6vw, 92px) clamp(28px, 3.6vw, 48px);
   background:
     linear-gradient(180deg, rgba(248, 249, 248, 0.76), rgba(255, 255, 255, 0) 60%),
     var(--paper);

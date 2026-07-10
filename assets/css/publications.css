@@ -1,7 +1,7 @@
 /* Publications page — a precise, list-first bibliography for MID Lab.
    Reuses shared chrome, tokens, .eyebrow, .reveal-block, .team-subnav and the
    footer from principal-advisor.css. */
-@import url("./principal-advisor.css?v=20260710-minimal-i");
+@import url("./principal-advisor.css?v=20260710-minimal-l");
 
 .pub-page {
   min-height: 100vh;
@@ -12,7 +12,7 @@
 .pub-hero {
   display: grid;
   gap: clamp(16px, 1.8vw, 24px);
-  padding: clamp(150px, 13vw, 186px) clamp(22px, 6vw, 92px) clamp(26px, 3.4vw, 44px);
+  padding: clamp(154px, 13.4vw, 188px) clamp(22px, 6vw, 92px) clamp(26px, 3.4vw, 44px);
   background:
     linear-gradient(180deg, rgba(248, 249, 248, 0.76), rgba(255, 255, 255, 0) 60%),
     var(--paper);
@@ -25,6 +25,9 @@
   font-size: var(--fs-h2);
   font-weight: 500;
   line-height: 1.03;
+  /* No eyebrow on this page — reserve the eyebrow line + gap above the title so
+     it lands at the same Y as the titles on eyebrow pages (Team/Research/Board). */
+  padding-top: calc(var(--fs-label) + clamp(12px, 1.1vw, 16px));
 }
 
 .pub-hero-meta {
