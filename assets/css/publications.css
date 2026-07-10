@@ -3,6 +3,22 @@
    footer from principal-advisor.css. */
 @import url("./principal-advisor.css?v=20260710-reveal");
 
+/* Height the pinned year nav tucks under = the header's height, which ramps
+   with viewport width (~114px @1024 → ~129px @1512). pub.js overrides this with
+   the header's live height (logo-load / resize / .is-scrolled aware); the clamp
+   is the no-JS fallback. Defined on :root so html's scroll-padding-top can read
+   it too. Kept ~1px shy of the header so the nav sits a hair into it — no seam. */
+:root {
+  --pub-nav-top: clamp(103px, calc(81px + 3.07vw), 133px);
+}
+
+/* One offset, one place: scroll-padding-top clears the fixed header for every
+   in-page jump (year links, skip-link), scaling with the header via the var.
+   Overrides the shared 108px from principal-advisor.css for this page only. */
+html {
+  scroll-padding-top: var(--pub-nav-top);
+}
+
 .pub-page {
   min-height: 100vh;
   background: var(--paper);
@@ -12,10 +28,18 @@
 .pub-hero {
   display: grid;
   gap: clamp(16px, 1.8vw, 24px);
-  padding: clamp(154px, 13.4vw, 188px) clamp(22px, 6vw, 92px) clamp(26px, 3.4vw, 44px);
+  /* Bottom padding sets how far the year nav sits below the legend at rest.
+     A touch more than the other spacings so the nav isn't cramped up under it. */
+  padding: clamp(154px, 13.4vw, 188px) clamp(22px, 6vw, 92px) clamp(46px, 5vw, 68px);
   background:
     linear-gradient(180deg, rgba(248, 249, 248, 0.76), rgba(255, 255, 255, 0) 60%),
     var(--paper);
+  /* This is a list-first page: let the hero size to its content instead of the
+     shared --hero-min floor (34rem on desktop), which reserved ~175px of dead
+     space above the year nav. Trade-off: the year nav no longer aligns to the
+     exact Y of sibling subpages' sub-navs on wide screens — acceptable here
+     since it becomes a sticky jump-nav, not a static tab row. */
+  min-height: auto;
 }
 
 .pub-hero h1 {
@@ -96,9 +120,16 @@
 }
 
 /* ---- Year jump nav ----------------------------------------------------- */
-/* Uses the shared .team-subnav underline-tab treatment. */
+/* Uses the shared .team-subnav underline-tab treatment. Sits in its natural
+   spot under the hero at rest; once the reader scrolls and it reaches the
+   fixed header, it pins just beneath it (position: sticky). --pub-nav-top is
+   the scrolled-header height it tucks under; keep it in sync with the section
+   scroll-margin-top so year jumps land the heading right below the pinned nav. */
 .pub-yearnav {
   gap: clamp(12px, 1.7vw, 26px);
+  position: sticky;
+  top: var(--pub-nav-top, 84px);
+  z-index: 90;
 }
 
 .pub-yearnav a {
@@ -165,7 +196,10 @@ html:not(.has-js) [data-archive-toggle] {
 .pub-section {
   padding: clamp(30px, 3.8vw, 52px) clamp(22px, 6vw, 92px);
   border-bottom: 1px solid var(--line);
-  scroll-margin-top: 108px;
+  /* scroll-padding-top (html) already clears the header; this adds just the
+     pinned nav's ~44px strip + a little air so a year jump lands the heading
+     right below the nav, not behind it. */
+  scroll-margin-top: 58px;
 }
 
 .pub-year-head {
@@ -282,12 +316,25 @@ a.pub-title:focus-visible {
 
 @media (max-width: 720px) {
   .pub-hero {
-    padding: 116px 18px 24px;
+    /* A touch more bottom room so the year nav isn't cramped against the legend. */
+    padding: 116px 18px 34px;
+  }
+
+  :root {
+    --pub-nav-top: 60px;
+  }
+
+  /* Mobile: drop the sticky-follow behavior entirely — the year nav just scrolls
+     away with the content (it stays as plain jump links). Pinning a wrapped nav
+     under the header ate too much of the small screen. */
+  .pub-yearnav {
+    position: static;
   }
 
   .pub-section {
     padding: 30px 18px;
-    scroll-margin-top: 82px;
+    /* Nav no longer pins, so only clear the header (scroll-padding-top) + a hair. */
+    scroll-margin-top: 12px;
   }
 
   .pub-item {

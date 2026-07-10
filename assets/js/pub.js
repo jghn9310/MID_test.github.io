@@ -263,4 +263,38 @@ const initArchiveToggle = (page) => {
 
   initReveal(Array.from(sectionsMount.querySelectorAll(".pub-section")));
   initArchiveToggle(document.querySelector(".pub-page") || document.body);
+  initYearnavDock();
 })();
+
+/* Keep the sticky year nav tucked flush under the fixed header. The header's
+   height ramps with viewport width, shifts once the logo image loads, and
+   shrinks when it gains .is-scrolled — so instead of hardcoding a matched
+   offset (fragile), we mirror its live height onto --pub-nav-top. The CSS
+   clamp on .pub-page stays as the no-JS fallback. */
+const initYearnavDock = () => {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  // Set on :root so both the nav's sticky top and html's scroll-padding-top read it.
+  const root = document.documentElement;
+  const sync = () => {
+    const h = Math.round(header.getBoundingClientRect().height);
+    // Tuck 2px into the header so no content sliver shows in the seam, even if
+    // the header settles a pixel or two after this measurement.
+    root.style.setProperty("--pub-nav-top", h - 2 + "px");
+  };
+  sync();
+  // The header shrinks when it gains .is-scrolled — a padding-only change, so a
+  // default (content-box) ResizeObserver never fires. Observe the border-box,
+  // and also catch the shrink's transition frames + settle via scroll/transitionend.
+  if ("ResizeObserver" in window) new ResizeObserver(sync).observe(header, { box: "border-box" });
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { sync(); ticking = false; });
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  header.addEventListener("transitionend", sync);
+  window.addEventListener("resize", sync, { passive: true });
+  window.addEventListener("load", sync);
+};
