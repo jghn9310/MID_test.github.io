@@ -1,0 +1,71 @@
+/* =====================================================================
+   MID Lab — 디자인 테마 (theme.css)
+
+   이 파일 하나가 사이트 전체의 "색 · 글꼴 · 글씨 크기 · 간격"을 정합니다.
+   여기 숫자만 바꾸면 모든 페이지에 한 번에 반영됩니다.
+   (예: 본문 글씨를 키우려면 --fs-body 값을 1rem → 1.08rem 처럼 올리세요.)
+
+   ⚠ 규칙 두 가지
+     1) 항목 이름(--fs-body, --paper 등)은 바꾸지 마세요. 콜론(:) 뒤의 값만 바꿉니다.
+     2) 각 줄 끝의 세미콜론(;)은 지우지 마세요.
+
+   clamp(최소, 화면비례, 최대) 는 "화면이 커질수록 최소→최대 사이에서 자동으로
+   커지는 값"입니다. 크게/작게만 하고 싶으면 보통 세 번째 값(최대)만 조절하면 됩니다.
+   ===================================================================== */
+
+:root {
+  /* ── 색 (Colors) ───────────────────────────────────────────────── */
+  --paper:        #ffffff;   /* 기본 배경 (흰색) */
+  --paper-soft:   #fcfdfc;   /* 살짝 톤 낮춘 배경 */
+  --paper-deep:   #f2f4f3;   /* 더 진한 회색 배경 (섹션 구분용) */
+  --graphite:     #202320;   /* 기본 글자색 (진회색) */
+  --charcoal:     #393d39;   /* 보조 글자색 */
+  --muted:        #6b726a;   /* 흐린 글자색 (메타·부가설명) */
+  --steel:        #59615b;   /* 회녹색 강조 텍스트/선 */
+  --line:         #dde1db;   /* 옅은 구분선 */
+  --line-strong:  #b8beb6;   /* 진한 구분선 */
+  --focus:        #111411;   /* 포커스·강조 */
+
+  /* ── 글꼴 종류 (Font families) ─────────────────────────────────── */
+  --font-sans:   "Inter", "Aptos", "Segoe UI", Arial, sans-serif;                  /* 기본 본문·UI */
+  --font-korean: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; /* 한글 */
+  --font-serif:  "Georgia", "Times New Roman", serif;                              /* 제목(세리프) */
+  --font-mono:   "Cascadia Mono", "Consolas", monospace;                           /* 라벨·코드 */
+
+  /* ── 글씨 크기 (Font sizes) ────────────────────────────────────── */
+  --fs-label:   0.72rem;                          /* 작은 라벨·꼬리표·메타 */
+  --fs-body:    clamp(1rem,    1.1vw,  1.14rem);  /* 본문 */
+  --fs-lead:    clamp(1.14rem, 1.35vw, 1.4rem);   /* 리드문(도입 문장) */
+  --fs-h6:      clamp(1.2rem,  1.42vw, 1.55rem);  /* 소제목 */
+  --fs-h5:      clamp(1.4rem,  1.75vw, 1.9rem);   /* 작은 섹션 제목 */
+  --fs-h4:      clamp(1.5rem,  2.2vw,  2.3rem);   /* 섹션 제목 */
+  --fs-h3:      clamp(1.5rem,  2.35vw, 2.7rem);   /* 큰 섹션 제목 */
+  --fs-h2:      clamp(2.6rem,  4.5vw,  5.16rem);  /* 페이지 대표 제목 */
+  --fs-display: clamp(3.05rem, 5.35vw, 6.55rem);  /* 첫 화면 초대형 제목 */
+
+  /* ── 홈 화면: 주요 영역 글씨 크기 ──────────────────────────────
+     홈(index.html) 각 영역의 글씨 크기. 자주 조절하는 것들입니다.
+     (모바일에서의 미세 크기 조정은 home.css 아래쪽 @media 블록에 있습니다.) */
+  --fs-nav:            clamp(1.02rem, 1.05vw, 1.14rem);  /* 상단 네비게이션 링크 */
+  --fs-hero-kicker:    clamp(0.84rem, 0.92vw, 1rem);     /* 히어로 위 작은 라벨 */
+  --fs-research-axis:  clamp(1.85rem, 2.8vw,  3.3rem);   /* 홈 연구 대표 제목(큰 글씨) */
+  --fs-research-title: clamp(1.2rem,  1.55vw, 1.55rem);  /* 연구 목록 제목 */
+  --fs-news-title:     clamp(1rem,    1.12vw, 1.18rem);  /* 뉴스 항목 제목 */
+  --fs-project-title:  clamp(1.08rem, 1.42vw, 1.38rem);  /* 프로젝트 목록 제목 */
+  --fs-contact-name:   clamp(2rem,    3.35vw, 4rem);     /* 연락처 이름(대형 세리프) */
+  --fs-contact-role:   clamp(1rem,    1.1vw,  1.16rem);  /* 연락처 직함 */
+  --fs-contact-email:  clamp(1.15rem, 1.5vw,  1.42rem);  /* 연락처 이메일 */
+
+  /* ── 홈 화면: 세부 UI 글씨 크기 (거의 안 바꿔도 됩니다) ─────────── */
+  --fs-nav-label:         clamp(0.84rem, 0.9vw,  0.98rem);  /* 헤더 소속 라벨 */
+  --fs-nav-dropdown:      0.94rem;                          /* 드롭다운 메뉴 항목 */
+  --fs-nav-dropdown-lead: 1.02rem;                          /* 드롭다운 대표(연구) 항목 */
+  --fs-chip:              clamp(0.78rem, 0.88vw, 0.92rem);  /* 연구 키워드 칩 */
+  --fs-research-desc:     clamp(0.9rem,  0.98vw, 1.02rem);  /* 연구 축 설명(호버 시) */
+  --fs-footer-lab:        clamp(0.86rem, 0.96vw, 1rem);     /* 푸터 연구실명 */
+  --fs-footer-sub:        clamp(0.78rem, 0.86vw, 0.92rem);  /* 푸터 소속·저작권 */
+
+  /* ── 모션 · 레이아웃 ───────────────────────────────────────────── */
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);  /* 애니메이션 감속 곡선 */
+  --hero-min:  max(52vh, 34rem);                /* 서브페이지 히어로(상단) 최소 높이 */
+}

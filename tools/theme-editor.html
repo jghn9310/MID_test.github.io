@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>디자인 편집기 · MID Lab</title>
+  <style>
+    :root {
+      --paper: #ffffff;
+      --paper-soft: #fcfdfc;
+      --paper-deep: #f2f4f3;
+      --graphite: #202320;
+      --charcoal: #393d39;
+      --muted: #6b726a;
+      --line: #dde1db;
+      --line-strong: #b8beb6;
+      --steel: #59615b;
+      --font-sans: "Inter", "Aptos", "Segoe UI", Arial, sans-serif;
+      --font-korean: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      --font-mono: "Cascadia Mono", "Consolas", monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: grid;
+      grid-template-columns: minmax(340px, 420px) 1fr;
+      grid-template-rows: auto 1fr;
+      grid-template-areas: "topbar topbar" "controls preview";
+      height: 100vh;
+      color: var(--graphite);
+      background: var(--paper);
+      font-family: var(--font-korean), var(--font-sans);
+      font-size: 14px;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      grid-area: topbar;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper-soft);
+    }
+    .topbar h1 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+    .topbar .hint { color: var(--muted); font-size: 12px; }
+    .topbar .spacer { flex: 1; }
+    .btn {
+      appearance: none;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 550;
+      color: var(--graphite);
+      background: var(--paper);
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: background 140ms ease, border-color 140ms ease;
+    }
+    .btn:hover { background: var(--paper-deep); }
+    .btn.primary {
+      color: #fff;
+      background: var(--graphite);
+      border-color: var(--graphite);
+    }
+    .btn.primary:hover { background: #000; }
+    .btn.ghost { border-color: transparent; color: var(--muted); }
+    .btn.ghost:hover { color: var(--graphite); background: var(--paper-deep); }
+
+    /* ── Controls ── */
+    .controls {
+      grid-area: controls;
+      overflow-y: auto;
+      padding: 8px 18px 60px;
+      border-right: 1px solid var(--line);
+    }
+    .group { border-bottom: 1px solid var(--line); }
+    .group > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 4px;
+      font-weight: 650;
+      font-size: 13px;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .group > summary::-webkit-details-marker { display: none; }
+    .group > summary::before {
+      content: "▸";
+      color: var(--muted);
+      font-size: 11px;
+      transition: transform 140ms ease;
+    }
+    .group[open] > summary::before { transform: rotate(90deg); }
+    .group .group-body { padding: 2px 4px 16px; }
+
+    .row { padding: 11px 0; border-top: 1px dashed var(--line); }
+    .row:first-child { border-top: 0; }
+    .row .label {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .row .label .name { font-weight: 550; font-size: 13px; }
+    .row .label .token { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); }
+    .row .readout {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--steel);
+      min-width: 58px;
+      text-align: right;
+    }
+    .slider-line { display: flex; align-items: center; gap: 10px; }
+    input[type="range"] { flex: 1; accent-color: var(--graphite); height: 20px; }
+    input[type="color"] {
+      width: 40px; height: 28px; padding: 0;
+      border: 1px solid var(--line-strong); border-radius: 6px; background: none; cursor: pointer;
+    }
+    input[type="text"] {
+      width: 100%; font: inherit; font-family: var(--font-mono); font-size: 12px;
+      padding: 7px 9px; color: var(--graphite);
+      border: 1px solid var(--line-strong); border-radius: 6px; background: var(--paper);
+    }
+    .row.changed .name::after {
+      content: "· 변경됨";
+      color: var(--steel);
+      font-weight: 500;
+      font-size: 11px;
+      margin-left: 6px;
+    }
+    .color-line { display: flex; align-items: center; gap: 10px; }
+    .color-line .swatch-val { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+    /* ── Preview ── */
+    .preview { grid-area: preview; display: flex; flex-direction: column; min-width: 0; }
+    .preview-bar {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 16px; border-bottom: 1px solid var(--line); background: var(--paper-soft);
+    }
+    .preview-bar select {
+      font: inherit; font-size: 13px; padding: 6px 10px;
+      border: 1px solid var(--line-strong); border-radius: 6px; background: var(--paper); color: var(--graphite);
+    }
+    .preview-bar .label { color: var(--muted); font-size: 12px; }
+    .preview-frame-wrap { flex: 1; position: relative; background: var(--paper-deep); overflow: hidden; }
+    iframe { width: 100%; height: 100%; border: 0; background: #fff; }
+
+    /* ── Export modal ── */
+    .modal-back {
+      position: fixed; inset: 0; background: rgba(20,23,20,0.42);
+      display: none; align-items: center; justify-content: center; padding: 24px; z-index: 50;
+    }
+    .modal-back.open { display: flex; }
+    .modal {
+      width: min(760px, 100%); max-height: 86vh; display: flex; flex-direction: column;
+      background: var(--paper); border-radius: 12px; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(20,23,20,0.24);
+    }
+    .modal header { padding: 18px 22px 12px; border-bottom: 1px solid var(--line); }
+    .modal header h2 { margin: 0 0 4px; font-size: 16px; }
+    .modal header p { margin: 0; color: var(--muted); font-size: 12.5px; line-height: 1.5; }
+    .modal .steps { margin: 8px 0 0; padding-left: 18px; color: var(--charcoal); font-size: 12.5px; line-height: 1.7; }
+    .modal .steps code { font-family: var(--font-mono); background: var(--paper-deep); padding: 1px 5px; border-radius: 4px; }
+    .modal textarea {
+      flex: 1; margin: 0; border: 0; border-top: 1px solid var(--line);
+      font-family: var(--font-mono); font-size: 12px; line-height: 1.55;
+      padding: 16px 22px; resize: none; color: var(--graphite); background: var(--paper-soft);
+    }
+    .modal footer { display: flex; gap: 10px; padding: 14px 22px; border-top: 1px solid var(--line); }
+    .modal footer .spacer { flex: 1; }
+    .toast {
+      position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(12px);
+      background: var(--graphite); color: #fff; padding: 10px 18px; border-radius: 8px;
+      font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 180ms ease, transform 180ms ease; z-index: 60;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .empty { padding: 40px 8px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>디자인 편집기</h1>
+    <span class="hint">영역별 글씨 크기·색을 조절하고 &lt;내보내기&gt;로 저장</span>
+    <span class="spacer"></span>
+    <button class="btn ghost" id="btn-reset">전체 초기화</button>
+    <button class="btn primary" id="btn-export">내보내기</button>
+  </div>
+
+  <div class="controls" id="controls">
+    <div class="empty">theme.css 를 불러오는 중…</div>
+  </div>
+
+  <div class="preview">
+    <div class="preview-bar">
+      <span class="label">미리보기</span>
+      <select id="page-select">
+        <option value="../index.html">홈 (index)</option>
+        <option value="../research/materials-design.html">연구 — Materials Design</option>
+        <option value="../research/calphad.html">연구 — CALPHAD</option>
+        <option value="../publications.html">Publications</option>
+        <option value="../people/students.html">Team — Students</option>
+        <option value="../people/principal-advisor.html">Team — PI</option>
+        <option value="../board/gallery.html">Board — Gallery</option>
+        <option value="../board/news.html">Board — News</option>
+        <option value="../project.html">Project</option>
+        <option value="../contact.html">Contact</option>
+      </select>
+      <span class="label" id="live-note">슬라이더를 움직이면 여기에 즉시 반영됩니다</span>
+    </div>
+    <div class="preview-frame-wrap">
+      <iframe id="preview" src="../index.html" title="사이트 미리보기"></iframe>
+    </div>
+  </div>
+
+  <div class="modal-back" id="modal-back">
+    <div class="modal">
+      <header>
+        <h2>theme.css 내보내기</h2>
+        <p>아래 내용은 바꾼 값이 반영된 <strong>theme.css 전체</strong>입니다(주석·라벨 그대로 유지).</p>
+        <ol class="steps">
+          <li>아래 <b>&lt;전체 복사&gt;</b> 버튼을 누르세요.</li>
+          <li><code>site/assets/css/theme.css</code> 파일을 열고 <b>전체를 지운 뒤 붙여넣기</b> 하세요.</li>
+          <li>저장하고 평소처럼 배포(push)하면 사이트 전체에 반영됩니다.</li>
+        </ol>
+      </header>
+      <textarea id="export-text" spellcheck="false" readonly></textarea>
+      <footer>
+        <button class="btn primary" id="btn-copy">전체 복사</button>
+        <span class="spacer"></span>
+        <button class="btn" id="btn-download">파일로 저장</button>
+        <button class="btn ghost" id="btn-close">닫기</button>
+      </footer>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+  (function () {
+    "use strict";
+    var THEME_URL = "../assets/css/theme.css";
+    var LS_KEY = "mid-theme-edits-v1";
+    var LS_PAGE = "mid-theme-preview-page";
+
+    var rawText = "";
+    var tokens = [];      // { name, value, label, section, type }
+    var edits = {};       // name -> { factor } for size, { hex } for color, { text } for advanced
+    var sections = [];    // ordered [{ title, items:[token] }]
+
+    var $ = function (id) { return document.getElementById(id); };
+
+    // ---- load persisted edits ----
+    try { edits = JSON.parse(localStorage.getItem(LS_KEY) || "{}") || {}; } catch (e) { edits = {}; }
+
+    function saveEdits() {
+      try { localStorage.setItem(LS_KEY, JSON.stringify(edits)); } catch (e) {}
+    }
+
+    // ---- parse theme.css ----
+    function classify(name, value) {
+      if (/^#[0-9a-fA-F]{3,8}$/.test(value.trim())) return "color";
+      if (name.indexOf("--fs-") === 0) return "size";
+      if (name.indexOf("--font") === 0) return "font";
+      return "advanced";
+    }
+
+    function parseTheme(text) {
+      var lines = text.split("\n");
+      var curSection = "기타";
+      var secMap = {};
+      var order = [];
+      var reSec = /\/\*\s*──\s*(.+?)\s*─/;         // section header
+      var reTok = /^\s*(--[\w-]+)\s*:\s*([^;]+);(?:\s*\/\*\s*(.*?)\s*\*\/)?/;
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        var ms = line.match(reSec);
+        if (ms) { curSection = ms[1].trim(); continue; }
+        var mt = line.match(reTok);
+        if (mt) {
+          var t = {
+            name: mt[1],
+            value: mt[2].trim(),
+            label: (mt[3] || "").trim(),
+            section: curSection
+          };
+          t.type = classify(t.name, t.value);
+          tokens.push(t);
+          if (!secMap[curSection]) { secMap[curSection] = { title: curSection, items: [] }; order.push(secMap[curSection]); }
+          secMap[curSection].items.push(t);
+        }
+      }
+      sections = order;
+    }
+
+    // ---- value helpers ----
+    function scaleValue(value, factor) {
+      return value.replace(/(-?[\d.]+)(rem|em|px|vw|vh|%)/g, function (m, n, u) {
+        var v = Math.round(parseFloat(n) * factor * 1000) / 1000;
+        return v + u;
+      });
+    }
+    function currentValue(t) {
+      var e = edits[t.name];
+      if (!e) return t.value;
+      if (t.type === "size") return scaleValue(t.value, e.factor || 1);
+      if (t.type === "color") return e.hex || t.value;
+      return (e.text != null) ? e.text : t.value;
+    }
+    function isChanged(t) {
+      var e = edits[t.name];
+      if (!e) return false;
+      if (t.type === "size") return Math.abs((e.factor || 1) - 1) > 0.0001;
+      if (t.type === "color") return (e.hex || t.value).toLowerCase() !== t.value.toLowerCase();
+      return e.text != null && e.text !== t.value;
+    }
+
+    // ---- build controls ----
+    function el(tag, cls, txt) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (txt != null) n.textContent = txt;
+      return n;
+    }
+
+    function buildControls() {
+      var root = $("controls");
+      root.innerHTML = "";
+      sections.forEach(function (sec, si) {
+        var det = el("details", "group");
+        // open the size-related groups by default
+        if (/글씨|색|홈/.test(sec.title) && si < 5) det.open = true;
+        var sum = el("summary", null, sec.title);
+        det.appendChild(sum);
+        var body = el("div", "group-body");
+        sec.items.forEach(function (t) { body.appendChild(buildRow(t)); });
+        det.appendChild(body);
+        root.appendChild(det);
+      });
+    }
+
+    function buildRow(t) {
+      var row = el("div", "row");
+      row.dataset.name = t.name;
+      if (isChanged(t)) row.classList.add("changed");
+
+      var label = el("div", "label");
+      var name = el("span", "name", t.label || t.name);
+      var tok = el("span", "token", t.name);
+      label.appendChild(name);
+      label.appendChild(tok);
+      row.appendChild(label);
+
+      if (t.type === "size") {
+        var line = el("div", "slider-line");
+        var range = document.createElement("input");
+        range.type = "range";
+        range.min = "0.6"; range.max = "1.6"; range.step = "0.01";
+        range.value = String((edits[t.name] && edits[t.name].factor) || 1);
+        var read = el("span", "readout", pct(range.value));
+        range.addEventListener("input", function () {
+          read.textContent = pct(range.value);
+          setEdit(t, { factor: parseFloat(range.value) });
+          markChanged(row, t);
+        });
+        line.appendChild(range);
+        line.appendChild(read);
+        row.appendChild(line);
+      } else if (t.type === "color") {
+        var cl = el("div", "color-line");
+        var col = document.createElement("input");
+        col.type = "color";
+        col.value = normHex(currentValue(t));
+        var val = el("span", "swatch-val", currentValue(t));
+        col.addEventListener("input", function () {
+          val.textContent = col.value;
+          setEdit(t, { hex: col.value });
+          markChanged(row, t);
+        });
+        cl.appendChild(col);
+        cl.appendChild(val);
+        row.appendChild(cl);
+      } else {
+        var txt = document.createElement("input");
+        txt.type = "text";
+        txt.value = currentValue(t);
+        txt.addEventListener("input", function () {
+          setEdit(t, { text: txt.value });
+          markChanged(row, t);
+        });
+        row.appendChild(txt);
+      }
+      return row;
+    }
+
+    function pct(f) {
+      var p = Math.round(parseFloat(f) * 100);
+      return (p === 100 ? "기본" : (p > 100 ? "+" : "") + (p - 100) + "%");
+    }
+    function normHex(v) {
+      v = (v || "").trim();
+      return /^#[0-9a-fA-F]{6}$/.test(v) ? v : (/^#[0-9a-fA-F]{3}$/.test(v)
+        ? "#" + v.slice(1).split("").map(function (c) { return c + c; }).join("")
+        : "#000000");
+    }
+
+    function setEdit(t, patch) {
+      edits[t.name] = Object.assign({}, edits[t.name], patch);
+      saveEdits();
+      applyLive();
+    }
+    function markChanged(row, t) {
+      if (isChanged(t)) row.classList.add("changed");
+      else row.classList.remove("changed");
+    }
+
+    // ---- live preview injection ----
+    function buildOverrideCss() {
+      var decls = [];
+      tokens.forEach(function (t) {
+        if (isChanged(t)) decls.push("  " + t.name + ": " + currentValue(t) + ";");
+      });
+      if (!decls.length) return "";
+      return ":root{\n" + decls.join("\n") + "\n}";
+    }
+    function applyLive() {
+      var frame = $("preview");
+      var doc = frame.contentDocument;
+      if (!doc) return;
+      var style = doc.getElementById("__mid_theme_override");
+      if (!style) {
+        style = doc.createElement("style");
+        style.id = "__mid_theme_override";
+        (doc.head || doc.documentElement).appendChild(style);
+      }
+      style.textContent = buildOverrideCss();
+    }
+
+    // ---- export ----
+    function buildExport() {
+      var out = rawText;
+      tokens.forEach(function (t) {
+        if (!isChanged(t)) return;
+        var re = new RegExp("(" + t.name.replace(/[-]/g, "\\-") + "\\s*:\\s*)[^;]+");
+        out = out.replace(re, "$1" + currentValue(t).replace(/\$/g, "$$$$"));
+      });
+      return out;
+    }
+
+    // ---- toast ----
+    var toastTimer;
+    function toast(msg) {
+      var t = $("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { t.classList.remove("show"); }, 1800);
+    }
+
+    // ---- wire top bar ----
+    $("btn-export").addEventListener("click", function () {
+      $("export-text").value = buildExport();
+      $("modal-back").classList.add("open");
+    });
+    $("btn-close").addEventListener("click", function () { $("modal-back").classList.remove("open"); });
+    $("modal-back").addEventListener("click", function (e) {
+      if (e.target === $("modal-back")) $("modal-back").classList.remove("open");
+    });
+    $("btn-copy").addEventListener("click", function () {
+      var ta = $("export-text");
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      if (navigator.clipboard) { navigator.clipboard.writeText(ta.value).then(function () {}, function () {}); ok = true; }
+      toast(ok ? "복사됐습니다 — theme.css 에 붙여넣기" : "복사 실패 — 직접 선택해 복사하세요");
+    });
+    $("btn-download").addEventListener("click", function () {
+      var blob = new Blob([$("export-text").value], { type: "text/css" });
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "theme.css";
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    });
+    $("btn-reset").addEventListener("click", function () {
+      if (!confirm("모든 조정을 되돌리고 기본값으로 초기화할까요?")) return;
+      edits = {};
+      saveEdits();
+      buildControls();
+      applyLive();
+      toast("기본값으로 초기화했습니다");
+    });
+
+    // ---- page selector ----
+    var pageSel = $("page-select");
+    var savedPage = localStorage.getItem(LS_PAGE);
+    if (savedPage) {
+      for (var i = 0; i < pageSel.options.length; i++) {
+        if (pageSel.options[i].value === savedPage) { pageSel.selectedIndex = i; break; }
+      }
+      $("preview").src = savedPage;
+    }
+    pageSel.addEventListener("change", function () {
+      localStorage.setItem(LS_PAGE, pageSel.value);
+      $("preview").src = pageSel.value;
+    });
+    $("preview").addEventListener("load", applyLive);
+
+    // ---- init ----
+    fetch(THEME_URL, { cache: "no-store" })
+      .then(function (r) { if (!r.ok) throw new Error("theme.css load failed: " + r.status); return r.text(); })
+      .then(function (text) {
+        rawText = text;
+        parseTheme(text);
+        buildControls();
+        applyLive();
+      })
+      .catch(function (err) {
+        $("controls").innerHTML = "";
+        var e = el("div", "empty", "theme.css 를 불러오지 못했습니다. 로컬 서버로 이 페이지를 열었는지 확인하세요.\n(" + err.message + ")");
+        $("controls").appendChild(e);
+      });
+  })();
+  </script>
+</body>
+</html>

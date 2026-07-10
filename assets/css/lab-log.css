@@ -81,7 +81,7 @@ html { background: #191c18; }
   color: var(--term-dim);
   border-left: 1px solid var(--term-edge-2);
   font-family: var(--font-mono);
-  font-size: clamp(0.72rem, 0.82vw, 0.86rem);
+  font-size: clamp(0.84rem, 0.9vw, 0.98rem);
   font-weight: 400;
   letter-spacing: 0.01em;
   white-space: nowrap;
@@ -100,7 +100,7 @@ html { background: #191c18; }
 .term-page .contents-nav button.nav-trigger {
   color: var(--term-dim);
   font-family: var(--font-mono);
-  font-size: clamp(0.8rem, 0.86vw, 0.9rem);
+  font-size: clamp(0.9rem, 0.98vw, 1.04rem);
   font-weight: 400;
   letter-spacing: 0.01em;
 }

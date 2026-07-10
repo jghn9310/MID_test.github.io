@@ -1,37 +1,8 @@
-:root {
-  --paper: #ffffff;
-  --paper-soft: #fcfdfc;
-  --paper-deep: #f2f4f3;
-  --graphite: #202320;
-  --charcoal: #393d39;
-  --muted: #6b726a;
-  --line: #dde1db;
-  --line-strong: #b8beb6;
-  --focus: #111411;
-  --font-sans: "Inter", "Aptos", "Segoe UI", Arial, sans-serif;
-  --font-korean: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  --font-serif: "Georgia", "Times New Roman", serif;
-  --font-mono: "Cascadia Mono", "Consolas", monospace;
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  /* Type scale — modular, ratio 1.2 (minor third). --fs-label is the single
-     mono micro-label token (eyebrow, index, meta, status), anchored to the
-     existing mode so adoption barely moves sizes. Body/heading step tokens
-     land in a follow-up. See minimal_design_standard.md §10 (MID profile). */
-  --fs-label: 0.72rem;
-  --fs-body: clamp(1rem, 1.1vw, 1.14rem);
-  --fs-lead: clamp(1.14rem, 1.35vw, 1.4rem);
-  --fs-h6: clamp(1.2rem, 1.42vw, 1.55rem);
-  --fs-h5: clamp(1.4rem, 1.75vw, 1.9rem);
-  --fs-h4: clamp(1.5rem, 2.2vw, 2.3rem);
-  --fs-h3: clamp(1.5rem, 2.35vw, 2.7rem);
-  --fs-h2: clamp(2.6rem, 4.5vw, 5.16rem);
-  --fs-display: clamp(3.05rem, 5.35vw, 6.55rem);
-  /* Shared subpage hero floor — the sub-nav below the hero sits at the same Y
-     across Team / Research / Publications / News / Gallery / Project. Must be
-     >= the tallest natural hero (Research's two-line title, ~33.8rem). Reset to
-     auto on tablet/mobile (media query below). Lab Log (.term-page) opts out. */
-  --hero-min: max(52vh, 34rem);
-}
+/* 디자인 토큰(색·글꼴·글씨크기)은 theme.css 한 곳에서 관리합니다.
+   이 파일은 홈을 제외한 모든 하위 페이지의 base 이므로, 여기서 theme.css 를
+   불러오면 전 페이지가 같은 토큰을 공유합니다.
+   글씨 크기나 색을 바꾸려면 assets/css/theme.css 를 여세요. */
+@import url("./theme.css?v=20260711-theme");
 
 * {
   box-sizing: border-box;
@@ -147,7 +118,7 @@ ul {
   padding-left: clamp(10px, 1vw, 15px);
   color: rgba(32, 35, 32, 0.68);
   border-left: 1px solid rgba(32, 35, 32, 0.2);
-  font-size: clamp(0.72rem, 0.72vw, 0.82rem);
+  font-size: clamp(0.84rem, 0.9vw, 0.98rem);
   font-weight: 620;
   line-height: 1.12;
   white-space: nowrap;
@@ -253,7 +224,7 @@ body.nav-open .mobile-menu-toggle span:last-child {
   min-height: 38px;
   padding: 0;
   color: rgba(20, 23, 20, 0.9);
-  font-size: clamp(0.93rem, 0.94vw, 1rem);
+  font-size: clamp(1.02rem, 1.05vw, 1.14rem);
   font-weight: 560;
   line-height: 1;
   transition:
@@ -367,7 +338,7 @@ html:not(.has-js) .nav-group:focus-within .nav-dropdown {
   padding: 0 11px;
   color: rgba(32, 35, 32, 0.84);
   border-radius: 6px;
-  font-size: 0.84rem;
+  font-size: 0.94rem;
   font-weight: 500;
   white-space: nowrap;
   transition:
@@ -418,7 +389,7 @@ html:not(.has-js) .nav-group:focus-within .nav-dropdown {
   color: var(--graphite);
   background: rgba(32, 35, 32, 0.035);
   border: 1px solid rgba(32, 35, 32, 0.1);
-  font-size: 0.92rem;
+  font-size: 1.02rem;
   font-weight: 640;
 }
 
@@ -1039,7 +1010,7 @@ html:not(.has-js) .nav-group:focus-within .nav-dropdown {
     min-height: 46px;
     padding: 0 10px;
     border-bottom: 1px solid rgba(32, 35, 32, 0.08);
-    font-size: 0.96rem;
+    font-size: 1.02rem;
   }
 
   .nav-group {
