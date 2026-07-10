@@ -9,8 +9,9 @@
       content="Computational Thermodynamics (CALPHAD) at the Materials Informatics and Design Laboratory (SKKU): thermodynamic database development for multicomponent metallic and ceramic materials."
     >
     <script>document.documentElement.classList.add("has-js");</script>
-    <link rel="stylesheet" href="../assets/css/research.css?v=20260710-minimal-m">
-    <script src="../assets/js/team-page.js?v=20260710-minimal-m" defer></script>
+    <link rel="stylesheet" href="../assets/css/research.css?v=20260710-reveal">
+    <script src="../assets/js/team-page.js?v=20260710-reveal" defer></script>
+    <script src="../assets/js/research.js?v=20260710-reveal" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#research-main">Skip to content</a>
@@ -58,18 +59,17 @@
       </nav>
     </header>
 
-    <main class="research-page" id="research-main">
+    <main class="research-page" id="research-main" data-research-topic="calphad">
       <section class="research-hero reveal-block" aria-labelledby="research-title">
         <div class="research-identity">
           <p class="eyebrow">Research</p>
-          <h1 id="research-title">Computational Thermodynamics</h1>
+          <h1 id="research-title" data-research-title>Computational Thermodynamics</h1>
         </div>
-        <p class="research-subtitle">CALPHAD-based thermodynamic database development</p>
-        <ul class="research-tags" aria-label="CALPHAD keywords">
+        <p class="research-subtitle" data-research-subtitle>CALPHAD-based thermodynamic database development</p>
+        <ul class="research-tags" data-research-tags aria-label="CALPHAD keywords">
           <li>FactSage</li>
           <li>OpenCalphad</li>
           <li>Database</li>
-          <li>Phase Equilibrium</li>
         </ul>
       </section>
 
@@ -82,7 +82,7 @@
       </nav>
 
       <figure class="research-figure reveal-block">
-        <img
+        <img data-research-image
           src="../assets/img/research/calphad.png"
           alt="Thermodynamic database development workflow: software (FactSage, OpenCalphad), experiments (phase equilibrium, phase transition), modeling (quaternary MAX phases, compound energy formalism), parameter optimization and validation, and application to materials design and process engineering."
         >
@@ -94,7 +94,7 @@
           <h2 id="overview-title">Overview</h2>
         </div>
         <div class="research-content">
-          <div class="research-body-text">
+          <div class="research-body-text" data-research-overview>
             <p>
               Computational thermodynamics is a powerful approach for understanding and predicting
               phase stability in complex material systems. By calculating phase equilibria, phase
@@ -125,7 +125,7 @@
           <h2 id="projects-title">Ongoing Research</h2>
         </div>
         <div class="research-content">
-          <ul class="research-projects">
+          <ul class="research-projects" data-research-projects>
             <li>
               <strong lang="ko">맥신 플랫폼 구조를 이용한 이차원 반도체 및 자성체 개발 기초 연구실</strong>
               <span>Basic Research Laboratory for 2D Semiconductors and Magnetic Materials Development Utilizing MXene Structural Platform</span>

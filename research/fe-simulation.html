@@ -9,8 +9,9 @@
       content="Multiscale and multiphysics finite element simulation at the Materials Informatics and Design Laboratory (SKKU): modeling complex material behavior across scales and coupled physics."
     >
     <script>document.documentElement.classList.add("has-js");</script>
-    <link rel="stylesheet" href="../assets/css/research.css?v=20260710-minimal-m">
-    <script src="../assets/js/team-page.js?v=20260710-minimal-m" defer></script>
+    <link rel="stylesheet" href="../assets/css/research.css?v=20260710-reveal">
+    <script src="../assets/js/team-page.js?v=20260710-reveal" defer></script>
+    <script src="../assets/js/research.js?v=20260710-reveal" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#research-main">Skip to content</a>
@@ -58,14 +59,14 @@
       </nav>
     </header>
 
-    <main class="research-page" id="research-main">
+    <main class="research-page" id="research-main" data-research-topic="fe-simulation">
       <section class="research-hero reveal-block" aria-labelledby="research-title">
         <div class="research-identity">
           <p class="eyebrow">Research</p>
-          <h1 id="research-title">Multiscale &amp; Multiphysics Simulation</h1>
+          <h1 id="research-title" data-research-title>Multiscale &amp; Multiphysics Simulation</h1>
         </div>
-        <p class="research-subtitle">Multiscale and multiphysics finite element simulation</p>
-        <ul class="research-tags" aria-label="FE Simulation keywords">
+        <p class="research-subtitle" data-research-subtitle>Multiscale and multiphysics finite element simulation</p>
+        <ul class="research-tags" data-research-tags aria-label="FE Simulation keywords">
           <li>Abaqus</li>
           <li>DAMASK</li>
           <li>FEM</li>
@@ -82,7 +83,7 @@
       </nav>
 
       <figure class="research-figure reveal-block">
-        <img
+        <img data-research-image
           src="../assets/img/research/fe-simulation.png"
           alt="Multiphysics finite element simulation: electrical-mechanical coupling (e-beam induced viscoplasticity of a nano ceramic pillar), thermal-mechanical coupling (yield-stress gradient in cooled steel), and diffusional-mechanical coupling (lithium-ion battery cathode delithiation)."
         >
@@ -94,7 +95,7 @@
           <h2 id="overview-title">Overview</h2>
         </div>
         <div class="research-content">
-          <div class="research-body-text">
+          <div class="research-body-text" data-research-overview>
             <p>
               Our research lab specializes in multiscale and multiphysics finite element
               simulations, a powerful computational approach that allows us to model and analyze
@@ -119,7 +120,7 @@
           <h2 id="projects-title">Ongoing Research</h2>
         </div>
         <div class="research-content">
-          <ul class="research-projects">
+          <ul class="research-projects" data-research-projects>
             <li>
               <strong lang="ko">Free-Cycling 대응 STMP 기반 강재 설계&middot;제어 플랫폼 구축을 통한 상반 물성 동시 구현</strong>
             </li>
@@ -133,7 +134,7 @@
           <h2 id="papers-title">Selected Papers</h2>
         </div>
         <div class="research-content">
-          <ol class="research-papers">
+          <ol class="research-papers" data-research-papers>
             <li>
               <a href="https://www.sciencedirect.com/science/article/pii/S0927025619306421" target="_blank" rel="noreferrer">A fully coupled diffusional&ndash;mechanical finite element modeling for tin oxide-coated copper anode system in lithium-ion batteries</a>
               <span class="paper-meta">K. Jeong et al. &middot; Computational Materials Science 172, 109343 (2020)</span>

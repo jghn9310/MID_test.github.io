@@ -963,6 +963,14 @@ html:not(.has-js) .nav-group:focus-within .nav-dropdown {
 }
 
 @media (max-width: 720px) {
+  /* Mobile: ground the scroll reveal — drop the blur and slide that made
+     content feel like it floats in while the static subnav stays put. Fade only. */
+  .has-js .reveal-block {
+    transform: none;
+    filter: none;
+    transition: opacity 300ms var(--ease-out);
+  }
+
   html {
     scroll-padding-top: 82px;
   }

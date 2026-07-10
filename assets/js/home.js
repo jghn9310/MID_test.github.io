@@ -118,7 +118,8 @@ document.addEventListener("click", (event) => {
 });
 
 // Whole Contact card acts as a link to the Contact page. Clicks on the inner
-// email / map links keep their own behavior; the arrow is decoration only.
+// email link keep their own behavior. Selecting text (e.g. copying the email)
+// or dragging must NOT trigger navigation.
 const contactCard = document.querySelector("[data-contact-card]");
 
 if (contactCard) {
@@ -128,8 +129,20 @@ if (contactCard) {
     if (contactHref) window.location.href = contactHref;
   };
 
+  let pressX = 0;
+  let pressY = 0;
+
+  contactCard.addEventListener("pointerdown", (event) => {
+    pressX = event.clientX;
+    pressY = event.clientY;
+  });
+
   contactCard.addEventListener("click", (event) => {
     if (event.target.closest("a, button")) return;
+    // Don't navigate while text is selected (copying the email address).
+    if (window.getSelection && String(window.getSelection()).length > 0) return;
+    // Don't navigate if the click was really the end of a drag/selection.
+    if (Math.abs(event.clientX - pressX) > 6 || Math.abs(event.clientY - pressY) > 6) return;
     openContact();
   });
 

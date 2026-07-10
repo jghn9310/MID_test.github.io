@@ -9,8 +9,9 @@
       content="Metallic Materials Design at the Materials Informatics and Design Laboratory (SKKU): designing advanced metallic materials for automotive, aerospace, energy, and infrastructure applications."
     >
     <script>document.documentElement.classList.add("has-js");</script>
-    <link rel="stylesheet" href="../assets/css/research.css?v=20260710-minimal-m">
-    <script src="../assets/js/team-page.js?v=20260710-minimal-m" defer></script>
+    <link rel="stylesheet" href="../assets/css/research.css?v=20260710-reveal">
+    <script src="../assets/js/team-page.js?v=20260710-reveal" defer></script>
+    <script src="../assets/js/research.js?v=20260710-reveal" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#research-main">Skip to content</a>
@@ -58,14 +59,14 @@
       </nav>
     </header>
 
-    <main class="research-page" id="research-main">
+    <main class="research-page" id="research-main" data-research-topic="materials-design">
       <section class="research-hero reveal-block" aria-labelledby="research-title">
         <div class="research-identity">
           <p class="eyebrow">Research</p>
-          <h1 id="research-title">Metallic Materials<br>Design</h1>
+          <h1 id="research-title" data-research-title>Metallic Materials<br>Design</h1>
         </div>
-        <p class="research-subtitle">Designing advanced metallic materials for various applications</p>
-        <ul class="research-tags" aria-label="Materials Design keywords">
+        <p class="research-subtitle" data-research-subtitle>Designing advanced metallic materials for various applications</p>
+        <ul class="research-tags" data-research-tags aria-label="Materials Design keywords">
           <li>Welding</li>
           <li>Composite</li>
           <li>SPS</li>
@@ -83,7 +84,7 @@
       </nav>
 
       <figure class="research-figure reveal-block">
-        <img
+        <img data-research-image
           src="../assets/img/research/materials-design.png"
           alt="Materials with improved properties: aluminum-copper welded joints, additively manufactured metals, tungsten-chromium sintered composites, and functionally gradient steel, spanning electronics, aerospace, nuclear-fusion, and automotive applications."
         >
@@ -95,7 +96,7 @@
           <h2 id="overview-title">Overview</h2>
         </div>
         <div class="research-content">
-          <div class="research-body-text">
+          <div class="research-body-text" data-research-overview>
             <p>
               Developing metallic materials is crucial as they are utilized in a wide range of
               industries, including automotive, aerospace, energy, and infrastructure. Advancing
@@ -125,7 +126,7 @@
           <h2 id="papers-title">Selected Papers</h2>
         </div>
         <div class="research-content">
-          <ol class="research-papers">
+          <ol class="research-papers" data-research-papers>
             <li>
               <a href="https://www.sciencedirect.com/science/article/pii/S135964542200307X" target="_blank" rel="noreferrer">Athermally enhanced recrystallization kinetics of ultra-low carbon steel via electric current treatment</a>
               <span class="paper-meta">K. Jeong et al. &middot; Acta Materialia 232, 117925 (2022)</span>

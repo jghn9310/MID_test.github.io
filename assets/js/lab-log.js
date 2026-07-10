@@ -336,6 +336,33 @@ const loadEntries = async () => {
     return matches.length;
   };
 
+  // 카운트를 오도미터처럼 굴려 갱신한다(로드/필터 시). reduced-motion이면 즉시.
+  let displayedShown = 0;
+  const setCount = (shown, total) => {
+    const fmt = (n) => (n >= total ? `${total} lines · live` : `${n} / ${total} lines`);
+    if (countEl._roll) { clearInterval(countEl._roll); countEl._roll = null; }
+    if (prefersReducedMotion || displayedShown === shown) {
+      countEl.textContent = fmt(shown);
+      displayedShown = shown;
+      return;
+    }
+    const from = displayedShown;
+    const to = shown;
+    const steps = Math.min(Math.abs(to - from), 12);
+    let i = 0;
+    countEl._roll = setInterval(() => {
+      i += 1;
+      const v = Math.round(from + (to - from) * (i / steps));
+      countEl.textContent = fmt(v);
+      if (i >= steps) {
+        clearInterval(countEl._roll);
+        countEl._roll = null;
+        countEl.textContent = fmt(to);
+        displayedShown = to;
+      }
+    }, 26);
+  };
+
   const render = (doReveal = true) => {
     const q = query.trim().toLowerCase();
     feed.innerHTML = "";
@@ -360,10 +387,8 @@ const loadEntries = async () => {
     emptyState.hidden = shown !== 0;
     feed.hidden = shown === 0;
 
-    const total = entries.length;
-    countEl.textContent =
-      shown === total ? `${total} lines · live` : `${shown} / ${total} lines`;
-    if (footerCount) footerCount.textContent = `${shown}/${total} ln`;
+    setCount(shown, entries.length);
+    if (footerCount) footerCount.textContent = `${shown}/${entries.length} ln`;
 
     if (doReveal) revealLines();
   };
@@ -426,6 +451,68 @@ const loadEntries = async () => {
       searchInput.blur();
     }
   });
+
+  // ---- 타이틀바 점 3개: 누르면 창이 한 번 '움찔' (딜라이트, reduced-motion이면 생략) ----
+  const dots = win.querySelector(".labos-dots");
+  if (dots && !prefersReducedMotion) {
+    const dotEls = [...dots.querySelectorAll("i")];
+    // 3개 다 눌리는 것처럼 보이지만, 매번 랜덤으로 정해지는 '하나'를 눌렀을 때만
+    // 창이 움찔한다(작은 서프라이즈). 클릭할 때마다 정답 점을 다시 뽑는다.
+    let liveDot = Math.floor(Math.random() * dotEls.length);
+    dots.addEventListener("click", (e) => {
+      const dot = e.target.closest("i");
+      if (!dot) return;
+      const hit = dotEls.indexOf(dot) === liveDot;
+      liveDot = Math.floor(Math.random() * dotEls.length);
+      if (!hit) return;
+      win.classList.remove("is-flinch");
+      void win.offsetWidth; // 리플로우 강제 → 연속 클릭에도 애니메이션 재시작
+      win.classList.add("is-flinch");
+    });
+    win.addEventListener("animationend", (e) => {
+      if (e.animationName === "term-flinch") win.classList.remove("is-flinch");
+    });
+  }
+
+  // ---- 타임스탬프 디코드 스크램블 (호버 시, 포인터 기기에서만) ----
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (!prefersReducedMotion && canHover) {
+    const GLYPHS = "0123456789";
+    // 경과시간 기반: 탭이 백그라운드로 타이머가 스로틀돼도 다음 틱에서 반드시
+    // 원래 값으로 복원된다(날짜가 깨진 채 남지 않게).
+    const DUR = 220;
+    const scramble = (el) => {
+      if (!el) return;
+      if (el._real === undefined) el._real = el.textContent;
+      const real = el._real;
+      if (el._timer) clearInterval(el._timer);
+      const start = performance.now();
+      el._timer = setInterval(() => {
+        const p = (performance.now() - start) / DUR;
+        if (p >= 1) {
+          clearInterval(el._timer);
+          el._timer = null;
+          el.textContent = real;
+          return;
+        }
+        const reveal = Math.floor(p * real.length);
+        let out = "";
+        for (let i = 0; i < real.length; i += 1) {
+          const c = real[i];
+          out += (i < reveal || c < "0" || c > "9") ? c : GLYPHS[(Math.random() * 10) | 0];
+        }
+        el.textContent = out;
+      }, 24);
+    };
+    let lastLine = null;
+    feed.addEventListener("mouseover", (e) => {
+      const line = e.target.closest(".term-line");
+      if (!line || line === lastLine) return;
+      lastLine = line;
+      scramble(line.querySelector(".tl-date"));
+    });
+    feed.addEventListener("mouseleave", () => { lastLine = null; });
+  }
 
   // 초기 활성 파일로 tabpanel 라벨을 맞춘다.
   const firstTab = filesWrap.querySelector(".labos-file.is-active");

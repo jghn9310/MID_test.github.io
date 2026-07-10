@@ -345,6 +345,7 @@ html { background: #191c18; }
 
 /* ---- 콘솔 창 셸 + 부팅 전이(비차단·시각 전용) ---- */
 .labos {
+  position: relative;
   max-width: 1040px;
   margin: 0 auto;
   display: flex;
@@ -390,6 +391,11 @@ html { background: #191c18; }
 }
 .labos-dots i:nth-child(2) { background: #4a4f47; }
 .labos-dots i:nth-child(3) { background: #5a6056; }
+
+/* 점들은 눌리는 느낌을 준다(닫기/최소화/최대화 흉내). 클릭하면 창이 움찔한다. */
+.labos-dots i { cursor: pointer; transition: transform 120ms var(--ease-out); }
+.labos-dots i:hover { transform: scale(1.18); }
+.labos-dots i:active { transform: scale(0.82); }
 
 .labos-title {
   min-width: 0;
@@ -578,16 +584,19 @@ html { background: #191c18; }
    아니라 열 간격(여백)으로 준다 — 미니멀 문법: 구분은 헤어라인/여백 우선, 장식
    글리프로 위계를 만들지 않는다. 크기는 모듈러 스케일(라벨/본문)에서만 고른다. */
 .term-line {
+  position: relative;
   display: grid;
   grid-template-columns: max-content 1.6em minmax(0, 1fr);
   align-items: baseline;
   column-gap: clamp(12px, 1.4vw, 20px);
-  padding: 8px;
+  /* left gutter reserves room for the hover ❯ prompt caret */
+  padding: 8px 8px 8px 22px;
   border-radius: 6px;
   font-family: var(--font-mono);
-  transition: background-color 150ms var(--ease-out);
+  transition:
+    background-color 150ms var(--ease-out),
+    transform 180ms var(--ease-out);
 }
-.term-line:hover { background: rgba(233, 236, 230, 0.05); }
 
 .tl-date {
   color: var(--term-faint);
@@ -595,14 +604,73 @@ html { background: #191c18; }
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
-/* hover 보상은 색 팝업이 아니라 대비 상승(미니멀 §7). */
-.term-line:hover .tl-date { color: var(--term-dim); }
 
 .tl-emoji {
   justify-self: center;
   color: var(--term-dim);
   font-size: 1rem;
   line-height: 1;
+  transition: transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---- Playful hover motion (pointer devices only) — a ❯ prompt caret slides
+   in, the line lifts, the timestamp goes amber, and the emoji pops. Movement
+   is transform/opacity only and stays under ~260ms. ---- */
+@media (hover: hover) and (pointer: fine) {
+  .term-line::before {
+    content: "\276F";
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    color: var(--term-accent);
+    opacity: 0;
+    transform: translateX(-3px);
+    transition:
+      opacity 150ms var(--ease-out),
+      transform 180ms var(--ease-out);
+    pointer-events: none;
+  }
+  .term-line:hover {
+    background: rgba(233, 236, 230, 0.06);
+    transform: translateY(-1px);
+  }
+  .term-line:hover::before {
+    opacity: 0.9;
+    transform: translateX(0);
+  }
+  .term-line:hover .tl-date { color: var(--term-accent); }
+  .term-line:hover .tl-emoji { transform: scale(1.3) rotate(-8deg); }
+}
+
+/* ---- Ambient CRT scanlines over the console — very faint, slow, decorative. ---- */
+.labos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0 2px,
+    rgba(0, 0, 0, 0.05) 2px 3px
+  );
+  opacity: 0.4;
+  animation: term-scan 7s linear infinite;
+}
+@keyframes term-scan {
+  from { background-position: 0 0; }
+  to { background-position: 0 6px; }
+}
+
+/* 타이틀바 점을 누르면 창이 한 번 '움찔' — 닫히지 않으려는 듯한 짧은 흔들림. */
+.labos.is-flinch { animation: term-flinch 320ms var(--ease-out); }
+@keyframes term-flinch {
+  0%   { transform: translateX(0) scale(1); }
+  15%  { transform: translateX(-2px) scale(0.998); }
+  38%  { transform: translateX(2px); }
+  60%  { transform: translateX(-1px); }
+  80%  { transform: translateX(1px); }
+  100% { transform: translateX(0) scale(1); }
 }
 
 .tl-event {
@@ -625,7 +693,7 @@ html { background: #191c18; }
   grid-template-columns: max-content minmax(0, 1fr);
   align-items: center;
   column-gap: clamp(12px, 1.4vw, 20px);
-  padding: 8px 8px 0;
+  padding: 8px 8px 0 22px;
 }
 .tl-date-live { color: var(--term-accent); opacity: 0.85; font-size: var(--fs-label); }
 .term-cursor {
@@ -778,12 +846,15 @@ html { background: #191c18; }
 
   .labos-feed { max-height: none; }
 
-  /* 좁은 화면: 이모지 열만 살짝 좁혀 event 폭을 확보. 구분은 여전히 여백만. */
+  /* 좁은 화면: 이모지 열만 살짝 좁혀 event 폭을 확보. 구분은 여전히 여백만.
+     모바일(터치)엔 호버가 없으므로 ❯ 프롬프트 캐럿과 좌측 거터를 제거한다. */
   .term-line {
     grid-template-columns: max-content 1.4em minmax(0, 1fr);
     column-gap: 12px;
     padding: 8px 4px;
   }
+  .term-line::before { display: none; }
+  .term-caret-line { padding-left: 4px; }
 }
 
 /* 아주 좁은 화면 — 이모지/구분자 컬럼이 event 를 밀어내지 않도록 살짝 축소. */
@@ -805,6 +876,17 @@ html { background: #191c18; }
     transform: none;
     transition: none;
   }
+
+  /* Keep the color/opacity hover cues; drop all movement + looping motion. */
+  .labos::after { animation: none; }
+  .labos.is-flinch { animation: none; }
+  .labos-dots i { transition: none; }
+  .labos-dots i:hover,
+  .labos-dots i:active { transform: none; }
+  .tl-emoji { transition: none; }
+  .term-line:hover { transform: none; }
+  .term-line:hover .tl-emoji { transform: none; }
+  .term-line::before { transition: none; transform: none; }
 
   .term-boot-cursor,
   .term-cursor,

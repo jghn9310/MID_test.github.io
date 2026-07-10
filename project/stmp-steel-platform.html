@@ -6,11 +6,11 @@
     <title>STMP-Based Steel Design &amp; Control Platform for Free-Cycling | MID Lab</title>
     <meta
       name="description"
-      content="Research project at the Materials Informatics and Design Laboratory (SKKU): building an STMP-based steel design and control platform for Free-Cycling to realize contradictory properties simultaneously."
+      content="Research project at the Materials Informatics and Design Laboratory (SKKU): a Free-Cycling STMP-based steel design and control platform realizing contradictory properties at once. MID Lab develops the nanoindentation-based, AI property-prediction and scale-bridging engine."
     >
     <script>document.documentElement.classList.add("has-js");</script>
-    <link rel="stylesheet" href="../assets/css/project.css?v=20260710-minimal-m">
-    <script src="../assets/js/team-page.js?v=20260710-minimal-m" defer></script>
+    <link rel="stylesheet" href="../assets/css/project.css?v=20260710-reveal">
+    <script src="../assets/js/team-page.js?v=20260710-reveal" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#project-main">Skip to content</a>
@@ -61,18 +61,22 @@
     <main class="project-page" id="project-main">
       <section class="project-hero reveal-block" aria-labelledby="project-title">
         <div class="project-identity">
-          <p class="eyebrow">Project 02 &middot; Ongoing</p>
+          <p class="eyebrow">Project 02 &middot; 나노소재기술개발사업</p>
           <h1 id="project-title" lang="ko">Free-Cycling 대응 STMP 기반 강재 설계·제어 플랫폼 구축을 통한 상반 물성 동시 구현</h1>
         </div>
         <p class="project-subtitle">
           STMP-Based Steel Design &amp; Control Platform for Free-Cycling
         </p>
+        <p class="project-lead" lang="ko">
+          상충하는 강도&middot;연성&middot;내수소취성을 한 강재에서 동시에 얻기 위해, STMP 개념과
+          Physics-AI 설계&middot;제어 플랫폼을 구축하는 다기관 국가 R&amp;D 과제입니다.
+        </p>
         <ul class="project-tags" aria-label="Project keywords">
           <li>STMP</li>
-          <li>Steel Design</li>
-          <li>Free-Cycling</li>
-          <li>Process Control</li>
-          <li>Multi-property</li>
+          <li>AHSS</li>
+          <li>Contradictory Properties</li>
+          <li>Physics-AI</li>
+          <li>Nanoindentation</li>
         </ul>
       </section>
 
@@ -84,9 +88,10 @@
       </nav>
 
       <figure class="project-figure-full reveal-block">
-        <div class="project-figure-slot">
-          <span aria-hidden="true">Research image coming soon</span>
-        </div>
+        <img
+          src="../assets/img/project/stmp-steel-platform.png"
+          alt="MID Lab의 STMP 물성 예측 파이프라인: 방위별 나노압입 및 변형장 분석, 미세조직 기반 결정소성(CPFEM) 모델, CNN·GNN 기반 Forward Property Prediction."
+        >
       </figure>
 
       <section class="profile-section reveal-block" aria-labelledby="overview-title">
@@ -96,19 +101,57 @@
         </div>
         <div class="project-body-text" lang="ko">
           <p>
-            강재는 강도와 연성, 성형성과 같이 서로 상반되는 물성을 동시에 요구받는
-            경우가 많습니다. 본 과제는 Free-Cycling 환경에 대응하는 STMP 기반 강재
-            설계·제어 플랫폼을 구축하여, 이러한 상반 물성을 하나의 소재에서 동시에
-            구현하는 것을 목표로 합니다.
+            초고강도강(AHSS)은 강도가 올라갈수록 연성과 내수소취성이 저하되는 상반 물성
+            트레이드오프에 갇혀 있어, 강도&ndash;연성 지도의 특정 영역을 벗어나기 어렵습니다. 본 과제는
+            이를 넘기 위해 STMP(Sequentially Transformed Multi-Phase) steel 개념을 제시합니다.
+            ① Sequentially Transformed &mdash; 기존 연속냉각의 B→M 상변태 순서를 뒤집어 M→B 순서를
+            유도하고 필름형 잔류 오스테나이트(RA)를 형성해 상 안정도를 극대화하며 Fresh
+            Martensite를 최소화&middot;Tempered화합니다. ② Multi-Phase &mdash; Martensite&ndash;Bainite&ndash;Film RA
+            복합조직으로 공정&ndash;미세조직&ndash;물성의 설계 자유도를 확장합니다. 본 과제는 2026년
+            나노소재기술개발사업(품목공모형, 과학기술정보통신부)으로 선정되었으며, 한국재료연구원(KIMS)
+            주관 아래 KIST&middot;KAERI&middot;고려대&middot;창원대&middot;부산대&middot;성균관대가 참여해 Physics-AI 통합 예측
+            기반 Slim 합금 설계와 정밀 열처리로 초고강도&middot;고연성&middot;내수소취성을 동시 구현하는 강재
+            설계&middot;제어 플랫폼을 구축합니다.
+          </p>
+        </div>
+      </section>
+
+      <section class="profile-section reveal-block" aria-labelledby="goal-title">
+        <div class="section-label">
+          <p>Goal</p>
+          <h2 id="goal-title">Objectives</h2>
+        </div>
+        <div class="project-body-text" lang="ko">
+          <p>
+            STMP 기반 기술로 Free-Cycling(자유로운 냉각/열처리 경로) 환경에서도 강재의 상반
+            물성(초고강도&middot;고연성&middot;내수소취성)을 동시에 구현할 수 있는 설계&middot;제어 플랫폼을 구축하는
+            것이 목표입니다. 이를 위해 ① Sequential-transformation 기반 Slim 합금 지능형 설계(물리
+            모델+AI 통합 예측, 모델 합금 제작), ② M-B-RA 복합 미세조직 기반 내수소 강건성
+            확보(수소 트래핑 거동&middot;DFT 해석), ③ Atomic&ndash;Micro&ndash;Macro 연계 Scale-bridging 분석(중성자
+            회절&middot;나노압입&middot;EBSD/TEM)을 세 축으로 추진하며, STMP 기반 강재 특성 분석 → 설계&middot;제어
+            플랫폼 개발 → 실증&middot;검증의 단계로 진행합니다.
+          </p>
+        </div>
+      </section>
+
+      <section class="profile-section reveal-block" aria-labelledby="role-title">
+        <div class="section-label">
+          <p>MID Lab</p>
+          <h2 id="role-title">Our Role</h2>
+        </div>
+        <div class="project-body-text" lang="ko">
+          <p>
+            MID(성균관대)는 추진체계에서 &ldquo;Atomic&ndash;Micro&ndash;Macro 연계 Scale-bridging 분석&rdquo;
+            축에 속하며, 물성 예측 모델의 성능을 끌어올리는 데이터&middot;모델링을 담당합니다. 먼저
+            나노인덴테이션 기반 STMP강 국부 기계적 응답 분석으로 다상 복합조직 내 각 상/계면의
+            국부 물성을 압입 시험으로 정량화하고, 나노인덴테이션 DB 기반 STMP강 특화 강도&ndash;연신율
+            거동 예측 모델(딥러닝)을 구축합니다.
           </p>
           <p>
-            조성 설계와 공정 제어를 하나의 플랫폼으로 통합하여, 목표 물성에 맞는 미세조직을
-            체계적으로 설계하고 제어합니다. 계산열역학과 유한요소 시뮬레이션으로 공정-조직-물성
-            관계를 예측하고, 이를 실험으로 검증하는 순환 구조를 통해 설계 신뢰성을 높입니다.
-          </p>
-          <p>
-            궁극적으로 Free-Cycling 조건에서도 안정적으로 상반 물성을 확보할 수 있는
-            강재 설계 전략과, 재현 가능한 공정 제어 방법을 확립하는 것을 지향합니다.
+            또한 KAERI의 In-situ 중성자 회절 분석과 연계해 나노압입을 통한 변형기구 규명에
+            참여하고, 그 결과를 KIMS&middot;부산대의 Physics-AI 통합 예측/모델 합금 제작으로 피드백해
+            상반 물성 동시 구현에 기여합니다. 요컨대 MID는 압입 기반 물성 예측&middot;Scale-bridging
+            모델링으로 STMP 설계&middot;제어 플랫폼의 예측 엔진을 담당합니다.
           </p>
         </div>
       </section>
@@ -121,19 +164,19 @@
         <dl class="project-facts">
           <div>
             <dt>Type</dt>
-            <dd lang="ko">플랫폼 구축 연구</dd>
+            <dd lang="ko">2026 나노소재기술개발사업(품목공모형, 과기정통부) &middot; KIMS 주관 다기관 공동 (5개년)</dd>
           </div>
           <div>
-            <dt>Goal</dt>
-            <dd lang="ko">상반 물성의 동시 구현</dd>
+            <dt>Focus</dt>
+            <dd lang="ko">상반 물성(초고강도&middot;고연성&middot;내수소취성)의 동시 구현</dd>
           </div>
           <div>
             <dt>Platform</dt>
-            <dd lang="ko">Free-Cycling 대응 STMP 기반 강재 설계·제어 플랫폼</dd>
+            <dd lang="ko">Free-Cycling 대응 STMP(순차 상변태 다상강) 기반 강재 설계&middot;제어 플랫폼</dd>
           </div>
           <div>
-            <dt>Approach</dt>
-            <dd lang="ko">조성 설계 &middot; 공정 제어 &middot; 계산 예측 &middot; 실험 검증</dd>
+            <dt>Position</dt>
+            <dd lang="ko">나노인덴테이션 기반 물성 예측 모델(AI) 개발 &middot; In-situ 중성자 회절 연계 Scale-bridging 변형기구 규명</dd>
           </div>
         </dl>
       </section>

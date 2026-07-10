@@ -9,8 +9,9 @@
       content="Artificial intelligence for materials at the Materials Informatics and Design Laboratory (SKKU): machine and deep learning for property prediction, reverse engineering, and accelerated materials development."
     >
     <script>document.documentElement.classList.add("has-js");</script>
-    <link rel="stylesheet" href="../assets/css/research.css?v=20260710-minimal-m">
-    <script src="../assets/js/team-page.js?v=20260710-minimal-m" defer></script>
+    <link rel="stylesheet" href="../assets/css/research.css?v=20260710-reveal">
+    <script src="../assets/js/team-page.js?v=20260710-reveal" defer></script>
+    <script src="../assets/js/research.js?v=20260710-reveal" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#research-main">Skip to content</a>
@@ -58,14 +59,14 @@
       </nav>
     </header>
 
-    <main class="research-page" id="research-main">
+    <main class="research-page" id="research-main" data-research-topic="artificial-intelligence">
       <section class="research-hero reveal-block" aria-labelledby="research-title">
         <div class="research-identity">
           <p class="eyebrow">Research</p>
-          <h1 id="research-title">Artificial Intelligence for Materials</h1>
+          <h1 id="research-title" data-research-title>Artificial Intelligence for Materials</h1>
         </div>
-        <p class="research-subtitle">Machine / deep learning for efficient materials development</p>
-        <ul class="research-tags" aria-label="Artificial Intelligence keywords">
+        <p class="research-subtitle" data-research-subtitle>Machine / deep learning for efficient materials development</p>
+        <ul class="research-tags" data-research-tags aria-label="Artificial Intelligence keywords">
           <li>Deep Learning</li>
           <li>Property Characterization</li>
           <li>Reverse Engineering</li>
@@ -81,7 +82,7 @@
       </nav>
 
       <figure class="research-figure reveal-block">
-        <img
+        <img data-research-image
           src="../assets/img/research/artificial-intelligence.png"
           alt="Machine and deep learning for materials development: macro and micro indentation, microstructure imaging, tensile testing, residual stress, and phase identification (austenite, ferrite, martensite), connected through a deep learning system for regression and classification."
         >
@@ -93,7 +94,7 @@
           <h2 id="overview-title">Overview</h2>
         </div>
         <div class="research-content">
-          <div class="research-body-text">
+          <div class="research-body-text" data-research-overview>
             <p>
               Machine learning algorithms help identify hidden patterns in large datasets, enabling
               us to optimize material properties and reduce trial-and-error experimentation. Deep
@@ -119,7 +120,7 @@
           <h2 id="projects-title">Ongoing Research</h2>
         </div>
         <div class="research-content">
-          <ul class="research-projects">
+          <ul class="research-projects" data-research-projects>
             <li>
               <strong lang="ko">Free-Cycling 대응 STMP 기반 강재 설계&middot;제어 플랫폼 구축을 통한 상반 물성 동시 구현</strong>
             </li>
@@ -133,7 +134,7 @@
           <h2 id="papers-title">Selected Papers</h2>
         </div>
         <div class="research-content">
-          <ol class="research-papers">
+          <ol class="research-papers" data-research-papers>
             <li>
               <a href="https://www.sciencedirect.com/science/article/pii/S0264127520306390" target="_blank" rel="noreferrer">Prediction of uniaxial tensile flow using finite element-based indentation and optimized artificial neural networks</a>
               <span class="paper-meta">K. Jeong et al. &middot; Materials &amp; Design 196, 109104 (2020)</span>
