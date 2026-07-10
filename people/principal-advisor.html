@@ -11,6 +11,7 @@
     <script>document.documentElement.classList.add("has-js");</script>
     <link rel="stylesheet" href="../assets/css/principal-advisor.css?v=20260710-minimal-m">
     <script src="../assets/js/team-page.js?v=20260710-minimal-m" defer></script>
+    <script src="../assets/js/pi.js?v=20260710-minimal-m" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#profile">Skip to profile</a>
@@ -65,13 +66,13 @@
           <h1 id="pi-title">Principal Investigator</h1>
         </div>
         <div class="pi-identity">
-          <p class="pi-person-name">
+          <p class="pi-person-name" data-pi-name>
             Kyeongjae Jeong (<span lang="ko">&#51221;&#44221;&#51116;</span>), Ph.D.
           </p>
-          <p class="pi-title-line">
+          <p class="pi-title-line" data-pi-title>
             Assistant Professor, SKKU
           </p>
-          <div class="pi-actions" aria-label="Principal investigator links">
+          <div class="pi-actions" aria-label="Principal investigator links" data-pi-actions>
             <a href="mailto:k.jeong@skku.edu">k.jeong@skku.edu</a>
             <a href="https://scholar.google.com/citations?user=clSwqSwAAAAJ&amp;hl=ko" target="_blank" rel="noreferrer">Google Scholar</a>
           </div>
@@ -79,7 +80,7 @@
 
         <aside class="pi-profile-panel" aria-label="Profile summary">
           <figure class="pi-portrait">
-            <img src="../assets/img/people/kyeongjae-jeong.jpg" alt="Prof. Kyeongjae Jeong">
+            <img src="../assets/img/people/kyeongjae-jeong.jpg" alt="Prof. Kyeongjae Jeong" data-pi-photo>
           </figure>
         </aside>
       </section>
@@ -95,7 +96,7 @@
           <p>Academic Path</p>
           <h2 id="education-title">Education</h2>
         </div>
-        <div class="timeline-list">
+        <div class="timeline-list" data-pi-education>
           <article>
             <time>2017.03 - 2022.08</time>
             <div>
@@ -120,7 +121,7 @@
           <p>Appointments</p>
           <h2 id="experience-title">Experience</h2>
         </div>
-        <div class="timeline-list">
+        <div class="timeline-list" data-pi-experience>
           <article>
             <time>2025.03 - Present</time>
             <div>
@@ -152,7 +153,7 @@
           <p>Recognition</p>
           <h2 id="awards-title">Honors and Awards</h2>
         </div>
-        <ul class="award-list">
+        <ul class="award-list" data-pi-awards>
           <li><span>2024.09 - 2025.02</span>Postdoctoral Fellowship, Max Planck Society of Germany</li>
           <li><span>2023.03 - 2025.02</span>POSCO Science Fellowship (Post-doc), POSCO TJ Park Foundation</li>
           <li><span>2022.09 - 2024.08</span>Postdoctoral Fellowship, National Research Foundation of Korea</li>

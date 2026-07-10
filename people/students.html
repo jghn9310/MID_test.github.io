@@ -11,6 +11,7 @@
     <script>document.documentElement.classList.add("has-js");</script>
     <link rel="stylesheet" href="../assets/css/students.css?v=20260710-minimal-m">
     <script src="../assets/js/team-page.js?v=20260710-minimal-m" defer></script>
+    <script src="../assets/js/students.js?v=20260710-minimal-m" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#students">Skip to students</a>
@@ -72,105 +73,12 @@
         <a href="alumni-visiting.html">Alumni / Visiting</a>
       </nav>
 
-      <section class="student-roster reveal-block" aria-label="Students roster">
-        <div class="roster-group">
-          <div class="roster-heading">
-            <h2>Graduate Students</h2>
-          </div>
-          <div class="student-grid">
-            <article class="student-card">
-              <figure class="student-photo">
-                <img src="../assets/img/people/gangsan-kim.jpg" alt="Gangsan Kim">
-              </figure>
-              <div class="student-info">
-                <p class="student-course">MS and PhD Integrated Course</p>
-                <h3>Gangsan Kim</h3>
-                <p class="student-fields"><span>FEM</span><span>Structural Materials</span></p>
-                <a class="student-email" href="mailto:john6742@g.skku.edu">john6742@g.skku.edu</a>
-              </div>
-            </article>
-
-            <article class="student-card">
-              <figure class="student-photo">
-                <img src="../assets/img/people/hoon-jeong.png" alt="Hoon Jeong">
-              </figure>
-              <div class="student-info">
-                <p class="student-course">MS and PhD Integrated Course</p>
-                <h3>Hoon Jeong</h3>
-                <p class="student-fields"><span>CALPHAD</span><span>Alloy Design</span></p>
-                <a class="student-email" href="mailto:jghn9310@g.skku.edu">jghn9310@g.skku.edu</a>
-              </div>
-            </article>
-
-            <article class="student-card">
-              <figure class="student-photo">
-                <img src="../assets/img/people/giuk-song.jpg" alt="Giuk Song">
-              </figure>
-              <div class="student-info">
-                <p class="student-course">MS and PhD Integrated Course</p>
-                <h3>Giuk Song</h3>
-                <p class="student-fields"><span>FEM</span><span>Electronic Materials</span></p>
-                <a class="student-email" href="mailto:gwook4412@g.skku.edu">gwook4412@g.skku.edu</a>
-              </div>
-            </article>
-
-            <article class="student-card">
-              <figure class="student-photo">
-                <img src="../assets/img/people/heeju-ahn.jpg" alt="Heeju Ahn">
-              </figure>
-              <div class="student-info">
-                <p class="student-course">MS Course</p>
-                <h3>Heeju Ahn</h3>
-                <p class="student-fields"><span>AI</span><span>Alloys</span></p>
-                <a class="student-email" href="mailto:hjahn8395@g.skku.edu">hjahn8395@g.skku.edu</a>
-              </div>
-            </article>
-
-            <article class="student-card">
-              <figure class="student-photo">
-                <img src="../assets/img/people/jumin-kwon.jpg" alt="Jumin Kwon">
-              </figure>
-              <div class="student-info">
-                <p class="student-course">MS and PhD Integrated Course</p>
-                <h3>Jumin Kwon</h3>
-                <p class="student-fields"><span>Alloy Design</span><span>Sintering</span></p>
-                <a class="student-email" href="mailto:kjm010622@g.skku.edu">kjm010622@g.skku.edu</a>
-              </div>
-            </article>
-
-            <article class="student-card">
-              <figure class="student-photo">
-                <img src="../assets/img/people/woosub-choi.jpg" alt="Woosub Choi">
-              </figure>
-              <div class="student-info">
-                <p class="student-course">MS and PhD Integrated Course</p>
-                <h3>Woosub Choi</h3>
-                <p class="student-fields"><span>CPFEM</span><span>Alloy Design</span></p>
-                <a class="student-email" href="mailto:cws3450@g.skku.edu">cws3450@g.skku.edu</a>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="roster-group">
-          <div class="roster-heading">
-            <h2>Undergraduate Students</h2>
-          </div>
-          <div class="student-grid">
-            <article class="student-card">
-              <figure class="student-photo">
-                <img src="../assets/img/people/heemook-kang.jpg" alt="Heemook Kang">
-              </figure>
-              <div class="student-info">
-                <p class="student-course">Undergraduate Research Course</p>
-                <h3>Heemook Kang</h3>
-                <p class="student-fields"><span>FEM</span><span>Materials Informatics</span></p>
-                <a class="student-email" href="mailto:hmkangop@gmail.com">hmkangop@gmail.com</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+      <!--
+        학생 카드는 구글 시트(또는 assets/js/students.js 의 STUDENTS 목록)에서 자동으로 그려집니다.
+        여기(HTML)는 더 이상 손대지 않아도 됩니다 — 명단 추가/삭제/순서는 시트에서 하세요.
+        (자세한 방법은 assets/js/students.js 맨 위 설명 참고)
+      -->
+      <section class="student-roster reveal-block" aria-label="Students roster" data-roster></section>
     </main>
 
     <footer class="site-footer" id="footer" aria-label="Site footer">
