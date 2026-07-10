@@ -1,0 +1,178 @@
+/* Board / News page. Reuses shared chrome, tokens, .eyebrow, .reveal-block,
+   .section-label, .team-subnav and the footer from principal-advisor.css.
+   News records milestone events — new grants, graduations, awards, press.
+   No entries yet: the page shows an honest empty state, and the entry layout
+   below (.news-list / .news-entry) is styled and ready for the first story. */
+@import url("./principal-advisor.css?v=20260710-minimal-i");
+
+.news-page {
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+.news-hero {
+  display: grid;
+  gap: clamp(16px, 1.8vw, 24px);
+  padding: clamp(150px, 13vw, 186px) clamp(22px, 6vw, 92px) clamp(28px, 3.6vw, 48px);
+  background:
+    linear-gradient(180deg, rgba(248, 249, 248, 0.76), rgba(255, 255, 255, 0) 60%),
+    var(--paper);
+}
+
+.news-identity {
+  display: grid;
+  gap: clamp(12px, 1.1vw, 16px);
+}
+
+.news-hero h1 {
+  color: #171a17;
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 1.03;
+}
+
+/* Feed band — holds either the empty state (now) or the news list (later). */
+.news-feed {
+  padding: clamp(40px, 5.4vw, 76px) clamp(22px, 6vw, 92px) clamp(56px, 7vw, 96px);
+}
+
+/* --- Empty state -------------------------------------------------------- */
+/* Quiet, centered notice. No decorative filler — a clear slot that says the
+   first entries are coming, and names the kinds of events News will hold. */
+.news-empty {
+  display: grid;
+  justify-items: center;
+  gap: clamp(14px, 1.6vw, 20px);
+  max-width: 60ch;
+  margin: 0 auto;
+  padding: clamp(44px, 6vw, 84px) clamp(20px, 4vw, 48px);
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, var(--paper-soft), var(--paper));
+}
+
+.news-empty-eyebrow {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.news-empty h2 {
+  color: #171a17;
+  font-family: var(--font-serif);
+  font-size: var(--fs-h4);
+  font-weight: 500;
+  line-height: 1.16;
+}
+
+.news-empty-note {
+  max-width: 46ch;
+  color: var(--charcoal);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+/* The four kinds of milestone News will record — communicates purpose, not
+   decoration. Renders as quiet pill labels. */
+.news-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: clamp(6px, 1vw, 12px);
+}
+
+.news-legend li {
+  padding: 6px 13px;
+  color: var(--charcoal);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* --- News list (ready for the first entries) ---------------------------- */
+/* Editorial rows: a dated, tagged column on the left; headline + summary on
+   the right. Add <article class="news-entry"> items inside .news-list and
+   remove/hide .news-empty when the first story lands. See the commented
+   template in news.html. */
+.news-list {
+  display: grid;
+  max-width: 1000px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.news-entry {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.24fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 56px);
+  padding: clamp(22px, 2.6vw, 34px) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.news-entry-meta {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.news-entry-meta time {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.03em;
+  line-height: 1.35;
+}
+
+.news-tag {
+  justify-self: start;
+  padding: 4px 10px;
+  color: var(--charcoal);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 560;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.news-entry-body {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.news-entry-body h3 {
+  color: var(--graphite);
+  font-size: var(--fs-h6);
+  font-weight: 590;
+  line-height: 1.28;
+}
+
+.news-entry-body p {
+  max-width: 720px;
+  color: var(--charcoal);
+  font-size: clamp(0.94rem, 1vw, 1.04rem);
+  line-height: 1.58;
+}
+
+@media (max-width: 720px) {
+  .news-entry {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .news-entry-meta {
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+  }
+}

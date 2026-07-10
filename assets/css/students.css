@@ -1,0 +1,222 @@
+@import url("./principal-advisor.css?v=20260710-minimal-i");
+
+.students-page {
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+.students-hero {
+  /* Shared --hero-min (principal-advisor.css) so every subpage hero — Team,
+     Research, Publications, News, Gallery, Project — is the same height and the
+     sub-nav below sits at a consistent Y. */
+  min-height: var(--hero-min);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  padding: clamp(154px, 13.4vw, 188px) clamp(22px, 6vw, 92px) clamp(42px, 4.8vw, 68px);
+  background:
+    linear-gradient(180deg, rgba(248, 249, 248, 0.76), rgba(255, 255, 255, 0) 58%),
+    var(--paper);
+}
+
+.students-identity {
+  display: grid;
+  gap: clamp(12px, 1.1vw, 16px);
+}
+
+.students-identity h1 {
+  max-width: none;
+  color: #171a17;
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 0.99;
+  white-space: nowrap;
+}
+
+.student-roster {
+  padding: clamp(22px, 3.4vw, 50px) clamp(22px, 6vw, 92px) clamp(76px, 8vw, 124px);
+  border-bottom: 1px solid var(--line);
+}
+
+.roster-group + .roster-group {
+  margin-top: clamp(40px, 5vw, 76px);
+}
+
+.roster-heading {
+  display: grid;
+  gap: 12px;
+  margin-bottom: clamp(18px, 1.9vw, 28px);
+}
+
+.roster-heading h2 {
+  color: #171a17;
+  font-family: var(--font-serif);
+  font-size: var(--fs-h4);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(32, 35, 32, 0.18);
+  border-left: 1px solid rgba(32, 35, 32, 0.1);
+}
+
+/* A group with a single member fills the row so no empty half-cell dangles a
+   stray top border into blank space. */
+.student-grid:has(.student-card:only-child) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.student-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: clamp(124px, 10.5vw, 150px) minmax(0, 1fr);
+  gap: clamp(18px, 2vw, 26px);
+  align-items: start;
+  padding: clamp(17px, 1.55vw, 22px);
+  background: var(--paper);
+  border-right: 1px solid rgba(32, 35, 32, 0.1);
+  border-bottom: 1px solid rgba(32, 35, 32, 0.1);
+  transition:
+    background-color 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out);
+}
+
+.student-card:hover,
+.student-card:focus-within {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcfb 100%);
+  box-shadow: inset 0 0 0 1px rgba(32, 35, 32, 0.08);
+}
+
+.student-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--paper-deep);
+  border: 1px solid rgba(32, 35, 32, 0.18);
+  transition: border-color 180ms var(--ease-out);
+}
+
+.student-card:hover .student-photo,
+.student-card:focus-within .student-photo {
+  border-color: rgba(32, 35, 32, 0.28);
+}
+
+.student-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.student-info {
+  min-height: clamp(154px, 13vw, 178px);
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 8px;
+  padding: 2px 0 1px;
+}
+
+.student-course {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: 520;
+  line-height: 1.32;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.student-info h3 {
+  color: #171a17;
+  font-family: var(--font-serif);
+  font-size: var(--fs-h5);
+  font-weight: 500;
+  line-height: 1.02;
+}
+
+.student-fields {
+  align-self: start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--charcoal);
+  line-height: 1.4;
+}
+
+.student-fields span {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border: 1px solid rgba(32, 35, 32, 0.2);
+  border-radius: 999px;
+  font-size: clamp(0.73rem, 0.8vw, 0.8rem);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.student-email {
+  width: fit-content;
+  color: rgba(32, 35, 32, 0.72);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  border-bottom: 1px solid rgba(32, 35, 32, 0);
+  transition:
+    color 170ms var(--ease-out),
+    border-color 170ms var(--ease-out);
+}
+
+.student-email:hover,
+.student-email:focus-visible {
+  color: #000;
+  border-color: #000;
+  outline: 0;
+}
+
+.has-js.is-ready .students-hero.reveal-block {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@media (max-width: 1060px) {
+  .students-hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .students-hero {
+    padding: 120px 18px 56px;
+    gap: 32px;
+  }
+
+  .students-identity h1 {
+    font-size: clamp(2.64rem, 13vw, 4.2rem);
+    white-space: normal;
+  }
+
+  .student-roster {
+    padding: 56px 18px;
+  }
+
+  .student-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .student-card {
+    grid-template-columns: clamp(104px, 31vw, 128px) minmax(0, 1fr);
+  }
+
+  .student-info {
+    min-height: auto;
+  }
+}

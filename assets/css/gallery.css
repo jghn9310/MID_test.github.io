@@ -1,0 +1,392 @@
+/* Board / Gallery page. Reuses shared chrome, tokens, .eyebrow, .reveal-block,
+   .section-label, .team-subnav and the footer from principal-advisor.css. */
+@import url("./principal-advisor.css?v=20260710-minimal-i");
+
+.gallery-page {
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+.gallery-hero {
+  display: grid;
+  gap: clamp(16px, 1.8vw, 24px);
+  padding: clamp(150px, 13vw, 186px) clamp(22px, 6vw, 92px) clamp(28px, 3.6vw, 48px);
+  background:
+    linear-gradient(180deg, rgba(248, 249, 248, 0.76), rgba(255, 255, 255, 0) 60%),
+    var(--paper);
+}
+
+.gallery-identity {
+  display: grid;
+  gap: clamp(12px, 1.1vw, 16px);
+}
+
+.gallery-hero h1 {
+  color: #171a17;
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 1.03;
+}
+
+/* Group sections — one editorial band per theme. */
+.gallery-group {
+  display: grid;
+  gap: clamp(18px, 2.4vw, 34px);
+  padding: clamp(30px, 4.4vw, 60px) clamp(22px, 6vw, 92px);
+  border-top: 1px solid var(--line);
+}
+
+.gallery-group:first-of-type {
+  border-top: 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 264px), 1fr));
+  gap: clamp(16px, 1.9vw, 28px);
+}
+
+.gallery-card {
+  display: grid;
+  gap: 12px;
+}
+
+.gallery-card-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  overflow: hidden;
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: zoom-in;
+  transition:
+    border-color 200ms var(--ease-out),
+    box-shadow 220ms var(--ease-out);
+}
+
+.gallery-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.008);
+  transition: transform 460ms var(--ease-out);
+}
+
+.gallery-card-media:hover,
+.gallery-card-media:focus-visible {
+  outline: 0;
+  border-color: var(--line-strong);
+  box-shadow: 0 12px 30px -18px rgba(32, 35, 32, 0.42);
+}
+
+.gallery-card-media:hover img,
+.gallery-card-media:focus-visible img {
+  transform: scale(1.045);
+}
+
+.gallery-card-media:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--paper),
+    0 0 0 4px var(--focus);
+}
+
+.gallery-card figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+.gallery-caption-title {
+  color: var(--graphite);
+  font-size: clamp(0.94rem, 1.05vw, 1.04rem);
+  font-weight: 560;
+  line-height: 1.3;
+}
+
+.gallery-caption-meta {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-card-media img,
+  .gallery-card-media:hover img,
+  .gallery-card-media:focus-visible img {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Grouped cards — a single window that auto-rotates and can be stepped. */
+.gallery-rotator {
+  cursor: default;
+}
+
+.gallery-rotator-slide {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 520ms var(--ease-out),
+    visibility 0s linear 520ms;
+}
+
+.gallery-rotator-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 520ms var(--ease-out),
+    visibility 0s;
+}
+
+.gallery-rotator-slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-rotator-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: #fff;
+  background: rgba(20, 22, 20, 0.44);
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 999px;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition:
+    opacity 200ms var(--ease-out),
+    background-color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out);
+}
+
+.gallery-rotator-prev {
+  left: 10px;
+}
+
+.gallery-rotator-next {
+  right: 10px;
+}
+
+.gallery-rotator:hover .gallery-rotator-arrow,
+.gallery-rotator:focus-within .gallery-rotator-arrow {
+  opacity: 1;
+}
+
+.gallery-rotator-arrow:hover,
+.gallery-rotator-arrow:focus-visible {
+  outline: 0;
+  background: rgba(20, 22, 20, 0.66);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.gallery-rotator-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.gallery-rotator-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.55);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(20, 22, 20, 0.3);
+  cursor: pointer;
+  transition: background-color 180ms var(--ease-out);
+}
+
+.gallery-rotator-dot.is-active {
+  background: #fff;
+}
+
+/* Touch devices have no hover — keep the step arrows visible. */
+@media (hover: none) {
+  .gallery-rotator-arrow {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-rotator-slide,
+  .gallery-rotator-slide.is-active {
+    transition: opacity 1ms linear, visibility 0s;
+  }
+}
+
+/* Lightbox — single-window viewer. Quiet, opacity-led. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 56px);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 240ms var(--ease-out),
+    visibility 0s linear 240ms;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 240ms var(--ease-out),
+    visibility 0s;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 22, 20, 0.86);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.lightbox-dialog {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(6px, 1.6vw, 22px);
+  width: min(100%, 1080px);
+}
+
+.lightbox-figure {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.lightbox-figure img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  background: var(--paper-deep);
+  border-radius: 6px;
+  box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-figure figcaption {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.lightbox-close,
+.lightbox-step {
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    color 180ms var(--ease-out),
+    background-color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out);
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible,
+.lightbox-step:hover,
+.lightbox-step:focus-visible {
+  outline: 0;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.lightbox-step {
+  width: clamp(40px, 4.4vw, 52px);
+  height: clamp(40px, 4.4vw, 52px);
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(-6px, -2vw, -14px);
+  right: 0;
+  width: 42px;
+  height: 42px;
+  font-size: 1.5rem;
+  line-height: 1;
+  transform: translateY(-100%);
+}
+
+@media (max-width: 720px) {
+  .lightbox-dialog {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .lightbox-figure {
+    order: -1;
+  }
+
+  .lightbox-step {
+    display: inline-grid;
+  }
+
+  .lightbox-prev {
+    justify-self: start;
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .lightbox-next {
+    justify-self: end;
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: -66px;
+  }
+
+  .lightbox-close {
+    top: 0;
+    right: 0;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox {
+    transition: opacity 1ms linear, visibility 0s;
+  }
+}

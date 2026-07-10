@@ -1,0 +1,298 @@
+/* Publications page — a precise, list-first bibliography for MID Lab.
+   Reuses shared chrome, tokens, .eyebrow, .reveal-block, .team-subnav and the
+   footer from principal-advisor.css. */
+@import url("./principal-advisor.css?v=20260710-minimal-i");
+
+.pub-page {
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+/* ---- Hero -------------------------------------------------------------- */
+.pub-hero {
+  display: grid;
+  gap: clamp(16px, 1.8vw, 24px);
+  padding: clamp(150px, 13vw, 186px) clamp(22px, 6vw, 92px) clamp(26px, 3.4vw, 44px);
+  background:
+    linear-gradient(180deg, rgba(248, 249, 248, 0.76), rgba(255, 255, 255, 0) 60%),
+    var(--paper);
+}
+
+.pub-hero h1 {
+  max-width: 22ch;
+  color: #171a17;
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 1.03;
+}
+
+.pub-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px clamp(16px, 2vw, 26px);
+  padding-top: clamp(4px, 0.6vw, 8px);
+}
+
+.pub-scholar {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 15px;
+  color: var(--paper);
+  background: var(--graphite);
+  border: 1px solid var(--graphite);
+  border-radius: 999px;
+  font-size: 0.84rem;
+  line-height: 1;
+  transition:
+    background-color 170ms var(--ease-out),
+    border-color 170ms var(--ease-out),
+    transform 170ms var(--ease-out);
+}
+
+.pub-scholar::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.pub-scholar:hover,
+.pub-scholar:focus-visible {
+  background: #000;
+  border-color: #000;
+  transform: translateY(-1px);
+  outline: 0;
+}
+
+.pub-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.02em;
+}
+
+.pub-legend span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.pub-legend sup {
+  color: var(--charcoal);
+  font-size: 0.82em;
+}
+
+/* ---- Year jump nav ----------------------------------------------------- */
+/* Uses the shared .team-subnav underline-tab treatment. */
+.pub-yearnav {
+  gap: clamp(12px, 1.7vw, 26px);
+}
+
+.pub-yearnav a {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* Jump-nav "Earlier" toggle — a chip that matches the year links but carries a
+   chevron and folds the older-year chips away until asked for. */
+.pub-yearnav-toggle {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 2px clamp(13px, 1.3vw, 16px);
+  color: rgba(32, 35, 32, 0.66);
+  background: transparent;
+  border: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(0.86rem, 1vw, 0.96rem);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color 180ms var(--ease-out);
+}
+
+.pub-yearnav-toggle:hover {
+  color: var(--graphite);
+}
+
+.pub-yearnav-toggle:focus-visible {
+  color: var(--graphite);
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.pub-yearnav-toggle::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-1px) rotate(45deg);
+  transition: transform 200ms var(--ease-out);
+}
+
+.pub-yearnav-toggle[aria-expanded="true"]::after {
+  transform: translateY(1px) rotate(-135deg);
+}
+
+/* Without JS everything is shown, so the fold toggles would be dead — hide them. */
+html:not(.has-js) [data-archive-toggle] {
+  display: none;
+}
+
+/* The older-year chips fold out of the jump nav until the reader opens it.
+   The body sections themselves stay visible — only the nav is condensed. */
+.has-js .pub-page:not(.is-archive-open) .pub-yearnav-extra {
+  display: none;
+}
+
+/* ---- Publication groups ------------------------------------------------ */
+.pub-section {
+  padding: clamp(30px, 3.8vw, 52px) clamp(22px, 6vw, 92px);
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 108px;
+}
+
+.pub-year-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding-bottom: clamp(8px, 1.2vw, 16px);
+}
+
+.pub-year-head h2 {
+  color: #171a17;
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.pub-list {
+  display: grid;
+  border-top: 1px solid var(--line-strong);
+}
+
+.pub-item {
+  display: grid;
+  grid-template-columns: clamp(28px, 3vw, 42px) minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 26px);
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.pub-index {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  line-height: 1.7;
+}
+
+.pub-body {
+  display: grid;
+  gap: 4px;
+}
+
+.pub-title {
+  width: fit-content;
+  max-width: 100%;
+  color: var(--graphite);
+  font-size: var(--fs-body);
+  font-weight: 580;
+  line-height: 1.4;
+}
+
+a.pub-title {
+  border-bottom: 1px solid rgba(32, 35, 32, 0);
+  transition:
+    color 170ms var(--ease-out),
+    border-color 170ms var(--ease-out);
+}
+
+a.pub-title:hover,
+a.pub-title:focus-visible {
+  color: #000;
+  border-color: #000;
+  outline: 0;
+}
+
+.pub-authors {
+  color: var(--charcoal);
+  font-size: clamp(0.88rem, 0.95vw, 0.98rem);
+  line-height: 1.55;
+}
+
+.pub-authors strong {
+  color: var(--graphite);
+  font-weight: 680;
+}
+
+.pub-authors sup {
+  font-size: 0.66em;
+  padding-left: 0.5px;
+}
+
+.pub-venue {
+  color: var(--muted);
+  font-size: clamp(0.84rem, 0.9vw, 0.94rem);
+  line-height: 1.5;
+}
+
+.pub-venue cite {
+  font-style: italic;
+  color: var(--charcoal);
+}
+
+/* In-preparation entries — understated, no numeric index, status pill. */
+.pub-item.is-prep .pub-index {
+  color: var(--line-strong);
+}
+
+.pub-status {
+  justify-self: start;
+  margin-top: 2px;
+  padding: 3px 10px;
+  color: var(--muted);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pub-item.is-prep .pub-title {
+  color: var(--charcoal);
+  font-weight: 540;
+}
+
+@media (max-width: 720px) {
+  .pub-hero {
+    padding: 116px 18px 24px;
+  }
+
+  .pub-section {
+    padding: 30px 18px;
+    scroll-margin-top: 82px;
+  }
+
+  .pub-item {
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .pub-index {
+    font-size: 0.74rem;
+  }
+}

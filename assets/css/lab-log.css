@@ -1,0 +1,811 @@
+/* =====================================================================
+   Lab Log — V4 "터미널 부팅 + Lab OS 콘솔" 종합판.
+   구조는 V3(뷰포트에 떠 있는 콘솔 창: 타이틀바 · 연도 로그파일 사이드바
+   · 스트림 · 하단 상태바)를, 스킨/피드는 V1(몰입형 그래파이트 콘솔 + tail -f
+   스트리밍 로그 라인 DATE │ EMOJI │ EVENT + 깜빡이는 블록 커서)을 합쳤다.
+   페이지 진입 시엔 짧은 터미널 "부팅"이 재생되어 Gallery/News 의 조용한
+   페이드와는 다른 도착감을 준다.
+
+   토큰(색/폰트/이징)은 principal-advisor.css 에서 가져오되, 크롬은 전부
+   .term-page 로 스코프해 이 페이지에서만 덮어쓴다. 공유 CSS 는 절대 수정하지
+   않는다. NO neon · NO 순수 black — 그래파이트 계열, 절제된 앰버 액센트 하나.
+   ===================================================================== */
+@import url("./principal-advisor.css?v=20260710-term-v4");
+
+/* 콘솔 전용 페이지라 html 배경도 콘솔 톤으로 — 오버스크롤 바운스에서 흰색이
+   새는 것을 막는다. */
+html { background: #191c18; }
+
+.term-page {
+  /* 콘솔 팔레트 — 그래파이트 배경(#171a17~#202320) + 소프트 화이트 모노 텍스트.
+     절제된 앰버 액센트 하나만, 아주 아껴서 쓴다(프롬프트·커서·활성 파일·검색 mark). */
+  --term-bg: #191c18;
+  --term-panel: #1d211c;
+  --term-bar: #23271f;
+  --term-deep: #171a17;
+  --term-edge: rgba(233, 236, 230, 0.10);
+  --term-edge-2: rgba(233, 236, 230, 0.20);
+  --term-text: #e9ece6;
+  --term-dim: #9aa298;
+  --term-faint: #737a70;
+  --term-accent: #c9a24b;
+  --term-accent-soft: rgba(201, 162, 75, 0.14);
+
+  margin: 0;
+  color: var(--term-text);
+  background: var(--term-bg);
+  font-family: var(--font-mono);
+}
+
+/* 뷰포트 전체를 콘솔로 — 오버스크롤/짧은 페이지에서도 흰색이 새지 않게. */
+.term-page .lab-log-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(120% 80% at 82% -10%, rgba(201, 162, 75, 0.05), transparent 60%),
+    linear-gradient(180deg, #1c201b 0%, var(--term-bg) 22%);
+}
+
+/* =====================================================================
+   Chrome 1 — 헤더를 터미널 프롬프트 바로.
+   ===================================================================== */
+.term-page .site-header.term-header {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  background: rgba(20, 23, 20, 0.78);
+  border-bottom: 1px solid var(--term-edge);
+  box-shadow: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.term-page .site-header.term-header.is-scrolled {
+  background: rgba(18, 21, 18, 0.9);
+  border-bottom-color: var(--term-edge-2);
+  box-shadow: 0 1px 0 var(--term-edge);
+}
+
+/* 로고는 칩 배경 없이 원본을 흰색으로 리컬러해 다크 바에 그대로 얹는다.
+   brightness(0)로 실루엣을 만들고 invert(1)로 흰색으로 뒤집는다(투명은 유지). */
+.term-page .brand-mark {
+  width: clamp(40px, 3.4vw, 52px);
+}
+
+.term-page .brand-mark img {
+  filter: brightness(0) invert(1);
+}
+
+/* header-group-label 자리를 프롬프트 문자열로 재사용. <=1060px 에선 공유 CSS 가 숨김. */
+.term-page .term-prompt {
+  justify-self: start;
+  max-width: none;
+  padding-left: clamp(12px, 1.2vw, 18px);
+  color: var(--term-dim);
+  border-left: 1px solid var(--term-edge-2);
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 0.82vw, 0.86rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.term-page .term-prompt .term-user { color: var(--term-accent); }
+.term-page .term-prompt .term-path { color: var(--term-text); }
+.term-page .term-prompt .term-cmd { color: var(--term-dim); }
+
+/* 헤더 네비 — 모노스페이스 콘솔 링크로. 링크는 전부 살아 있다. */
+.term-page .contents-nav::before { display: none; }
+
+.term-page .contents-nav a,
+.term-page .contents-nav button.nav-trigger {
+  color: var(--term-dim);
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 0.86vw, 0.9rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.term-page .contents-nav > a:not(.nav-contact)::after,
+.term-page .contents-nav .nav-trigger::after,
+.term-page .contents-nav .nav-plain::after {
+  background: var(--term-accent);
+}
+
+.term-page .contents-nav a:hover,
+.term-page .contents-nav a:focus-visible,
+.term-page .contents-nav a.is-active,
+.term-page .contents-nav button.nav-trigger:hover,
+.term-page .contents-nav button.nav-trigger:focus-visible,
+.term-page .contents-nav button.nav-trigger.is-active {
+  color: var(--term-text);
+}
+
+.term-page .nav-group.is-current .nav-trigger.is-active { color: var(--term-accent); }
+
+/* 드롭다운 패널도 콘솔 톤으로. */
+.term-page .nav-dropdown {
+  color: var(--term-text);
+  background: rgba(24, 27, 24, 0.96);
+  border: 1px solid var(--term-edge-2);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.term-page .nav-dropdown a {
+  color: var(--term-dim);
+  font-family: var(--font-mono);
+}
+
+.term-page .nav-dropdown a:hover,
+.term-page .nav-dropdown a:focus-visible,
+.term-page .nav-dropdown a.is-active {
+  color: var(--term-text);
+  background: rgba(233, 236, 230, 0.08);
+}
+
+.term-page .nav-dropdown-research .nav-primary-topic {
+  color: var(--term-text);
+  background: rgba(233, 236, 230, 0.05);
+  border-color: var(--term-edge-2);
+}
+
+.term-page .nav-dropdown-research .nav-method-topic {
+  color: var(--term-dim);
+  box-shadow: inset 1px 0 0 var(--term-edge-2);
+}
+
+.term-page .contents-nav .nav-dropdown-research .nav-primary-topic:hover,
+.term-page .contents-nav .nav-dropdown-research .nav-primary-topic:focus-visible {
+  color: var(--term-text);
+  background: rgba(233, 236, 230, 0.1);
+  border-color: var(--term-edge-2);
+}
+
+/* Contact — 콘솔 위의 절제된 아웃라인 버튼. */
+.term-page .contents-nav .nav-contact {
+  color: var(--term-text);
+  background: rgba(233, 236, 230, 0.04);
+  border: 1px solid var(--term-edge-2);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.term-page .contents-nav .nav-contact:hover,
+.term-page .contents-nav .nav-contact:focus-visible {
+  color: var(--term-bg);
+  background: var(--term-accent);
+  border-color: var(--term-accent);
+}
+
+/* 모바일 메뉴 토글 + 오버레이 패널을 콘솔 톤으로. */
+.term-page .mobile-menu-toggle {
+  color: var(--term-text);
+  background: rgba(233, 236, 230, 0.06);
+  border-color: var(--term-edge-2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+@media (max-width: 720px) {
+  .term-page .contents-nav {
+    background: rgba(20, 23, 20, 0.98);
+    border-color: var(--term-edge-2);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  }
+
+  .term-page .contents-nav a,
+  .term-page .contents-nav button.nav-trigger {
+    border-bottom-color: var(--term-edge);
+  }
+
+  .term-page .nav-group {
+    border-bottom-color: var(--term-edge);
+  }
+
+  .term-page .nav-dropdown {
+    background: transparent;
+    border: 0;
+    border-left: 1px solid var(--term-edge-2);
+    box-shadow: none;
+  }
+}
+
+/* =====================================================================
+   Hero — 콘솔 배너 + 부팅 프롬프트.
+   ===================================================================== */
+.term-page .log-hero {
+  display: grid;
+  gap: clamp(10px, 1.2vw, 16px);
+  padding: clamp(128px, 12vw, 168px) clamp(22px, 6vw, 92px) clamp(14px, 2vw, 24px);
+  background: transparent;
+}
+
+.term-page .log-identity {
+  display: grid;
+  gap: clamp(6px, 0.8vw, 10px);
+}
+
+.term-page .log-hero .eyebrow {
+  color: var(--term-faint);
+  letter-spacing: 0.14em;
+}
+
+.term-page .log-hero h1 {
+  color: var(--term-text);
+  font-family: var(--font-mono);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* ---- Boot line — 진입 시 명령이 타이핑되는 시각 레이어 ---- */
+.term-boot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4ch;
+  margin-top: clamp(4px, 0.6vw, 10px);
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 0.94vw, 0.98rem);
+  letter-spacing: 0.01em;
+  color: var(--term-dim);
+}
+
+.term-boot-user { color: var(--term-accent); }
+.term-boot-punc { color: var(--term-faint); }
+.term-boot-path { color: var(--term-text); }
+.term-boot-sign { color: var(--term-accent); font-weight: 600; }
+.term-boot-cmd { color: var(--term-text); white-space: pre; }
+
+.term-boot-cursor {
+  color: var(--term-accent);
+  animation: term-blink 1.05s steps(1) infinite;
+}
+
+/* 타이핑이 끝나면(=부팅 완료) 커서는 감춘다 — 콘솔 창 안의 커서로 넘어간다. */
+.term-boot.is-done .term-boot-cursor { display: none; }
+
+/* =====================================================================
+   Subnav — 터미널 탭.
+   ===================================================================== */
+.term-page .team-subnav.term-tabs {
+  align-items: center;
+  gap: clamp(4px, 0.6vw, 8px);
+  padding: clamp(8px, 1vw, 12px) clamp(22px, 6vw, 92px);
+  background: rgba(20, 23, 20, 0.5);
+  border-top: 1px solid var(--term-edge);
+  border-bottom: 1px solid var(--term-edge);
+}
+
+.term-page .term-tabs-label {
+  margin-right: clamp(6px, 0.8vw, 12px);
+  color: var(--term-faint);
+  font-family: var(--font-mono);
+  font-size: clamp(0.76rem, 0.86vw, 0.9rem);
+  letter-spacing: 0.02em;
+}
+
+.term-page .term-tabs a {
+  padding: clamp(6px, 0.7vw, 9px) clamp(9px, 1vw, 13px);
+  color: var(--term-dim);
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 0.9vw, 0.94rem);
+  font-weight: 400;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition:
+    color 170ms var(--ease-out),
+    background-color 170ms var(--ease-out),
+    border-color 170ms var(--ease-out);
+}
+
+/* 공유 team-subnav 의 밑줄 슬라이드 idiom 은 탭에선 끈다. */
+.term-page .term-tabs a::after { display: none; }
+
+.term-page .term-tabs a:hover,
+.term-page .term-tabs a:focus-visible {
+  color: var(--term-text);
+  background: rgba(233, 236, 230, 0.05);
+  border-color: var(--term-edge);
+  outline: 0;
+}
+
+.term-page .term-tabs a[aria-current="page"] {
+  color: var(--term-bg);
+  font-weight: 500;
+  background: var(--term-accent);
+  border-color: var(--term-accent);
+}
+
+.term-page .term-tabs a[aria-current="page"]::after { display: none; }
+
+/* =====================================================================
+   Body — 콘솔 창(윈도)이 어두운 페이지 위에 떠 있는 무대.
+   ===================================================================== */
+.log-body {
+  padding: clamp(18px, 2.6vw, 34px) clamp(14px, 5vw, 72px) clamp(56px, 7vw, 96px);
+}
+
+.term-noscript {
+  max-width: 60ch;
+  margin: 0 auto;
+  color: var(--term-dim);
+  font-family: var(--font-mono);
+  line-height: 1.6;
+}
+.term-noscript a { color: var(--term-accent); }
+
+/* ---- 콘솔 창 셸 + 부팅 전이(비차단·시각 전용) ---- */
+.labos {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--term-panel);
+  border: 1px solid var(--term-edge-2);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(233, 236, 230, 0.05),
+    0 30px 70px -34px rgba(0, 0, 0, 0.75),
+    0 10px 26px -20px rgba(0, 0, 0, 0.6);
+  transition:
+    opacity 380ms var(--ease-out),
+    transform 440ms var(--ease-out);
+}
+.labos.is-booting {
+  opacity: 0;
+  transform: translateY(12px) scale(0.985);
+}
+
+/* ---- 타이틀바: 그래파이트 점 3개 + 파일 타이틀 ---- */
+.labos-titlebar {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.6vw, 18px);
+  padding: 11px clamp(12px, 1.8vw, 18px);
+  background: var(--term-bar);
+  border-bottom: 1px solid var(--term-edge);
+}
+
+.labos-dots {
+  display: inline-flex;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+.labos-dots i {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #3a3f39;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.labos-dots i:nth-child(2) { background: #4a4f47; }
+.labos-dots i:nth-child(3) { background: #5a6056; }
+
+.labos-title {
+  min-width: 0;
+  flex: 1 1 auto;
+  text-align: center;
+  color: var(--term-dim);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.labos-title-file { color: var(--term-text); }
+.labos-title-sep { margin: 0 0.5em; color: var(--term-faint); }
+.labos-title-host { color: var(--term-dim); }
+
+/* 우측 여백 균형용 스페이서(점 3개와 대칭). */
+.labos-titlebar-spacer { flex: 0 0 auto; width: 40px; }
+
+/* ---- 본문: 사이드바 + 페인 ---- */
+.labos-body {
+  display: flex;
+  min-height: clamp(360px, 52vh, 560px);
+}
+
+/* 사이드바 — 연도 "로그 파일"을 세로 탭리스트로. 이게 곧 연도 필터. */
+.labos-side {
+  flex: 0 0 clamp(150px, 20vw, 210px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(14px, 1.6vw, 20px) 10px;
+  background: var(--term-deep);
+  border-right: 1px solid var(--term-edge);
+}
+
+.labos-side-label {
+  padding: 0 8px;
+  color: var(--term-faint);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.04em;
+}
+
+.labos-files {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.labos-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  color: var(--term-dim);
+  background: transparent;
+  border: 0;
+  border-left: 2px solid transparent;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.01em;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    color 160ms var(--ease-out),
+    background-color 160ms var(--ease-out),
+    border-color 160ms var(--ease-out);
+}
+.labos-file-ico {
+  color: var(--term-faint);
+  transition: color 160ms var(--ease-out), transform 160ms var(--ease-out);
+}
+.labos-file-name { flex: 1 1 auto; }
+.labos-file-n {
+  flex: 0 0 auto;
+  color: var(--term-faint);
+  font-size: var(--fs-label);
+}
+
+.labos-file:hover,
+.labos-file:focus-visible {
+  outline: 0;
+  color: var(--term-text);
+  background: rgba(233, 236, 230, 0.05);
+}
+.labos-file:hover .labos-file-ico,
+.labos-file:focus-visible .labos-file-ico {
+  color: var(--term-accent);
+  transform: translateX(1px);
+}
+
+.labos-file.is-active {
+  color: var(--term-text);
+  background: var(--term-accent-soft);
+  border-left-color: var(--term-accent);
+}
+.labos-file.is-active .labos-file-ico { color: var(--term-accent); }
+.labos-file.is-active .labos-file-n { color: var(--term-dim); }
+
+/* 페인 — grep 프롬프트 + 스트리밍 피드. */
+.labos-pane {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.labos-prompt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(12px, 1.5vw, 16px) clamp(14px, 1.8vw, 22px);
+  border-bottom: 1px solid var(--term-edge);
+}
+.labos-prompt-sign {
+  color: var(--term-dim);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+.labos-search-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 30px;
+  padding: 0;
+  color: var(--term-text);
+  background: transparent;
+  border: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-body);
+  letter-spacing: 0.01em;
+}
+.labos-search-input::placeholder { color: var(--term-faint); }
+.labos-search-input:focus { outline: 0; }
+.labos-search-input:focus::placeholder { color: transparent; }
+.labos-search-input::-webkit-search-cancel-button { filter: invert(0.6); }
+
+/* ---- 피드(라이브 로그 스트림, V1 스타일 라인) ---- */
+.labos-feed {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: clamp(320px, 46vh, 520px);
+  overflow-y: auto;
+  padding: clamp(8px, 1.2vw, 14px) clamp(10px, 1.8vw, 22px) clamp(14px, 1.8vw, 22px);
+  scrollbar-width: thin;
+  scrollbar-color: var(--term-edge-2) transparent;
+}
+.labos-feed:focus-visible {
+  outline: 2px solid var(--term-accent);
+  outline-offset: -2px;
+}
+.labos-feed::-webkit-scrollbar { width: 10px; }
+.labos-feed::-webkit-scrollbar-thumb {
+  background: var(--term-edge-2);
+  border: 3px solid var(--term-panel);
+  border-radius: 999px;
+}
+
+/* 연도 밴드 — 주석 라인처럼 그룹을 나눈다 (스트림 안 sticky). */
+.term-band {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: clamp(14px, 2vw, 22px) -6px 4px;
+  padding: 8px 6px;
+  background: linear-gradient(180deg, var(--term-panel) 72%, rgba(29, 33, 28, 0));
+  color: var(--term-faint);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.04em;
+}
+.term-band:first-child { margin-top: 0; }
+.term-band-tag { color: var(--term-faint); }
+.term-band-year { color: var(--term-text); font-size: var(--fs-body); letter-spacing: 0.02em; }
+.term-band-count { color: var(--term-faint); white-space: nowrap; }
+
+/* 로그 라인 — 날짜 · 이모지 · 이벤트를 3열 그리드로 정렬. 구분은 파이프 글리프가
+   아니라 열 간격(여백)으로 준다 — 미니멀 문법: 구분은 헤어라인/여백 우선, 장식
+   글리프로 위계를 만들지 않는다. 크기는 모듈러 스케일(라벨/본문)에서만 고른다. */
+.term-line {
+  display: grid;
+  grid-template-columns: max-content 1.6em minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: clamp(12px, 1.4vw, 20px);
+  padding: 8px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  transition: background-color 150ms var(--ease-out);
+}
+.term-line:hover { background: rgba(233, 236, 230, 0.05); }
+
+.tl-date {
+  color: var(--term-faint);
+  font-size: var(--fs-label);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+/* hover 보상은 색 팝업이 아니라 대비 상승(미니멀 §7). */
+.term-line:hover .tl-date { color: var(--term-dim); }
+
+.tl-emoji {
+  justify-self: center;
+  color: var(--term-dim);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.tl-event {
+  color: var(--term-text);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.tl-event mark {
+  color: var(--term-bg);
+  background: var(--term-accent);
+  border-radius: 6px;
+  padding: 0 3px;
+}
+
+/* 스트림 끝의 라이브 커서 라인 — tail -f 가 다음 줄을 기다리는 모습. */
+.term-caret-line {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(12px, 1.4vw, 20px);
+  padding: 8px 8px 0;
+}
+.tl-date-live { color: var(--term-accent); opacity: 0.85; font-size: var(--fs-label); }
+.term-cursor {
+  color: var(--term-accent);
+  font-size: 1rem;
+  line-height: 1;
+  animation: term-blink 1.05s steps(1) infinite;
+}
+
+.term-empty {
+  padding: clamp(28px, 5vw, 56px) 20px;
+  color: var(--term-dim);
+  font-family: var(--font-mono);
+  text-align: center;
+}
+
+/* ---- 상태바: 모드 + 카운트 + 깜빡이는 커서 ---- */
+.labos-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px clamp(14px, 1.8vw, 20px);
+  background: var(--term-bar);
+  border-top: 1px solid var(--term-edge);
+}
+.labos-status-mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--term-accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.labos-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--term-accent);
+  box-shadow: 0 0 0 3px rgba(201, 162, 75, 0.18);
+}
+.labos-status-count {
+  margin-left: auto;
+  color: var(--term-dim);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.04em;
+}
+.labos-caret {
+  width: 8px;
+  height: 15px;
+  background: var(--term-accent);
+  border-radius: 1px;
+  animation: term-blink 1.1s steps(1) infinite;
+}
+
+/* ---- 라인 등장 — 순차적, opacity 주도, 아주 작은 수직 이동 ---- */
+.has-js .term-line {
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 300ms var(--ease-out),
+    transform 340ms var(--ease-out);
+  transition-delay: calc(min(var(--i, 0), 16) * 34ms);
+}
+.has-js .term-line.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes term-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+.labos-vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =====================================================================
+   Chrome 2 — 푸터는 다른 페이지와 동일한 공유 레이아웃(.site-footer /
+   .footer-inner, principal-advisor.css)을 그대로 쓴다. 다크 콘솔 위라
+   글자·엠블럼 색과 배경만 밝게 덮는다(레이아웃은 손대지 않음).
+   ===================================================================== */
+.term-page .site-footer {
+  color: var(--term-dim);
+  background: rgba(18, 21, 18, 0.96);
+  border-top: 1px solid var(--term-edge-2);
+}
+
+.term-page .footer-emblem-wrap { background: transparent; }
+
+.term-page .footer-emblem {
+  filter: grayscale(1) brightness(1.9) contrast(0.9);
+  opacity: 0.72;
+}
+
+.term-page .footer-lab { color: var(--term-text); }
+.term-page .footer-affiliation { color: var(--term-dim); }
+.term-page .footer-copy { color: var(--term-faint); }
+
+/* =====================================================================
+   Mobile — 사이드바는 가로 스크롤 탭으로, 라인은 압축된다.
+   가로 오버플로 절대 없음.
+   ===================================================================== */
+@media (max-width: 720px) {
+  .term-page .term-prompt { display: none; }
+
+  .labos-body { flex-direction: column; min-height: 0; }
+
+  /* 사이드바 → 가로 스크롤되는 파일 탭 행. */
+  .labos-side {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--term-edge);
+    scrollbar-width: none;
+  }
+  .labos-side::-webkit-scrollbar { display: none; }
+  .labos-side-label { display: none; }
+  .labos-files { flex-direction: row; gap: 6px; }
+  .labos-file {
+    width: auto;
+    flex: 0 0 auto;
+    border-left: 0;
+    border-bottom: 2px solid transparent;
+    border-radius: 999px;
+    background: rgba(233, 236, 230, 0.04);
+  }
+  .labos-file .labos-file-ico { display: none; }
+  .labos-file.is-active {
+    border-left: 0;
+    border-bottom-color: transparent;
+    background: var(--term-accent-soft);
+  }
+
+  .labos-feed { max-height: none; }
+
+  /* 좁은 화면: 이모지 열만 살짝 좁혀 event 폭을 확보. 구분은 여전히 여백만. */
+  .term-line {
+    grid-template-columns: max-content 1.4em minmax(0, 1fr);
+    column-gap: 12px;
+    padding: 8px 4px;
+  }
+}
+
+/* 아주 좁은 화면 — 이모지/구분자 컬럼이 event 를 밀어내지 않도록 살짝 축소. */
+@media (max-width: 420px) {
+  .labos-title-host { display: none; }
+  .labos-title-sep { display: none; }
+  .tl-emoji { font-size: 0.95rem; }
+}
+
+/* =====================================================================
+   Reduced motion — 부팅/등장/깜빡임 애니메이션 전부 제거, 최종 상태로.
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .labos { transition: none; }
+  .labos.is-booting { opacity: 1; transform: none; }
+
+  .has-js .term-line {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .term-boot-cursor,
+  .term-cursor,
+  .labos-caret {
+    animation: none;
+  }
+  .term-cursor,
+  .labos-caret { opacity: 1; }
+}
