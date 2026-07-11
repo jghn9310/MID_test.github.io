@@ -1,7 +1,7 @@
 /* Alumni / Visiting reuses the shared Team-page layout (header, nav, hero,
    roster groups, footer) from students.css -> principal-advisor.css.
    Only the empty-state block is specific to this page for now. */
-@import url("./students.css?v=20260710-reveal");
+@import url("./students.css?v=20260711-kr2");
 
 .roster-empty {
   margin: 0;
@@ -10,6 +10,6 @@
   background: var(--paper-soft);
   border-top: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line);
-  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  font-size: var(--fs-roster-empty);
   line-height: 1.62;
 }

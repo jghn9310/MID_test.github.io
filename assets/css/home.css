@@ -1,6 +1,6 @@
 /* 디자인 토큰(색·글꼴·글씨크기)은 theme.css 한 곳에서 관리합니다.
    글씨 크기나 색을 바꾸려면 assets/css/theme.css 를 여세요. */
-@import url("./theme.css?v=20260711-theme");
+@import url("./theme.css?v=20260711-kr2");
 
 * {
   box-sizing: border-box;

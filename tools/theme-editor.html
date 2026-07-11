@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>디자인 편집기 · MID Lab</title>
+  <!-- 관리자 비밀번호 게이트: 세션에 통과 기록이 없으면 진입 시 1회 확인.
+       (브라우저 비번은 강한 보안이 아님 — 지나가는 방문자 차단 용도) -->
+  <script>
+    (function () {
+      try { if (sessionStorage.getItem("mid-admin-ok") === "yes") return; } catch (_) {}
+      var p = prompt("관리자 비밀번호");
+      if (p === "8756") {
+        try { sessionStorage.setItem("mid-admin-ok", "yes"); } catch (_) {}
+        return;
+      }
+      alert("접근 권한이 없습니다.");
+      window.location.replace("../index.html");
+    })();
+  </script>
   <style>
     :root {
       --paper: #ffffff;
@@ -154,8 +168,12 @@
       border: 1px solid var(--line-strong); border-radius: 6px; background: var(--paper); color: var(--graphite);
     }
     .preview-bar .label { color: var(--muted); font-size: 12px; }
+    .preview-bar .pv-spacer { flex: 1; }
     .preview-frame-wrap { flex: 1; position: relative; background: var(--paper-deep); overflow: hidden; }
-    iframe { width: 100%; height: 100%; border: 0; background: #fff; }
+    iframe {
+      position: absolute; top: 0; left: 0; border: 0; background: #fff;
+      transform-origin: top left; box-shadow: 0 0 0 1px var(--line);
+    }
 
     /* ── Export modal ── */
     .modal-back {
@@ -188,7 +206,34 @@
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     .empty { padding: 40px 8px; color: var(--muted); font-size: 13px; line-height: 1.6; }
-  </style>
+
+    /* ── Master (위계별 일괄) group ── */
+    .group.master { border: 1px solid var(--line-strong); border-radius: 10px; margin: 10px 0 14px; background: var(--paper-deep); }
+    .group.master > summary { font-size: 13.5px; font-weight: 700; color: var(--graphite); }
+    .group.master > summary::before { color: var(--steel); }
+    .group.master .group-body { padding: 2px 10px 14px; }
+    .group.master .master-caption { color: var(--muted); font-size: 11.5px; line-height: 1.5; padding: 0 0 6px; }
+    .master-reset { margin-left: auto; font-size: 11px; color: var(--muted); background: none; border: 0; cursor: pointer; text-decoration: underline; }
+    .master-reset:hover { color: var(--graphite); }
+
+    /* ── Locked rows ── */
+    .row.locked { opacity: 0.55; }
+    .row.locked .name { color: var(--muted); }
+    .row.locked .lock-tag { font-weight: 500; font-size: 10.5px; color: var(--muted); margin-left: 6px; }
+    .row.locked .lock-val { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); padding: 4px 0; word-break: break-all; }
+    input:disabled, input[type="color"]:disabled { cursor: not-allowed; opacity: 0.5; }
+
+    /* ── 항목별 초기화 버튼 ── */
+    .reset-btn {
+      appearance: none; border: 0; background: none; cursor: pointer;
+      color: var(--muted); font-size: 13px; line-height: 1; padding: 3px 5px;
+      border-radius: 5px; flex: none; opacity: 0; transition: opacity 120ms ease, color 120ms ease;
+    }
+    .row:hover .reset-btn, .master-row:hover .reset-btn, .reset-btn:focus-visible { opacity: 1; }
+    .row.changed .reset-btn { opacity: 0.6; }
+    .reset-btn:hover { color: var(--graphite); background: var(--line); opacity: 1; }
+    .reset-btn:active { transform: translateY(1px); }
+</style>
 </head>
 <body>
   <div class="topbar">
@@ -218,7 +263,17 @@
         <option value="../project.html">Project</option>
         <option value="../contact.html">Contact</option>
       </select>
-      <span class="label" id="live-note">슬라이더를 움직이면 여기에 즉시 반영됩니다</span>
+      <span class="pv-spacer"></span>
+      <span class="label">화면폭</span>
+      <select id="width-select">
+        <option value="auto">내 화면 폭 (실제)</option>
+        <option value="1920">와이드 1920</option>
+        <option value="1440">데스크톱 1440</option>
+        <option value="1280">노트북 1280</option>
+        <option value="834">태블릿 834</option>
+        <option value="390">모바일 390</option>
+      </select>
+      <span class="label" id="scale-note"></span>
     </div>
     <div class="preview-frame-wrap">
       <iframe id="preview" src="../index.html" title="사이트 미리보기"></iframe>
@@ -254,20 +309,61 @@
     var THEME_URL = "../assets/css/theme.css";
     var LS_KEY = "mid-theme-edits-v1";
     var LS_PAGE = "mid-theme-preview-page";
+    var LS_MASTER = "mid-theme-masters-v1";
 
     var rawText = "";
     var tokens = [];      // { name, value, label, section, type }
     var edits = {};       // name -> { factor } for size, { hex } for color, { text } for advanced
+    var masters = {};     // tier key -> factor (위계별 일괄 배율)
     var sections = [];    // ordered [{ title, items:[token] }]
+    var sizeReadouts = {}; // token name -> readout element (for master refresh)
+
+    // 편집하면 디자인/기능이 깨지기 쉬운 항목 — 잠금(편집 불가)
+    var LOCKED = {
+      "--font-sans": 1, "--font-korean": 1, "--font-serif": 1, "--font-mono": 1,
+      "--ease-out": 1, "--hero-min": 1, "--paper": 1, "--focus": 1
+    };
+
+    // 위계(크기 등급) — 같은 등급을 한꺼번에 조절하는 마스터 슬라이더용
+    var TIERS = [
+      { key: "display", label: "아주 큰 제목", hint: "히어로·페이지 대표 제목" },
+      { key: "heading", label: "제목·소제목", hint: "섹션 제목, 항목 제목" },
+      { key: "body",    label: "본문·설명",   hint: "일반 문단, 설명글" },
+      { key: "label",   label: "작은 라벨·태그", hint: "꼬리표, 메타, 캡션" },
+      { key: "nav",     label: "네비게이션",  hint: "상단·서브 메뉴 링크" }
+    ];
+    var TIER_LABEL = {}; TIERS.forEach(function (t) { TIER_LABEL[t.key] = t.label; });
 
     var $ = function (id) { return document.getElementById(id); };
 
-    // ---- load persisted edits ----
+    // ---- load persisted state ----
     try { edits = JSON.parse(localStorage.getItem(LS_KEY) || "{}") || {}; } catch (e) { edits = {}; }
+    try { masters = JSON.parse(localStorage.getItem(LS_MASTER) || "{}") || {}; } catch (e) { masters = {}; }
 
     function saveEdits() {
       try { localStorage.setItem(LS_KEY, JSON.stringify(edits)); } catch (e) {}
     }
+    function saveMasters() {
+      try { localStorage.setItem(LS_MASTER, JSON.stringify(masters)); } catch (e) {}
+    }
+
+    // 사이즈 토큰이 속한 위계(티어) 판별. 네비는 이름으로, 나머지는 최대 rem 크기로.
+    function tierOf(t) {
+      if (t.type !== "size" || LOCKED[t.name]) return null;
+      if (/^--fs-(nav|subnav)/.test(t.name)) return "nav";
+      var max = 0;
+      (t.value.match(/([\d.]+)rem/g) || []).forEach(function (s) {
+        var v = parseFloat(s); if (v > max) max = v;
+      });
+      if (!max) { var px = (t.value.match(/([\d.]+)px/) || [])[1]; if (px) max = parseFloat(px) / 16; }
+      if (max >= 2.0) return "display";
+      if (max >= 1.15) return "heading";
+      if (max >= 0.86) return "body";
+      return "label";
+    }
+    function masterF(t) { var k = tierOf(t); return (k && masters[k]) ? masters[k] : 1; }
+    function indivF(t) { return (edits[t.name] && edits[t.name].factor) || 1; }
+    function effF(t) { return indivF(t) * masterF(t); }
 
     // ---- parse theme.css ----
     function classify(name, value) {
@@ -313,16 +409,17 @@
       });
     }
     function currentValue(t) {
+      if (t.type === "size") return scaleValue(t.value, effF(t));
       var e = edits[t.name];
       if (!e) return t.value;
-      if (t.type === "size") return scaleValue(t.value, e.factor || 1);
       if (t.type === "color") return e.hex || t.value;
       return (e.text != null) ? e.text : t.value;
     }
     function isChanged(t) {
+      if (LOCKED[t.name]) return false;
+      if (t.type === "size") return Math.abs(effF(t) - 1) > 0.0001;
       var e = edits[t.name];
       if (!e) return false;
-      if (t.type === "size") return Math.abs((e.factor || 1) - 1) > 0.0001;
       if (t.type === "color") return (e.hex || t.value).toLowerCase() !== t.value.toLowerCase();
       return e.text != null && e.text !== t.value;
     }
@@ -338,45 +435,139 @@
     function buildControls() {
       var root = $("controls");
       root.innerHTML = "";
+      sizeReadouts = {};
+      root.appendChild(buildMasterGroup());
       sections.forEach(function (sec, si) {
+        // 편집기에는 조절 가능한 항목만 표시 — 색(color)과 잠긴 항목(글꼴·모션·레이아웃 등)은 제외
+        var items = sec.items.filter(function (t) { return t.type !== "color" && !LOCKED[t.name]; });
+        if (!items.length) return; // 남는 게 없는 섹션(색·글꼴·모션 등)은 통째로 숨김
         var det = el("details", "group");
         // open the size-related groups by default
-        if (/글씨|색|홈/.test(sec.title) && si < 5) det.open = true;
+        if (/글씨|홈/.test(sec.title) && si < 6) det.open = true;
         var sum = el("summary", null, sec.title);
         det.appendChild(sum);
         var body = el("div", "group-body");
-        sec.items.forEach(function (t) { body.appendChild(buildRow(t)); });
+        items.forEach(function (t) { body.appendChild(buildRow(t)); });
         det.appendChild(body);
         root.appendChild(det);
+      });
+    }
+
+    // 위계별 일괄 조절 — 같은 크기 등급을 한 슬라이더로 전 페이지 동시에
+    function buildMasterGroup() {
+      var det = el("details", "group master");
+      det.open = true;
+      var sum = el("summary", null, "위계별 일괄 조절 (전 페이지 공통)");
+      det.appendChild(sum);
+      var body = el("div", "group-body");
+      var cap = el("div", "master-caption",
+        "같은 크기 등급을 한 번에 키우거나 줄입니다. 개별 항목은 아래에서 따로 미세조정할 수 있어요(개별 × 일괄).");
+      body.appendChild(cap);
+      TIERS.forEach(function (tier) {
+        body.appendChild(buildMasterRow(tier));
+      });
+      det.appendChild(body);
+      return det;
+    }
+
+    function buildMasterRow(tier) {
+      var row = el("div", "row");
+      var label = el("div", "label");
+      var name = el("span", "name", tier.label);
+      var read = el("span", "readout", pct(masters[tier.key] || 1));
+      label.appendChild(name);
+      label.appendChild(read);
+      row.appendChild(label);
+      var cap = el("div", "master-caption", tier.hint);
+      cap.style.padding = "0 0 6px";
+      row.appendChild(cap);
+      var line = el("div", "slider-line");
+      var range = document.createElement("input");
+      range.type = "range";
+      range.min = "0.6"; range.max = "1.6"; range.step = "0.01";
+      range.value = String(masters[tier.key] || 1);
+      range.addEventListener("input", function () {
+        masters[tier.key] = parseFloat(range.value);
+        read.textContent = pct(range.value);
+        saveMasters();
+        applyLive();
+        refreshSizeRows();
+      });
+      var reset = el("button", "reset-btn", "↺");
+      reset.type = "button";
+      reset.title = "이 등급만 기본값으로";
+      reset.addEventListener("click", function () {
+        if (masters[tier.key]) { delete masters[tier.key]; saveMasters(); }
+        range.value = "1";
+        read.textContent = pct(1);
+        applyLive();
+        refreshSizeRows();
+      });
+      line.appendChild(range);
+      line.appendChild(read);
+      line.appendChild(reset);
+      row.appendChild(line);
+      return row;
+    }
+
+    // 마스터가 바뀌면 영향을 받는 개별 사이즈 행들의 표시(순 배율%·변경표시)를 갱신
+    function refreshSizeRows() {
+      tokens.forEach(function (t) {
+        if (t.type !== "size" || LOCKED[t.name]) return;
+        var read = sizeReadouts[t.name];
+        if (read) read.textContent = pct(effF(t));
+        var row = document.querySelector('.row[data-name="' + t.name + '"]');
+        if (row) { if (isChanged(t)) row.classList.add("changed"); else row.classList.remove("changed"); }
       });
     }
 
     function buildRow(t) {
       var row = el("div", "row");
       row.dataset.name = t.name;
+      var locked = !!LOCKED[t.name];
+      if (locked) row.classList.add("locked");
       if (isChanged(t)) row.classList.add("changed");
 
       var label = el("div", "label");
       var name = el("span", "name", t.label || t.name);
+      if (locked) { var lt = el("span", "lock-tag", "🔒 잠김"); name.appendChild(lt); }
       var tok = el("span", "token", t.name);
       label.appendChild(name);
       label.appendChild(tok);
       row.appendChild(label);
+
+      if (locked) {
+        // 잠긴 항목: 값만 보여주고 편집 불가
+        row.appendChild(el("div", "lock-val", t.value));
+        return row;
+      }
 
       if (t.type === "size") {
         var line = el("div", "slider-line");
         var range = document.createElement("input");
         range.type = "range";
         range.min = "0.6"; range.max = "1.6"; range.step = "0.01";
-        range.value = String((edits[t.name] && edits[t.name].factor) || 1);
-        var read = el("span", "readout", pct(range.value));
+        range.value = String(indivF(t));
+        var read = el("span", "readout", pct(effF(t)));
+        sizeReadouts[t.name] = read;
         range.addEventListener("input", function () {
-          read.textContent = pct(range.value);
           setEdit(t, { factor: parseFloat(range.value) });
+          read.textContent = pct(effF(t));
           markChanged(row, t);
+        });
+        var reset = el("button", "reset-btn", "↺");
+        reset.type = "button";
+        reset.title = "이 항목만 기본값으로";
+        reset.addEventListener("click", function () {
+          if (edits[t.name]) { delete edits[t.name]; saveEdits(); }
+          range.value = "1";
+          read.textContent = pct(effF(t));
+          markChanged(row, t);
+          applyLive();
         });
         line.appendChild(range);
         line.appendChild(read);
+        line.appendChild(reset);
         row.appendChild(line);
       } else if (t.type === "color") {
         var cl = el("div", "color-line");
@@ -497,7 +688,9 @@
     $("btn-reset").addEventListener("click", function () {
       if (!confirm("모든 조정을 되돌리고 기본값으로 초기화할까요?")) return;
       edits = {};
+      masters = {};
       saveEdits();
+      saveMasters();
       buildControls();
       applyLive();
       toast("기본값으로 초기화했습니다");
@@ -516,7 +709,52 @@
       localStorage.setItem(LS_PAGE, pageSel.value);
       $("preview").src = pageSel.value;
     });
-    $("preview").addEventListener("load", applyLive);
+
+    // ---- 미리보기 실제 폭 반영(스케일) ----
+    // 글씨 크기가 clamp(..vw..)라 화면 폭에 따라 달라진다. iframe을 "실제 화면 폭"으로
+    // 렌더한 뒤 패널 크기에 맞춰 축소해, 미리보기 비율이 실제와 같아지게 한다.
+    var LS_WIDTH = "mid-theme-preview-w";
+    var LOGICAL = localStorage.getItem(LS_WIDTH) || "auto";   // "auto" = 내 화면 폭 기준
+    function logicalPx() {
+      if (LOGICAL === "auto") {
+        return Math.max(360, Math.round(window.screen && window.screen.availWidth || window.innerWidth || 1440));
+      }
+      return parseInt(LOGICAL, 10) || 1440;
+    }
+    function fitPreview() {
+      var wrap = document.querySelector(".preview-frame-wrap");
+      var frame = $("preview");
+      if (!wrap || !frame) return;
+      var w = wrap.clientWidth, h = wrap.clientHeight;
+      if (!w || !h) return;
+      var L = logicalPx();
+      var scale = Math.min(1, w / L);
+      var sw = L * scale;
+      frame.style.width = L + "px";
+      frame.style.height = (h / scale) + "px";
+      frame.style.transform = "scale(" + scale + ")";
+      frame.style.left = Math.max(0, (w - sw) / 2) + "px";
+      var note = $("scale-note");
+      if (note) {
+        var prefix = (LOGICAL === "auto" ? "내 화면 " + L + "px" : L + "px 화면");
+        note.textContent = scale >= 0.999 ? (prefix + " · 실제 크기") : (prefix + " · " + Math.round(scale * 100) + "%");
+      }
+    }
+    var widthSel = $("width-select");
+    if (widthSel) {
+      widthSel.value = LOGICAL;
+      widthSel.addEventListener("change", function () {
+        LOGICAL = widthSel.value;
+        localStorage.setItem(LS_WIDTH, LOGICAL);
+        fitPreview();
+      });
+    }
+    window.addEventListener("resize", fitPreview);
+    // pane이 실제 크기를 갖는 순간(초기 레이아웃 포함) 자동으로 맞춘다 — 0폭 레이스 방지
+    if (window.ResizeObserver) {
+      new ResizeObserver(fitPreview).observe(document.querySelector(".preview-frame-wrap"));
+    }
+    $("preview").addEventListener("load", function () { applyLive(); fitPreview(); });
 
     // ---- init ----
     fetch(THEME_URL, { cache: "no-store" })
@@ -526,6 +764,7 @@
         parseTheme(text);
         buildControls();
         applyLive();
+        fitPreview();
       })
       .catch(function (err) {
         $("controls").innerHTML = "";

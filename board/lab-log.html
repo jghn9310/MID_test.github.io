@@ -9,7 +9,7 @@
       content="A running log of small, fun moments at the Materials Informatics and Design Laboratory (SKKU) — streamed like a live terminal inside a lab console window, newest line first."
     >
     <script>document.documentElement.classList.add("has-js");</script>
-    <link rel="stylesheet" href="../assets/css/lab-log.css?v=20260710-term-v4i">
+    <link rel="stylesheet" href="../assets/css/lab-log.css?v=20260711-kr2">
     <script src="../assets/js/team-page.js?v=20260710-term-v4i" defer></script>
     <script src="../assets/js/lab-log.js?v=20260710-term-v4i" defer></script>
   </head>
@@ -110,8 +110,30 @@
             Sungkyunkwan University (SKKU)
           </p>
         </div>
-        <p class="footer-copy">&copy; Copyright 2025. All Rights Reserved.</p>
+        <p class="footer-copy">&copy; Copyright 2025. All Rights Reserved.<a
+          href="../tools/theme-editor.html" id="admin-gate" aria-hidden="true" tabindex="-1"
+          title="" style="margin-left:8px;opacity:.32;text-decoration:none;cursor:pointer;user-select:none;color:inherit;">&#9619;</a></p>
       </div>
     </footer>
+
+    <!-- 관리자(디자인 편집기) 비밀 진입: 커서 블록(▓) 클릭 → 비밀번호 → 편집기.
+         브라우저 비번은 강한 보안이 아니며(소스에서 보임), '지나가는 방문자 차단' 용도. -->
+    <script>
+      (function () {
+        var g = document.getElementById("admin-gate");
+        if (!g) return;
+        g.addEventListener("click", function (e) {
+          e.preventDefault();
+          var p = prompt("관리자 비밀번호");
+          if (p === null) return;                 // 취소
+          if (p === "8756") {
+            try { sessionStorage.setItem("mid-admin-ok", "yes"); } catch (_) {}
+            window.location.href = "../tools/theme-editor.html";
+          } else {
+            alert("비밀번호가 올바르지 않습니다.");
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-@import url("./principal-advisor.css?v=20260710-reveal");
+@import url("./principal-advisor.css?v=20260711-kr2");
 
 .students-page {
   min-height: 100vh;
@@ -155,7 +155,7 @@
   padding: 3px 10px;
   border: 1px solid rgba(32, 35, 32, 0.2);
   border-radius: 999px;
-  font-size: clamp(0.73rem, 0.8vw, 0.8rem);
+  font-size: var(--fs-student-field);
   line-height: 1.2;
   white-space: nowrap;
 }
@@ -164,7 +164,7 @@
   width: fit-content;
   color: rgba(32, 35, 32, 0.72);
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: var(--fs-student-email);
   line-height: 1.35;
   border-bottom: 1px solid rgba(32, 35, 32, 0);
   transition:
@@ -200,7 +200,7 @@
   }
 
   .students-identity h1 {
-    font-size: clamp(2.64rem, 13vw, 4.2rem);
+    font-size: var(--fs-student-name);
     white-space: normal;
   }
 

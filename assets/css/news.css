@@ -3,7 +3,7 @@
    News records milestone events — new grants, graduations, awards, press.
    No entries yet: the page shows an honest empty state, and the entry layout
    below (.news-list / .news-entry) is styled and ready for the first story. */
-@import url("./principal-advisor.css?v=20260710-reveal");
+@import url("./principal-advisor.css?v=20260711-kr2");
 
 .news-page {
   min-height: 100vh;
@@ -93,7 +93,7 @@
   color: var(--charcoal);
   border: 1px solid var(--line-strong);
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: var(--fs-news-legend);
   font-weight: 500;
   line-height: 1;
 }
@@ -137,7 +137,7 @@
   color: var(--charcoal);
   border: 1px solid var(--line-strong);
   border-radius: 999px;
-  font-size: 0.72rem;
+  font-size: var(--fs-news-tag);
   font-weight: 560;
   letter-spacing: 0.02em;
   line-height: 1;
@@ -159,7 +159,7 @@
 .news-entry-body p {
   max-width: 720px;
   color: var(--charcoal);
-  font-size: clamp(0.94rem, 1vw, 1.04rem);
+  font-size: var(--fs-news-body);
   line-height: 1.58;
 }
 

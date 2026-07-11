@@ -1,6 +1,6 @@
 /* Board / Gallery page. Reuses shared chrome, tokens, .eyebrow, .reveal-block,
    .section-label, .team-subnav and the footer from principal-advisor.css. */
-@import url("./principal-advisor.css?v=20260710-reveal");
+@import url("./principal-advisor.css?v=20260711-kr2");
 
 .gallery-page {
   min-height: 100vh;
@@ -104,7 +104,7 @@
 
 .gallery-caption-title {
   color: var(--graphite);
-  font-size: clamp(0.94rem, 1.05vw, 1.04rem);
+  font-size: var(--fs-gallery-caption);
   font-weight: 560;
   line-height: 1.3;
 }
@@ -303,7 +303,7 @@
 
 .lightbox-figure figcaption {
   color: rgba(255, 255, 255, 0.86);
-  font-size: 0.95rem;
+  font-size: var(--fs-gallery-figcaption);
   line-height: 1.4;
   text-align: center;
 }

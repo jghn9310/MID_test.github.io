@@ -1,7 +1,7 @@
 /* Publications page — a precise, list-first bibliography for MID Lab.
    Reuses shared chrome, tokens, .eyebrow, .reveal-block, .team-subnav and the
    footer from principal-advisor.css. */
-@import url("./principal-advisor.css?v=20260710-reveal");
+@import url("./principal-advisor.css?v=20260711-kr2");
 
 /* Height the pinned year nav tucks under = the header's height, which ramps
    with viewport width (~114px @1024 → ~129px @1512). pub.js overrides this with
@@ -72,7 +72,7 @@ html {
   background: var(--graphite);
   border: 1px solid var(--graphite);
   border-radius: 999px;
-  font-size: 0.84rem;
+  font-size: var(--fs-pub-scholar);
   line-height: 1;
   transition:
     background-color 170ms var(--ease-out),
@@ -149,7 +149,7 @@ html {
   background: transparent;
   border: 0;
   font-family: var(--font-mono);
-  font-size: clamp(0.86rem, 1vw, 0.96rem);
+  font-size: var(--fs-subnav);
   line-height: 1.2;
   letter-spacing: 0.02em;
   cursor: pointer;
@@ -266,7 +266,7 @@ a.pub-title:focus-visible {
 
 .pub-authors {
   color: var(--charcoal);
-  font-size: clamp(0.88rem, 0.95vw, 0.98rem);
+  font-size: var(--fs-pub-authors);
   line-height: 1.55;
 }
 
@@ -282,7 +282,7 @@ a.pub-title:focus-visible {
 
 .pub-venue {
   color: var(--muted);
-  font-size: clamp(0.84rem, 0.9vw, 0.94rem);
+  font-size: var(--fs-pub-venue);
   line-height: 1.5;
 }
 
@@ -343,6 +343,6 @@ a.pub-title:focus-visible {
   }
 
   .pub-index {
-    font-size: 0.74rem;
+    font-size: var(--fs-pub-index);
   }
 }

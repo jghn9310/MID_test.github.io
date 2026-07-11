@@ -1,7 +1,7 @@
 /* Research area pages (Materials Design + CALPHAD / FE Simulation / AI).
    Reuses shared chrome, tokens, .eyebrow, .reveal-block, .section-label,
    .profile-section and the footer from principal-advisor.css. */
-@import url("./principal-advisor.css?v=20260710-reveal");
+@import url("./principal-advisor.css?v=20260711-kr2");
 
 .research-page {
   min-height: 100vh;
@@ -74,7 +74,7 @@
   color: var(--charcoal);
   border: 1px solid rgba(32, 35, 32, 0.2);
   border-radius: 999px;
-  font-size: clamp(0.82rem, 0.9vw, 0.9rem);
+  font-size: var(--fs-research-tag);
   line-height: 1.2;
 }
 
@@ -100,7 +100,7 @@
   padding: 0 2px clamp(13px, 1.3vw, 16px);
   color: rgba(32, 35, 32, 0.66);
   font-family: var(--font-sans);
-  font-size: clamp(0.86rem, 1vw, 0.96rem);
+  font-size: var(--fs-subnav);
   line-height: 1.2;
   transition: color 180ms var(--ease-out);
 }
@@ -108,13 +108,13 @@
 .research-subnav a.research-subnav-parent {
   color: rgba(32, 35, 32, 0.82);
   font-weight: 640;
-  font-size: clamp(0.94rem, 1.05vw, 1.04rem);
+  font-size: var(--fs-subnav-lead);
 }
 
 .research-subnav-divider {
   padding: 0 0 clamp(13px, 1.3vw, 16px);
   color: var(--line-strong);
-  font-size: clamp(0.86rem, 1vw, 0.96rem);
+  font-size: var(--fs-subnav);
   pointer-events: none;
   user-select: none;
 }
@@ -171,7 +171,7 @@
 
 .research-papers a {
   color: var(--graphite);
-  font-size: clamp(0.98rem, 1.05vw, 1.1rem);
+  font-size: var(--fs-research-paper);
   font-weight: 560;
   line-height: 1.42;
   border-bottom: 1px solid rgba(32, 35, 32, 0);
@@ -189,7 +189,7 @@
 
 .research-papers .paper-meta {
   color: var(--muted);
-  font-size: clamp(0.83rem, 0.9vw, 0.92rem);
+  font-size: var(--fs-research-paper-meta);
   line-height: 1.5;
 }
 
@@ -208,13 +208,13 @@
 .research-projects strong {
   color: var(--graphite);
   font-weight: 600;
-  font-size: clamp(0.98rem, 1vw, 1.08rem);
+  font-size: var(--fs-research-project);
   line-height: 1.46;
 }
 
 .research-projects span {
   color: var(--muted);
-  font-size: clamp(0.86rem, 0.9vw, 0.94rem);
+  font-size: var(--fs-research-project-sub);
   line-height: 1.46;
 }
 

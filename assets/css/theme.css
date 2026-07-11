@@ -13,6 +13,27 @@
    커지는 값"입니다. 크게/작게만 하고 싶으면 보통 세 번째 값(최대)만 조절하면 됩니다.
    ===================================================================== */
 
+/* 본문·UI 기본 글꼴 Inter 를 사이트에서 직접 불러온다(자체 호스팅).
+   이 파일이 모든 페이지에 import되므로 여기 한 곳이면 전 페이지에 적용된다.
+   가변폰트 1개(라틴, ~48KB)로 100~900 굵기 전부 커버. 한글은 --font-korean 담당. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/inter-latin-var.woff2") format("woff2");
+}
+/* 한글 기본 글꼴 Pretendard(자체 호스팅, 가변, 전체 음절 ~2MB).
+   Inter와 짝을 이루는 현대 산세리프. 전체 음절이라 단어 중간에 폴백 섞임 없음.
+   (상용 subset은 일부 음절 누락으로 단어 안에서 글꼴이 섞여 전체판 사용.) */
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/pretendard-var.woff2?v=2") format("woff2");
+}
+
 :root {
   /* ── 색 (Colors) ───────────────────────────────────────────────── */
   --paper:        #ffffff;   /* 기본 배경 (흰색) */
@@ -28,9 +49,9 @@
 
   /* ── 글꼴 종류 (Font families) ─────────────────────────────────── */
   --font-sans:   "Inter", "Aptos", "Segoe UI", Arial, sans-serif;                  /* 기본 본문·UI */
-  --font-korean: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; /* 한글 */
+  --font-korean: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; /* 한글 (Pretendard 웹폰트) */
   --font-serif:  "Georgia", "Times New Roman", serif;                              /* 제목(세리프) */
-  --font-mono:   "Cascadia Mono", "Consolas", monospace;                           /* 라벨·코드 */
+  --font-mono:   "Cascadia Mono", ui-monospace, "SF Mono", "Menlo", "Consolas", "Roboto Mono", monospace; /* 라벨·코드 (OS별 네이티브 mono) */
 
   /* ── 글씨 크기 (Font sizes) ────────────────────────────────────── */
   --fs-label:   0.72rem;                          /* 작은 라벨·꼬리표·메타 */
@@ -43,27 +64,73 @@
   --fs-h2:      clamp(2.6rem,  4.5vw,  5.16rem);  /* 페이지 대표 제목 */
   --fs-display: clamp(3.05rem, 5.35vw, 6.55rem);  /* 첫 화면 초대형 제목 */
 
-  /* ── 홈 화면: 주요 영역 글씨 크기 ──────────────────────────────
-     홈(index.html) 각 영역의 글씨 크기. 자주 조절하는 것들입니다.
-     (모바일에서의 미세 크기 조정은 home.css 아래쪽 @media 블록에 있습니다.) */
-  --fs-nav:            clamp(1.02rem, 1.05vw, 1.14rem);  /* 상단 네비게이션 링크 */
-  --fs-hero-kicker:    clamp(0.84rem, 0.92vw, 1rem);     /* 히어로 위 작은 라벨 */
-  --fs-research-axis:  clamp(1.85rem, 2.8vw,  3.3rem);   /* 홈 연구 대표 제목(큰 글씨) */
-  --fs-research-title: clamp(1.2rem,  1.55vw, 1.55rem);  /* 연구 목록 제목 */
-  --fs-news-title:     clamp(1rem,    1.12vw, 1.18rem);  /* 뉴스 항목 제목 */
-  --fs-project-title:  clamp(1.08rem, 1.42vw, 1.38rem);  /* 프로젝트 목록 제목 */
-  --fs-contact-name:   clamp(2rem,    3.35vw, 4rem);     /* 연락처 이름(대형 세리프) */
-  --fs-contact-role:   clamp(1rem,    1.1vw,  1.16rem);  /* 연락처 직함 */
-  --fs-contact-email:  clamp(1.15rem, 1.5vw,  1.42rem);  /* 연락처 이메일 */
-
-  /* ── 홈 화면: 세부 UI 글씨 크기 (거의 안 바꿔도 됩니다) ─────────── */
+  /* ── 공용: 네비게이션·푸터 (모든 페이지 공통) ──────────────────
+     상단 네비와 하단 푸터는 전 페이지가 같은 값을 씁니다.
+     (모바일 미세 조정은 각 CSS 아래쪽 @media 블록에 있습니다.) */
+  --fs-nav:               clamp(1.02rem, 1.05vw, 1.14rem);  /* 상단 네비게이션 링크 */
   --fs-nav-label:         clamp(0.84rem, 0.9vw,  0.98rem);  /* 헤더 소속 라벨 */
   --fs-nav-dropdown:      0.94rem;                          /* 드롭다운 메뉴 항목 */
   --fs-nav-dropdown-lead: 1.02rem;                          /* 드롭다운 대표(연구) 항목 */
-  --fs-chip:              clamp(0.78rem, 0.88vw, 0.92rem);  /* 연구 키워드 칩 */
-  --fs-research-desc:     clamp(0.9rem,  0.98vw, 1.02rem);  /* 연구 축 설명(호버 시) */
   --fs-footer-lab:        clamp(0.86rem, 0.96vw, 1rem);     /* 푸터 연구실명 */
   --fs-footer-sub:        clamp(0.78rem, 0.86vw, 0.92rem);  /* 푸터 소속·저작권 */
+
+  /* ── 공용: 서브페이지 보조 내비 (Team·Research·Project·Publications) ── */
+  --fs-subnav:            clamp(0.86rem, 1vw,    0.96rem);  /* 서브페이지 상단 보조 내비 링크 */
+  --fs-subnav-lead:       clamp(0.94rem, 1.05vw, 1.04rem);  /* 그 내비의 현재/대표 항목 */
+
+  /* ── 홈 화면 (index.html) ─────────────────────────────────────── */
+  --fs-hero-kicker:    clamp(0.84rem, 0.92vw, 1rem);     /* 히어로 위 작은 라벨 */
+  --fs-research-axis:  clamp(1.85rem, 2.8vw,  3.3rem);   /* 홈 연구 대표 제목(큰 글씨) */
+  --fs-research-title: clamp(1.2rem,  1.55vw, 1.55rem);  /* 홈 연구 목록 제목 */
+  --fs-news-title:     clamp(1rem,    1.12vw, 1.18rem);  /* 홈 뉴스 항목 제목 */
+  --fs-project-title:  clamp(1.08rem, 1.42vw, 1.38rem);  /* 홈 프로젝트 목록 제목 */
+  --fs-contact-name:   clamp(2rem,    3.35vw, 4rem);     /* 홈 연락처 이름(대형 세리프) */
+  --fs-contact-role:   clamp(1rem,    1.1vw,  1.16rem);  /* 홈 연락처 직함 */
+  --fs-contact-email:  clamp(1.15rem, 1.5vw,  1.42rem);  /* 홈 연락처 이메일 */
+  --fs-chip:           clamp(0.78rem, 0.88vw, 0.92rem);  /* 홈 연구 키워드 칩 */
+  --fs-research-desc:  clamp(0.9rem,  0.98vw, 1.02rem);  /* 홈 연구 축 설명(호버) */
+
+  /* ── Team: 연구책임자(PI) 페이지 ──────────────────────────────── */
+  --fs-pi-title-line:  clamp(1rem,    1.05vw, 1.16rem);  /* PI 직함/소속 줄 */
+  --fs-pi-tag:         0.82rem;                           /* PI 태그(관심분야 등) */
+  --fs-pi-award:       clamp(0.95rem, 1vw,    1.05rem);   /* 수상 목록 항목 */
+  --fs-timeline-title: clamp(1.08rem, 1.35vw, 1.34rem);  /* 학력/경력 항목 제목 */
+  --fs-timeline-body:  clamp(0.94rem, 1vw,    1.04rem);   /* 학력/경력 설명 */
+
+  /* ── Team: 학생(Students)·동문(Alumni) 페이지 ─────────────────── */
+  --fs-student-name:   clamp(2.64rem, 13vw,   4.2rem);   /* Students 페이지 큰 제목 */
+  --fs-student-field:  clamp(0.73rem, 0.8vw,  0.8rem);   /* 학생 연구분야 태그 */
+  --fs-student-email:  0.8rem;                           /* 학생 이메일 */
+  --fs-roster-empty:   clamp(0.95rem, 1vw,    1.05rem);  /* 명단 없음 안내문 */
+
+  /* ── Research 상세 페이지 ─────────────────────────────────────── */
+  --fs-research-tag:         clamp(0.82rem, 0.9vw,  0.9rem);   /* 연구 태그 */
+  --fs-research-paper:       clamp(0.98rem, 1.05vw, 1.1rem);   /* 논문 제목 */
+  --fs-research-paper-meta:  clamp(0.83rem, 0.9vw,  0.92rem);  /* 논문 서지정보 */
+  --fs-research-project:     clamp(0.98rem, 1vw,    1.08rem);  /* 과제 제목 */
+  --fs-research-project-sub: clamp(0.86rem, 0.9vw,  0.94rem);  /* 과제 부가설명 */
+
+  /* ── Publications 페이지 ──────────────────────────────────────── */
+  --fs-pub-scholar:  0.84rem;                          /* Google Scholar 링크 */
+  --fs-pub-authors:  clamp(0.88rem, 0.95vw, 0.98rem);  /* 저자 목록 */
+  --fs-pub-venue:    clamp(0.84rem, 0.9vw,  0.94rem);  /* 게재정보(저널) */
+  --fs-pub-index:    0.74rem;                          /* 논문 번호 */
+
+  /* ── Project 상세 페이지 ──────────────────────────────────────── */
+  --fs-project-intro:   clamp(1.02rem, 1.15vw, 1.2rem);   /* 프로젝트 소개문 */
+  --fs-project-status:  clamp(0.74rem, 0.85vw, 0.82rem);  /* 카드 상태 라벨 */
+  --fs-project-eng:     clamp(0.82rem, 0.92vw, 0.94rem);  /* 카드 영문 설명 */
+  --fs-project-tag:     clamp(0.8rem,  0.88vw, 0.88rem);  /* 프로젝트 태그 */
+  --fs-project-cue:     clamp(0.9rem,  0.96vw, 1rem);     /* 카드 안내 문구 */
+  --fs-project-caption: clamp(0.82rem, 0.92vw, 0.92rem);  /* 그림 캡션 */
+  --fs-project-facts:   clamp(0.96rem, 1vw,   1.06rem);   /* 팩트 목록 값 */
+
+  /* ── Board: Gallery·News ──────────────────────────────────────── */
+  --fs-gallery-caption:    clamp(0.94rem, 1.05vw, 1.04rem);  /* 갤러리 캡션 제목 */
+  --fs-gallery-figcaption: 0.95rem;                          /* 확대보기(라이트박스) 캡션 */
+  --fs-news-legend:  0.82rem;                          /* News 범례 */
+  --fs-news-tag:     0.72rem;                          /* News 태그 */
+  --fs-news-body:    clamp(0.94rem, 1vw, 1.04rem);     /* News 본문 */
 
   /* ── 모션 · 레이아웃 ───────────────────────────────────────────── */
   --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);  /* 애니메이션 감속 곡선 */

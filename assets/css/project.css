@@ -2,7 +2,7 @@
    projects, plus per-project detail pages. Reuses the shared chrome, tokens,
    .eyebrow, .reveal-block, .section-label, .profile-section and footer from
    principal-advisor.css, and mirrors the hero/subnav idiom of research.css. */
-@import url("./principal-advisor.css?v=20260710-reveal");
+@import url("./principal-advisor.css?v=20260711-kr2");
 
 .project-page {
   min-height: 100vh;
@@ -54,7 +54,7 @@
 .project-intro {
   max-width: 62ch;
   color: var(--charcoal);
-  font-size: clamp(1.02rem, 1.15vw, 1.2rem);
+  font-size: var(--fs-project-intro);
   line-height: 1.6;
 }
 
@@ -185,13 +185,13 @@
   background: var(--paper-deep);
   border: 1px solid var(--line-strong);
   border-radius: 999px;
-  font-size: clamp(0.74rem, 0.85vw, 0.82rem);
+  font-size: var(--fs-project-status);
   line-height: 1.32;
 }
 
 .project-card-eng {
   color: var(--muted);
-  font-size: clamp(0.82rem, 0.92vw, 0.94rem);
+  font-size: var(--fs-project-eng);
   font-weight: 560;
   line-height: 1.4;
 }
@@ -222,7 +222,7 @@
   color: var(--charcoal);
   border: 1px solid rgba(32, 35, 32, 0.2);
   border-radius: 999px;
-  font-size: clamp(0.8rem, 0.88vw, 0.88rem);
+  font-size: var(--fs-project-tag);
   line-height: 1.2;
 }
 
@@ -232,7 +232,7 @@
   gap: 8px;
   margin-top: 2px;
   color: var(--graphite);
-  font-size: clamp(0.9rem, 0.96vw, 1rem);
+  font-size: var(--fs-project-cue);
   font-weight: 600;
 }
 
@@ -269,7 +269,7 @@
   max-width: 66rem;
   margin: clamp(12px, 1.5vw, 20px) auto 0;
   color: var(--muted);
-  font-size: clamp(0.82rem, 0.92vw, 0.92rem);
+  font-size: var(--fs-project-caption);
   line-height: 1.6;
 }
 
@@ -319,7 +319,7 @@
   padding: 0 2px clamp(13px, 1.3vw, 16px);
   color: rgba(32, 35, 32, 0.66);
   font-family: var(--font-sans);
-  font-size: clamp(0.86rem, 1vw, 0.96rem);
+  font-size: var(--fs-subnav);
   line-height: 1.2;
   transition: color 180ms var(--ease-out);
 }
@@ -327,13 +327,13 @@
 .project-subnav a.project-subnav-parent {
   color: rgba(32, 35, 32, 0.82);
   font-weight: 640;
-  font-size: clamp(0.94rem, 1.05vw, 1.04rem);
+  font-size: var(--fs-subnav-lead);
 }
 
 .project-subnav-divider {
   padding: 0 0 clamp(13px, 1.3vw, 16px);
   color: var(--line-strong);
-  font-size: clamp(0.86rem, 1vw, 0.96rem);
+  font-size: var(--fs-subnav);
   pointer-events: none;
   user-select: none;
 }
@@ -420,7 +420,7 @@
 
 .project-facts dd {
   color: var(--charcoal);
-  font-size: clamp(0.96rem, 1vw, 1.06rem);
+  font-size: var(--fs-project-facts);
   line-height: 1.56;
 }
 
