@@ -11,6 +11,7 @@
     <script>document.documentElement.classList.add("has-js");</script>
     <link rel="stylesheet" href="assets/css/home.css?v=20260711-kr2">
     <script src="assets/js/home.js?v=20260710-reveal" defer></script>
+    <script src="assets/js/news.js?v=20260711-news3" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#research">Skip to content</a>
@@ -155,20 +156,9 @@
               <span>News</span>
               <a href="board/news.html">All →</a>
             </div>
-            <div class="news-list" aria-label="MID Lab news">
-              <a href="board/news/lab-seminar.html" data-future-link>
-                <time datetime="2026-05">2026.05</time>
-                <h4>Lab seminar and discussion</h4>
-              </a>
-              <a href="board/news/conference-activities.html" data-future-link>
-                <time datetime="2026">2026 Spring</time>
-                <h4>Conference activities</h4>
-              </a>
-              <a href="board/news/lab-moments.html" data-future-link>
-                <time datetime="2026-05">2026.05</time>
-                <h4>Lab moments</h4>
-              </a>
-            </div>
+            <!-- 홈 뉴스 미리보기(최신 3개)는 assets/js/news.js 가 그립니다.
+                 소식 편집은 news.js 의 NEWS_CSV_URL(구글 시트) 또는 NEWS 목록에서. -->
+            <div class="news-list" data-news-home aria-label="MID Lab news"></div>
           </div>
           <div class="board-panel gallery-panel">
             <div class="board-panel-heading">

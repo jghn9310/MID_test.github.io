@@ -11,6 +11,7 @@
     <script>document.documentElement.classList.add("has-js");</script>
     <link rel="stylesheet" href="../assets/css/news.css?v=20260711-kr2">
     <script src="../assets/js/team-page.js?v=20260710-reveal" defer></script>
+    <script src="../assets/js/news.js?v=20260711-news3" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#news-main">Skip to content</a>
@@ -72,38 +73,14 @@
         <a href="lab-log.html">lab-log</a>
       </nav>
 
-      <section class="news-feed reveal-block" aria-label="Latest news">
-        <!-- No entries yet. Honest empty state until the first milestone is recorded. -->
-        <div class="news-empty">
-          <p class="news-empty-eyebrow">No entries yet</p>
-          <h2>The first stories are on their way.</h2>
-          <p class="news-empty-note">When the lab wins a new research grant, celebrates a graduation, receives an award, or appears in the press, it will be recorded here.</p>
-          <ul class="news-legend" aria-label="Kinds of news recorded here">
-            <li>Research Grants</li>
-            <li>Graduations</li>
-            <li>Awards</li>
-            <li>In the Media</li>
-          </ul>
-        </div>
-
-        <!--
-          When the first story lands, remove the .news-empty block above and use
-          this list. Copy an <article> per entry. Tag one of:
-          Research Grant / Graduation / Award / In the Media.
-
-        <ol class="news-list">
-          <article class="news-entry">
-            <div class="news-entry-meta">
-              <time datetime="2026-07">2026.07</time>
-              <span class="news-tag">Award</span>
-            </div>
-            <div class="news-entry-body">
-              <h3>Headline of the milestone</h3>
-              <p>One or two sentences describing what happened and who was involved.</p>
-            </div>
-          </article>
-        </ol>
-        -->
+      <!-- 소식은 assets/js/news.js 의 NEWS_CSV_URL(구글 시트) 또는 NEWS 목록으로 그립니다.
+           지금은 '빈 소식 3개'가 기본으로 표시됩니다. -->
+      <section class="news-feed reveal-block" aria-label="Latest news" data-news>
+        <noscript>
+          <p class="news-empty-note" style="text-align:center;">
+            소식은 자바스크립트로 표시됩니다. 상단 메뉴에서 다른 게시판으로 이동할 수 있습니다.
+          </p>
+        </noscript>
       </section>
     </main>
 
