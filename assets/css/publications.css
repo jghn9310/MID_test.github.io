@@ -1,6 +1,7 @@
 /* Publications page — a precise, list-first bibliography for MID Lab.
    Reuses shared chrome, tokens, .eyebrow, .reveal-block, .team-subnav and the
    footer from principal-advisor.css. */
+@import url("./principal-advisor.css?v=20260711-kr2");
 
 /* Height the pinned year nav tucks under = the header's height, which ramps
    with viewport width (~114px @1024 → ~129px @1512). pub.js overrides this with

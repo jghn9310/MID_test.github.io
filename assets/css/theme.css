@@ -14,7 +14,7 @@
    ===================================================================== */
 
 /* 본문·UI 기본 글꼴 Inter 를 사이트에서 직접 불러온다(자체 호스팅).
-   이 파일을 모든 공개 HTML이 첫 stylesheet로 연결하므로 전 페이지에 적용된다.
+   이 파일이 모든 페이지에 import되므로 여기 한 곳이면 전 페이지에 적용된다.
    가변폰트 1개(라틴, ~48KB)로 100~900 굵기 전부 커버. 한글은 --font-korean 담당. */
 @font-face {
   font-family: "Inter";
@@ -23,15 +23,15 @@
   font-display: swap;
   src: url("../fonts/inter-latin-var.woff2") format("woff2");
 }
-/* 한글 기본 글꼴 Pretendard(자체 호스팅, 가변).
-   원본은 보존하고 공개 HTML/JS/snapshot 문자열로 재현한 subset만 배포한다.
-   source hash가 바뀌면 verify가 stale subset을 거부한다. */
+/* 한글 기본 글꼴 Pretendard(자체 호스팅, 가변, 전체 음절 ~2MB).
+   Inter와 짝을 이루는 현대 산세리프. 전체 음절이라 단어 중간에 폴백 섞임 없음.
+   (상용 subset은 일부 음절 누락으로 단어 안에서 글꼴이 섞여 전체판 사용.) */
 @font-face {
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../fonts/pretendard-public-subset.woff2") format("woff2");
+  src: url("../fonts/pretendard-var.woff2?v=2") format("woff2");
 }
 
 :root {
@@ -49,7 +49,7 @@
 
   /* ── 글꼴 종류 (Font families) ─────────────────────────────────── */
   --font-sans:   "Inter", "Aptos", "Segoe UI", Arial, sans-serif;                  /* 기본 본문·UI */
-  --font-korean: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; /* 한글 */
+  --font-korean: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; /* 한글 (Pretendard 웹폰트) */
   --font-serif:  "Georgia", "Times New Roman", serif;                              /* 제목(세리프) */
   --font-mono:   "Cascadia Mono", ui-monospace, "SF Mono", "Menlo", "Consolas", "Roboto Mono", monospace; /* 라벨·코드 (OS별 네이티브 mono) */
 

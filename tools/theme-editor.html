@@ -5,7 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>디자인 편집기 · MID Lab</title>
-  <!-- 로컬 전용 디자인 도구. 인증 기능이 아니며 production dist에서 제외한다. -->
+  <!-- 관리자 비밀번호 게이트: 세션에 통과 기록이 없으면 진입 시 1회 확인.
+       (브라우저 비번은 강한 보안이 아님 — 지나가는 방문자 차단 용도) -->
+  <script>
+    (function () {
+      try { if (sessionStorage.getItem("mid-admin-ok") === "yes") return; } catch (_) {}
+      var p = prompt("관리자 비밀번호");
+      if (p === "8756") {
+        try { sessionStorage.setItem("mid-admin-ok", "yes"); } catch (_) {}
+        return;
+      }
+      alert("접근 권한이 없습니다.");
+      window.location.replace("../index.html");
+    })();
+  </script>
   <style>
     :root {
       --paper: #ffffff;

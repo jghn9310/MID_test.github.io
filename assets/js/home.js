@@ -10,23 +10,6 @@ const menuToggle = document.querySelector("[data-menu-toggle]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const introSettleDelay = prefersReducedMotion ? 0 : 3800;
 let scrollUpdateQueued = false;
-let heroParallax = null;
-
-if (heroImage && !prefersReducedMotion && typeof heroImage.animate === "function") {
-  try {
-    heroParallax = heroImage.animate(
-      [
-        { transform: "translate3d(0, 0, 0) scale(1.01)" },
-        { transform: "translate3d(-28px, 0, 0) scale(1.01)" },
-      ],
-      { duration: 1000, fill: "both" },
-    );
-    heroParallax.pause();
-    heroParallax.currentTime = 0;
-  } catch (_) {
-    heroParallax = null;
-  }
-}
 
 const setNavGroupExpanded = (group, isExpanded) => {
   const trigger = group.querySelector(".nav-trigger");
@@ -188,13 +171,7 @@ scrollCue?.addEventListener("click", () => {
 const initialHash = window.location.hash.slice(1);
 
 if (initialHash) {
-  let initialTarget = null;
-  try {
-    initialTarget = document.getElementById(decodeURIComponent(initialHash));
-  } catch (_) {
-    // A malformed percent-encoded hash is untrusted URL input. Ignore it and
-    // continue initialization so no content can remain hidden.
-  }
+  const initialTarget = document.getElementById(decodeURIComponent(initialHash));
 
   window.requestAnimationFrame(() => {
     initialTarget?.scrollIntoView({ behavior: "auto", block: "start" });
@@ -227,9 +204,10 @@ const updateScrollState = () => {
   const scrollY = window.scrollY || window.pageYOffset;
   header?.classList.toggle("is-scrolled", scrollY > 24);
   scrollCue?.classList.toggle("is-hidden", scrollY > 120);
-  if (heroParallax) {
-    const offset = Math.min(scrollY * 0.035, 28);
-    heroParallax.currentTime = (offset / 28) * 1000;
+
+  if (heroImage && !prefersReducedMotion) {
+    const shift = Math.max(-28, -scrollY * 0.035);
+    heroImage.style.transform = `translate3d(${shift}px, 0, 0) scale(1.01)`;
   }
 };
 
@@ -249,56 +227,19 @@ updateScrollState();
 if (galleryRotator) {
   const gallerySlides = Array.from(galleryRotator.querySelectorAll("figure"));
   let activeGalleryIndex = gallerySlides.findIndex((slide) => slide.classList.contains("is-active"));
-  let galleryTransitionPending = false;
 
   if (activeGalleryIndex < 0) activeGalleryIndex = 0;
 
-  const hydrateGallerySlide = async (slide) => {
-    if (!slide || slide.dataset.hydrated === "true") return;
+  const showGallerySlide = (nextIndex) => {
+    if (!gallerySlides.length) return;
 
-    slide.querySelectorAll("source[data-srcset]").forEach((source) => {
-      const sizes = source.dataset.sizes;
-      if (sizes) source.setAttribute("sizes", sizes);
-      source.setAttribute("srcset", source.dataset.srcset);
-    });
+    gallerySlides[activeGalleryIndex].classList.remove("is-active");
+    gallerySlides[activeGalleryIndex].setAttribute("aria-hidden", "true");
 
-    const image = slide.querySelector("img[data-src]");
-    if (image) {
-      if (image.dataset.sizes) image.setAttribute("sizes", image.dataset.sizes);
-      if (image.dataset.srcset) image.setAttribute("srcset", image.dataset.srcset);
-      image.setAttribute("src", image.dataset.src);
-    }
+    activeGalleryIndex = (nextIndex + gallerySlides.length) % gallerySlides.length;
 
-    slide.dataset.hydrated = "true";
-    if (image && typeof image.decode === "function") {
-      try {
-        await image.decode();
-      } catch (_) {
-        // Keep the current slide visible if decoding fails; the browser may
-        // still display the validated fallback when it finishes loading.
-      }
-    }
-  };
-
-  const showGallerySlide = async (nextIndex) => {
-    if (!gallerySlides.length || galleryTransitionPending) return;
-
-    const targetIndex = (nextIndex + gallerySlides.length) % gallerySlides.length;
-    if (targetIndex === activeGalleryIndex) return;
-    galleryTransitionPending = true;
-    try {
-      await hydrateGallerySlide(gallerySlides[targetIndex]);
-
-      gallerySlides[activeGalleryIndex].classList.remove("is-active");
-      gallerySlides[activeGalleryIndex].setAttribute("aria-hidden", "true");
-
-      activeGalleryIndex = targetIndex;
-
-      gallerySlides[activeGalleryIndex].classList.add("is-active");
-      gallerySlides[activeGalleryIndex].setAttribute("aria-hidden", "false");
-    } finally {
-      galleryTransitionPending = false;
-    }
+    gallerySlides[activeGalleryIndex].classList.add("is-active");
+    gallerySlides[activeGalleryIndex].setAttribute("aria-hidden", "false");
   };
 
   gallerySlides.forEach((slide, index) => {
@@ -313,18 +254,14 @@ if (galleryRotator) {
     if (!stepButton || !galleryRotator.contains(stepButton)) return;
 
     const direction = stepButton.dataset.galleryStep === "prev" ? -1 : 1;
-    void showGallerySlide(activeGalleryIndex + direction);
+    showGallerySlide(activeGalleryIndex + direction);
   });
 
   if (gallerySlides.length > 1 && !prefersReducedMotion) {
     galleryRotator.classList.add("is-running");
 
     window.setInterval(() => {
-      void showGallerySlide(activeGalleryIndex + 1);
+      showGallerySlide(activeGalleryIndex + 1);
     }, 4800);
   }
 }
-
-// Added only after every fail-open setup step above has completed. If this
-// file is missing or throws earlier, the default CSS keeps all content visible.
-document.documentElement.classList.add("has-js");

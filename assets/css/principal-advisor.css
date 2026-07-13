@@ -2,6 +2,7 @@
    이 파일은 홈을 제외한 모든 하위 페이지의 base 이므로, 여기서 theme.css 를
    불러오면 전 페이지가 같은 토큰을 공유합니다.
    글씨 크기나 색을 바꾸려면 assets/css/theme.css 를 여세요. */
+@import url("./theme.css?v=20260711-kr2");
 
 * {
   box-sizing: border-box;
@@ -720,27 +721,6 @@ html:not(.has-js) .nav-group:focus-within .nav-dropdown {
   width: 100%;
   height: auto;
   display: block;
-}
-
-.pi-portrait picture {
-  display: block;
-  width: 100%;
-}
-
-.pi-portrait--placeholder {
-  aspect-ratio: 4 / 5;
-  display: grid;
-  place-items: center;
-  background:
-    linear-gradient(145deg, rgba(32, 35, 32, 0.04), transparent 62%),
-    var(--paper-deep);
-}
-
-.pi-portrait-initials {
-  color: var(--muted);
-  font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
-  letter-spacing: 0.04em;
 }
 
 .profile-section {

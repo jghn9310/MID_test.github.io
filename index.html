@@ -3,24 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="assets/img/public/brand/mid-logo-w620.png">
-    <meta name="robots" content="noindex, nofollow">
     <title>MID Lab | Materials Informatics and Design Laboratory</title>
     <meta
       name="description"
       content="Materials Informatics and Design Laboratory explores metallic and structural materials through experiments, simulations, and machine/deep learning."
     >
-    <script src="assets/js/security.js?v=20260713-security1" defer></script>
-    <link rel="stylesheet" href="assets/css/theme.css?v=20260711-kr2">
+    <script>document.documentElement.classList.add("has-js");</script>
     <link rel="stylesheet" href="assets/css/home.css?v=20260711-kr2">
     <script src="assets/js/home.js?v=20260710-reveal" defer></script>
+    <script src="assets/js/news.js?v=20260711-news3" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#research">Skip to content</a>
 
     <header class="site-header" data-site-header>
       <a class="brand-mark" href="#top" aria-label="MID Lab home">
-        <img src="assets/img/public/brand/mid-logo-w620.png" alt="MID Lab logo" width="620" height="423" decoding="async">
+        <img src="assets/img/mid-logo.png" alt="MID Lab logo">
       </a>
       <p class="header-group-label">Kyeongjae Jeong Research Group</p>
 
@@ -63,31 +61,7 @@
 
     <main>
       <section class="home-hero" id="top" aria-label="MID Lab homepage entrance">
-        <picture>
-          <source
-            type="image/avif"
-            srcset="assets/img/public/hero/main-banner-w640.avif 640w, assets/img/public/hero/main-banner-w1280.avif 1280w, assets/img/public/hero/main-banner-w1920.avif 1920w"
-            sizes="100vw"
-          >
-          <source
-            type="image/webp"
-            srcset="assets/img/public/hero/main-banner-w640.webp 640w, assets/img/public/hero/main-banner-w1280.webp 1280w, assets/img/public/hero/main-banner-w1920.webp 1920w"
-            sizes="100vw"
-          >
-          <img
-            class="hero-image"
-            src="assets/img/public/hero/main-banner-w1920.jpg"
-            srcset="assets/img/public/hero/main-banner-w640.jpg 640w, assets/img/public/hero/main-banner-w1280.jpg 1280w, assets/img/public/hero/main-banner-w1920.jpg 1920w"
-            sizes="100vw"
-            width="1920"
-            height="900"
-            alt=""
-            aria-hidden="true"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-          >
-        </picture>
+        <img class="hero-image" src="assets/img/main-banner.png" alt="" aria-hidden="true">
         <div class="hero-wash" aria-hidden="true"></div>
 
         <div class="hero-copy">
@@ -182,22 +156,9 @@
               <span>News</span>
               <a href="board/news.html">All →</a>
             </div>
-            <!-- Validated local snapshot: mid-news/v1, generated 2026-07-13. -->
-            <div class="news-list" data-news-home aria-label="MID Lab news"
-              data-content-source="local-snapshot" data-schema-version="mid-news/v1" data-generated-at="2026-07-13">
-              <div class="news-static-row">
-                <time datetime="2026-05">2026.05</time>
-                <h4>Lab seminar and discussion</h4>
-              </div>
-              <div class="news-static-row">
-                <time datetime="2026">2026 Spring</time>
-                <h4>Conference activities</h4>
-              </div>
-              <div class="news-static-row">
-                <time datetime="2026-05">2026.05</time>
-                <h4>Lab moments</h4>
-              </div>
-            </div>
+            <!-- 홈 뉴스 미리보기(최신 3개)는 assets/js/news.js 가 그립니다.
+                 소식 편집은 news.js 의 NEWS_CSV_URL(구글 시트) 또는 NEWS 목록에서. -->
+            <div class="news-list" data-news-home aria-label="MID Lab news"></div>
           </div>
           <div class="board-panel gallery-panel">
             <div class="board-panel-heading">
@@ -206,81 +167,37 @@
             </div>
             <div class="gallery-rotator" data-gallery-rotator>
               <figure class="is-active" aria-hidden="false">
-                <picture>
-                  <source type="image/avif" srcset="assets/img/public/gallery/gallery-lab-seminar-w480.avif 480w, assets/img/public/gallery/gallery-lab-seminar-w1600.avif 1600w" sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" srcset="assets/img/public/gallery/gallery-lab-seminar-w480.webp 480w, assets/img/public/gallery/gallery-lab-seminar-w1600.webp 1600w" sizes="(max-width: 720px) 100vw, 50vw">
-                  <img src="assets/img/public/gallery/gallery-lab-seminar-w480.jpg" srcset="assets/img/public/gallery/gallery-lab-seminar-w480.jpg 480w, assets/img/public/gallery/gallery-lab-seminar-w1600.jpg 1600w" sizes="(max-width: 720px) 100vw, 50vw" width="480" height="360" alt="MID Lab seminar" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-lab-seminar.jpg" alt="MID Lab seminar">
               </figure>
               <figure aria-hidden="true">
-                <picture>
-                  <source type="image/avif" data-srcset="assets/img/public/gallery/gallery-spring-conference-w480.avif 480w, assets/img/public/gallery/gallery-spring-conference-w1600.avif 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" data-srcset="assets/img/public/gallery/gallery-spring-conference-w480.webp 480w, assets/img/public/gallery/gallery-spring-conference-w1600.webp 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <img data-src="assets/img/public/gallery/gallery-spring-conference-w480.jpg" data-srcset="assets/img/public/gallery/gallery-spring-conference-w480.jpg 480w, assets/img/public/gallery/gallery-spring-conference-w1600.jpg 1600w" data-sizes="(max-width: 720px) 100vw, 50vw" width="480" height="360" alt="Conference activity" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-spring-conference.jpg" alt="Conference activity">
               </figure>
               <figure aria-hidden="true">
-                <picture>
-                  <source type="image/avif" data-srcset="assets/img/public/gallery/gallery-conference-gangsan-kim-w480.avif 480w, assets/img/public/gallery/gallery-conference-gangsan-kim-w1600.avif 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" data-srcset="assets/img/public/gallery/gallery-conference-gangsan-kim-w480.webp 480w, assets/img/public/gallery/gallery-conference-gangsan-kim-w1600.webp 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <img data-src="assets/img/public/gallery/gallery-conference-gangsan-kim-w480.jpg" data-srcset="assets/img/public/gallery/gallery-conference-gangsan-kim-w480.jpg 480w, assets/img/public/gallery/gallery-conference-gangsan-kim-w1600.jpg 1600w" data-sizes="(max-width: 720px) 100vw, 50vw" width="480" height="640" alt="Conference presentation" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-conference-gangsan-kim.jpg" alt="Conference presentation">
               </figure>
               <figure aria-hidden="true">
-                <picture>
-                  <source type="image/avif" data-srcset="assets/img/public/gallery/gallery-conference-giuk-song-w480.avif 480w, assets/img/public/gallery/gallery-conference-giuk-song-w1600.avif 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" data-srcset="assets/img/public/gallery/gallery-conference-giuk-song-w480.webp 480w, assets/img/public/gallery/gallery-conference-giuk-song-w1600.webp 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <img data-src="assets/img/public/gallery/gallery-conference-giuk-song-w480.jpg" data-srcset="assets/img/public/gallery/gallery-conference-giuk-song-w480.jpg 480w, assets/img/public/gallery/gallery-conference-giuk-song-w1600.jpg 1600w" data-sizes="(max-width: 720px) 100vw, 50vw" width="480" height="640" alt="Conference presentation" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-conference-giuk-song.jpg" alt="Conference presentation">
               </figure>
               <figure aria-hidden="true">
-                <picture>
-                  <source type="image/avif" data-srcset="assets/img/public/gallery/gallery-teachers-day-w480.avif 480w, assets/img/public/gallery/gallery-teachers-day-w1600.avif 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" data-srcset="assets/img/public/gallery/gallery-teachers-day-w480.webp 480w, assets/img/public/gallery/gallery-teachers-day-w1600.webp 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <img data-src="assets/img/public/gallery/gallery-teachers-day-w480.jpg" data-srcset="assets/img/public/gallery/gallery-teachers-day-w480.jpg 480w, assets/img/public/gallery/gallery-teachers-day-w1600.jpg 1600w" data-sizes="(max-width: 720px) 100vw, 50vw" width="480" height="360" alt="Teachers day celebration" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-teachers-day.jpg" alt="Teachers day celebration">
               </figure>
               <figure aria-hidden="true">
-                <picture>
-                  <source type="image/avif" data-srcset="assets/img/public/gallery/gallery-teachers-day-cake-w480.avif 480w, assets/img/public/gallery/gallery-teachers-day-cake-w1600.avif 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" data-srcset="assets/img/public/gallery/gallery-teachers-day-cake-w480.webp 480w, assets/img/public/gallery/gallery-teachers-day-cake-w1600.webp 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <img data-src="assets/img/public/gallery/gallery-teachers-day-cake-w480.jpg" data-srcset="assets/img/public/gallery/gallery-teachers-day-cake-w480.jpg 480w, assets/img/public/gallery/gallery-teachers-day-cake-w1600.jpg 1600w" data-sizes="(max-width: 720px) 100vw, 50vw" width="480" height="640" alt="Teachers day cake" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-teachers-day-cake.jpg" alt="Teachers day cake">
               </figure>
               <figure aria-hidden="true">
-                <picture>
-                  <source type="image/avif" data-srcset="assets/img/public/gallery/gallery-heemook-kang-birthday-w480.avif 480w, assets/img/public/gallery/gallery-heemook-kang-birthday-w1600.avif 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" data-srcset="assets/img/public/gallery/gallery-heemook-kang-birthday-w480.webp 480w, assets/img/public/gallery/gallery-heemook-kang-birthday-w1600.webp 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <img data-src="assets/img/public/gallery/gallery-heemook-kang-birthday-w480.jpg" data-srcset="assets/img/public/gallery/gallery-heemook-kang-birthday-w480.jpg 480w, assets/img/public/gallery/gallery-heemook-kang-birthday-w1600.jpg 1600w" data-sizes="(max-width: 720px) 100vw, 50vw" width="480" height="640" alt="Lab birthday celebration" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-heemook-kang-birthday.jpg" alt="Lab birthday celebration">
               </figure>
               <figure aria-hidden="true">
-                <picture>
-                  <source type="image/avif" data-srcset="assets/img/public/gallery/gallery-jumin-kwon-birthday-w480.avif 480w, assets/img/public/gallery/gallery-jumin-kwon-birthday-w1600.avif 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" data-srcset="assets/img/public/gallery/gallery-jumin-kwon-birthday-w480.webp 480w, assets/img/public/gallery/gallery-jumin-kwon-birthday-w1600.webp 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <img data-src="assets/img/public/gallery/gallery-jumin-kwon-birthday-w480.jpg" data-srcset="assets/img/public/gallery/gallery-jumin-kwon-birthday-w480.jpg 480w, assets/img/public/gallery/gallery-jumin-kwon-birthday-w1600.jpg 1600w" data-sizes="(max-width: 720px) 100vw, 50vw" width="480" height="640" alt="Lab birthday celebration" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-jumin-kwon-birthday.jpg" alt="Lab birthday celebration">
               </figure>
               <figure aria-hidden="true">
-                <picture>
-                  <source type="image/avif" data-srcset="assets/img/public/gallery/gallery-giuk-song-w480.avif 480w, assets/img/public/gallery/gallery-giuk-song-w1600.avif 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" data-srcset="assets/img/public/gallery/gallery-giuk-song-w480.webp 480w, assets/img/public/gallery/gallery-giuk-song-w1600.webp 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <img data-src="assets/img/public/gallery/gallery-giuk-song-w480.jpg" data-srcset="assets/img/public/gallery/gallery-giuk-song-w480.jpg 480w, assets/img/public/gallery/gallery-giuk-song-w1600.jpg 1600w" data-sizes="(max-width: 720px) 100vw, 50vw" width="480" height="640" alt="Lab member photo" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-giuk-song.jpg" alt="Lab member photo">
               </figure>
               <figure aria-hidden="true">
-                <picture>
-                  <source type="image/avif" data-srcset="assets/img/public/gallery/gallery-woosub-birthday-w480.avif 480w, assets/img/public/gallery/gallery-woosub-birthday-w1600.avif 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" data-srcset="assets/img/public/gallery/gallery-woosub-birthday-w480.webp 480w, assets/img/public/gallery/gallery-woosub-birthday-w1600.webp 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <img data-src="assets/img/public/gallery/gallery-woosub-birthday-w480.jpg" data-srcset="assets/img/public/gallery/gallery-woosub-birthday-w480.jpg 480w, assets/img/public/gallery/gallery-woosub-birthday-w1600.jpg 1600w" data-sizes="(max-width: 720px) 100vw, 50vw" width="480" height="513" alt="Lab birthday celebration" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-woosub-birthday.png" alt="Lab birthday celebration">
               </figure>
               <figure aria-hidden="true">
-                <picture>
-                  <source type="image/avif" data-srcset="assets/img/public/gallery/gallery-woosub-choi-w480.avif 480w, assets/img/public/gallery/gallery-woosub-choi-w1600.avif 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <source type="image/webp" data-srcset="assets/img/public/gallery/gallery-woosub-choi-w480.webp 480w, assets/img/public/gallery/gallery-woosub-choi-w1600.webp 1600w" data-sizes="(max-width: 720px) 100vw, 50vw">
-                  <img data-src="assets/img/public/gallery/gallery-woosub-choi-w480.jpg" data-srcset="assets/img/public/gallery/gallery-woosub-choi-w480.jpg 480w, assets/img/public/gallery/gallery-woosub-choi-w1600.jpg 1600w" data-sizes="(max-width: 720px) 100vw, 50vw" width="480" height="640" alt="Lab member photo" loading="lazy" decoding="async">
-                </picture>
+                <img src="assets/img/gallery/gallery-woosub-choi.jpg" alt="Lab member photo">
               </figure>
               <button class="gallery-step gallery-step-prev" type="button" aria-label="Previous gallery photo" data-gallery-step="prev"></button>
               <button class="gallery-step gallery-step-next" type="button" aria-label="Next gallery photo" data-gallery-step="next"></button>
@@ -312,7 +229,7 @@
     <footer class="site-footer" id="footer" aria-label="Site footer">
       <div class="footer-inner">
         <div class="footer-emblem-wrap">
-          <img class="footer-emblem" src="assets/img/public/brand/skku-emblem-w640.png" alt="Sungkyunkwan University emblem" width="640" height="640" loading="lazy" decoding="async">
+          <img class="footer-emblem" src="assets/img/skku-emblem.png" alt="Sungkyunkwan University emblem">
         </div>
         <div class="footer-text">
           <p class="footer-lab">Materials Informatics and Design Laboratory</p>
