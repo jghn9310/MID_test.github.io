@@ -1,0 +1,1262 @@
+{
+  "colorProfile": "Pillow-generated standard sRGB",
+  "generator": "scripts/build_public_images.py",
+  "metadataPolicy": "No EXIF, GPS, XMP, IPTC, comments, device, or capture metadata; standard sRGB ICC only.",
+  "pillowVersion": "12.3.0",
+  "records": [
+    {
+      "outputs": [
+        {
+          "bytes": 110294,
+          "height": 2133,
+          "path": "gallery/gallery-conference-gangsan-kim-w1600.avif",
+          "sha256": "bc284f89eef44d66a8e0e06fff4e055ddc389729c261a6c8fc3210a9a7c3d5e9",
+          "width": 1600
+        },
+        {
+          "bytes": 321210,
+          "height": 2133,
+          "path": "gallery/gallery-conference-gangsan-kim-w1600.jpg",
+          "sha256": "669b889dabef34d97536b75d9f135e11964954af3ebccc44ca1432f3832ecbdc",
+          "width": 1600
+        },
+        {
+          "bytes": 116694,
+          "height": 2133,
+          "path": "gallery/gallery-conference-gangsan-kim-w1600.webp",
+          "sha256": "406cb6c9e9acffb716b4067623778112094308c9c938279a7ad7b549425b8447",
+          "width": 1600
+        },
+        {
+          "bytes": 15038,
+          "height": 640,
+          "path": "gallery/gallery-conference-gangsan-kim-w480.avif",
+          "sha256": "d4c79b1c219cc3838fc62540dcf3e3d30b3782a3582f837ea8d849e17c866c54",
+          "width": 480
+        },
+        {
+          "bytes": 35974,
+          "height": 640,
+          "path": "gallery/gallery-conference-gangsan-kim-w480.jpg",
+          "sha256": "4563728c450eea5d9c99cc4b31f9727720fad024e625b8a6fe81824dc098929a",
+          "width": 480
+        },
+        {
+          "bytes": 20162,
+          "height": 640,
+          "path": "gallery/gallery-conference-gangsan-kim-w480.webp",
+          "sha256": "4e093172fd0d8fb5b975f859f0e609118bb2cc0943a58f96a5a0b49eb2883581",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-conference-gangsan-kim.jpg",
+      "sourceSha256": "5e58e8c017dcfac8b2b1cdf804bbed9f7d160193ed7a0d2be59fa19ac97e4ff1"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 143768,
+          "height": 2133,
+          "path": "gallery/gallery-conference-giuk-song-w1600.avif",
+          "sha256": "61f23f6e574732c3733f2e5656790c35f82268ba4a6e4481bafb69ece7b9c729",
+          "width": 1600
+        },
+        {
+          "bytes": 419402,
+          "height": 2133,
+          "path": "gallery/gallery-conference-giuk-song-w1600.jpg",
+          "sha256": "0f3ad0876eaffe37bfe1b64cafdf86d876746087dc5bfb29d38a19bb7b7abd7c",
+          "width": 1600
+        },
+        {
+          "bytes": 222070,
+          "height": 2133,
+          "path": "gallery/gallery-conference-giuk-song-w1600.webp",
+          "sha256": "78818787a05e956d8120e1aae1746adab995668eea394c8b552103a4cf1da258",
+          "width": 1600
+        },
+        {
+          "bytes": 18670,
+          "height": 640,
+          "path": "gallery/gallery-conference-giuk-song-w480.avif",
+          "sha256": "c93189da670a0a4fad14557ea51477beb8b13c3176d0ae16794dd7c4fab9da33",
+          "width": 480
+        },
+        {
+          "bytes": 46343,
+          "height": 640,
+          "path": "gallery/gallery-conference-giuk-song-w480.jpg",
+          "sha256": "aa86cb0756604a346bbdf779b3f50e550cb7242e64860f396d3a34487d46444e",
+          "width": 480
+        },
+        {
+          "bytes": 29282,
+          "height": 640,
+          "path": "gallery/gallery-conference-giuk-song-w480.webp",
+          "sha256": "b1e0cdad30f696addc68472ad184cad5f628019ae707fef4a3142444a3f15da8",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-conference-giuk-song.jpg",
+      "sourceSha256": "3d4199a1fdf4fe5d8997adef87b18a9c3e42620851537a9644c197dffcd08f6c"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 210081,
+          "height": 2133,
+          "path": "gallery/gallery-giuk-song-w1600.avif",
+          "sha256": "5726cd8ae4216c5ec06dfbdac2d690bd2ac0067a6e9cd174f7155d4a50d460fd",
+          "width": 1600
+        },
+        {
+          "bytes": 519624,
+          "height": 2133,
+          "path": "gallery/gallery-giuk-song-w1600.jpg",
+          "sha256": "4b03279cc5c850f768a473d74da3d1925a06f25a7b9ee32b54d442ecaf601fe0",
+          "width": 1600
+        },
+        {
+          "bytes": 298464,
+          "height": 2133,
+          "path": "gallery/gallery-giuk-song-w1600.webp",
+          "sha256": "f82fe050268e4e5e5300a58a7371be475aa930cc978b822e38cced6290bf13e6",
+          "width": 1600
+        },
+        {
+          "bytes": 27128,
+          "height": 640,
+          "path": "gallery/gallery-giuk-song-w480.avif",
+          "sha256": "a6d4ec6c7572710b66de1b602a9152ecaac072e2c209f5f801a4ec9f1a36584f",
+          "width": 480
+        },
+        {
+          "bytes": 62589,
+          "height": 640,
+          "path": "gallery/gallery-giuk-song-w480.jpg",
+          "sha256": "fa169448b0a54d3631e4c94e9b21932314b0c621bc9fd9512a2ef6b1682af71d",
+          "width": 480
+        },
+        {
+          "bytes": 42200,
+          "height": 640,
+          "path": "gallery/gallery-giuk-song-w480.webp",
+          "sha256": "c89ca8eab07560537e6bff951941a29231e1d45ea647021f288d880ef1f0ac7f",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-giuk-song.jpg",
+      "sourceSha256": "62501545da0132d6acde1f4ae8c86dbf8b93ff2e61efd09e00fe49815e193fb4"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 189647,
+          "height": 2133,
+          "path": "gallery/gallery-heemook-kang-birthday-w1600.avif",
+          "sha256": "5cf0f4ebad5b52abe61fecfb2f4a75c13fe1a62309b58674a7ee977610cf8b2e",
+          "width": 1600
+        },
+        {
+          "bytes": 492787,
+          "height": 2133,
+          "path": "gallery/gallery-heemook-kang-birthday-w1600.jpg",
+          "sha256": "daa7236e2b81ae7f87b0fb72eb8575fd473ea4ef26ff23609aae0b8aa9c95293",
+          "width": 1600
+        },
+        {
+          "bytes": 261856,
+          "height": 2133,
+          "path": "gallery/gallery-heemook-kang-birthday-w1600.webp",
+          "sha256": "1305e1ff5d7e8a95ffacc0a59d8e0c493a1b8212a4d3e2bdbcfa5baa77b9ca06",
+          "width": 1600
+        },
+        {
+          "bytes": 23540,
+          "height": 640,
+          "path": "gallery/gallery-heemook-kang-birthday-w480.avif",
+          "sha256": "05b30140aa71f09dac0df8cd7776aa4533f3d0e26670600aaa2a162a97e2b55b",
+          "width": 480
+        },
+        {
+          "bytes": 58670,
+          "height": 640,
+          "path": "gallery/gallery-heemook-kang-birthday-w480.jpg",
+          "sha256": "b7f6415724032550dc21c3931789b9cd66dd9eb93158529a14c91c17b7b24b09",
+          "width": 480
+        },
+        {
+          "bytes": 37370,
+          "height": 640,
+          "path": "gallery/gallery-heemook-kang-birthday-w480.webp",
+          "sha256": "360f27b91d12c7237deff5e585afb41d73f721a220525650833106fd8a9e875b",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-heemook-kang-birthday.jpg",
+      "sourceSha256": "4743a1b22d05af37f5f7e562fe632531956d52879520a34cfd252240ab2b341c"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 129620,
+          "height": 2133,
+          "path": "gallery/gallery-jumin-kwon-birthday-w1600.avif",
+          "sha256": "c6c002586ad90a5a975aebefb6d29f328fc66facf0755066036fe99c6dd71ae2",
+          "width": 1600
+        },
+        {
+          "bytes": 358690,
+          "height": 2133,
+          "path": "gallery/gallery-jumin-kwon-birthday-w1600.jpg",
+          "sha256": "40e26d9d2ec082a154a60a2beada808ae8ca30e554a7952cc3c1d21d22b37f16",
+          "width": 1600
+        },
+        {
+          "bytes": 162200,
+          "height": 2133,
+          "path": "gallery/gallery-jumin-kwon-birthday-w1600.webp",
+          "sha256": "61f320703b97675d51a5f898ecacd70f025c14875b953561c120c2d728507f98",
+          "width": 1600
+        },
+        {
+          "bytes": 21443,
+          "height": 640,
+          "path": "gallery/gallery-jumin-kwon-birthday-w480.avif",
+          "sha256": "9250245627c63354c67a9cf7e05e89d80ed5522e0f3c4002b93ce0d72662daa1",
+          "width": 480
+        },
+        {
+          "bytes": 50211,
+          "height": 640,
+          "path": "gallery/gallery-jumin-kwon-birthday-w480.jpg",
+          "sha256": "f2bd5aba2b5e2ff5f1d8e722af86125edfa133e9850b685ca46c461a924f9807",
+          "width": 480
+        },
+        {
+          "bytes": 31002,
+          "height": 640,
+          "path": "gallery/gallery-jumin-kwon-birthday-w480.webp",
+          "sha256": "12f824b616d79e75b7071e23feaa5eb276760bc0fb293c4a478eab1a4590bd87",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-jumin-kwon-birthday.jpg",
+      "sourceSha256": "b37f95a0faf75edc66d08a62c0d318e0bd5b05f63242907f8a39a5db854c7115"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 103331,
+          "height": 1200,
+          "path": "gallery/gallery-lab-seminar-w1600.avif",
+          "sha256": "a33dff016b53a5870a51e1257011fcd4e482f0d7a9182f7bbe120fb13743b2e1",
+          "width": 1600
+        },
+        {
+          "bytes": 265062,
+          "height": 1200,
+          "path": "gallery/gallery-lab-seminar-w1600.jpg",
+          "sha256": "d812d1a9165cd67e0ed573cb6e51b7c15f5bb8683f04929f00c8c093f724bd2f",
+          "width": 1600
+        },
+        {
+          "bytes": 129206,
+          "height": 1200,
+          "path": "gallery/gallery-lab-seminar-w1600.webp",
+          "sha256": "c564e8d4e0f4ed29617b40454a41fbb8be5c9552395942f1b4cb741c4a99486b",
+          "width": 1600
+        },
+        {
+          "bytes": 12520,
+          "height": 360,
+          "path": "gallery/gallery-lab-seminar-w480.avif",
+          "sha256": "4be40ec5337911bf465bccaa0954b7c2c76b793b4ccf02b6cafd5ee26b047826",
+          "width": 480
+        },
+        {
+          "bytes": 32387,
+          "height": 360,
+          "path": "gallery/gallery-lab-seminar-w480.jpg",
+          "sha256": "661989d52a6fc712bfd00b1335098c143dc79928eda0eca4621a569033a1b456",
+          "width": 480
+        },
+        {
+          "bytes": 19870,
+          "height": 360,
+          "path": "gallery/gallery-lab-seminar-w480.webp",
+          "sha256": "09bdb80ceb8baa8c7830ae4f9d8dbaa510cb8a8a0f4c47194dbae5bec554d059",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-lab-seminar.jpg",
+      "sourceSha256": "1cb481d8c3a30bcb06aa478712e871be52c265bcf4d2c6d09b4815151cb7b5e5"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 168105,
+          "height": 1200,
+          "path": "gallery/gallery-spring-conference-w1600.avif",
+          "sha256": "2d4410245622a7d687d14e15905409134d54758bf949bfa62ed2db1559e3a54c",
+          "width": 1600
+        },
+        {
+          "bytes": 398852,
+          "height": 1200,
+          "path": "gallery/gallery-spring-conference-w1600.jpg",
+          "sha256": "91e86fbb83d537647170001a1b8636b66519cae9ee2faab3b8568328d1f12941",
+          "width": 1600
+        },
+        {
+          "bytes": 283844,
+          "height": 1200,
+          "path": "gallery/gallery-spring-conference-w1600.webp",
+          "sha256": "185ab5b6d218fb6cb053ac1d89b8926b8ddc06dda97da1d1e0da52b4e5f6a30a",
+          "width": 1600
+        },
+        {
+          "bytes": 19134,
+          "height": 360,
+          "path": "gallery/gallery-spring-conference-w480.avif",
+          "sha256": "4bbef95255be8bb5ba293fb4275976fb81705a3ef3e0fe68376f9dcf3995769d",
+          "width": 480
+        },
+        {
+          "bytes": 43817,
+          "height": 360,
+          "path": "gallery/gallery-spring-conference-w480.jpg",
+          "sha256": "a82f1b9b2854a6d55a2475ad459c521f6d2d3a612fcc6f07199560bec63a0b92",
+          "width": 480
+        },
+        {
+          "bytes": 32946,
+          "height": 360,
+          "path": "gallery/gallery-spring-conference-w480.webp",
+          "sha256": "cbfbc228dba18b60e1a3593187e99930229ee40cb81a47b2b37506493db09d74",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-spring-conference.jpg",
+      "sourceSha256": "215d6c53a70c6ea43ae80cc1bb4269e20ae5505b47e977c82b322ed5e00c9cec"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 144721,
+          "height": 2133,
+          "path": "gallery/gallery-teachers-day-cake-w1600.avif",
+          "sha256": "5c3f7e6c8a52e4f800c401fe41db33fe59350e93f80705558cd7aff30be8c8e0",
+          "width": 1600
+        },
+        {
+          "bytes": 381660,
+          "height": 2133,
+          "path": "gallery/gallery-teachers-day-cake-w1600.jpg",
+          "sha256": "b5cdaa17a15eb4c530d6ed0cedfdabcc478ade7cbec0cb98667dc6f311743995",
+          "width": 1600
+        },
+        {
+          "bytes": 152774,
+          "height": 2133,
+          "path": "gallery/gallery-teachers-day-cake-w1600.webp",
+          "sha256": "427a1b86fb746d34ec8a55de33960e29d651e534a10d6de01cb606d7961a6eb1",
+          "width": 1600
+        },
+        {
+          "bytes": 19519,
+          "height": 640,
+          "path": "gallery/gallery-teachers-day-cake-w480.avif",
+          "sha256": "0bd1fdd1d00773b89144650cbb94c92141cfe448ef7bbdc2bf137a619a00c858",
+          "width": 480
+        },
+        {
+          "bytes": 46223,
+          "height": 640,
+          "path": "gallery/gallery-teachers-day-cake-w480.jpg",
+          "sha256": "00b7bba3901b32c8c935b2c3caa11a5cfb46c1d99d4228b28a87be33f0bcc012",
+          "width": 480
+        },
+        {
+          "bytes": 25742,
+          "height": 640,
+          "path": "gallery/gallery-teachers-day-cake-w480.webp",
+          "sha256": "3bd0366019503508b137c6c646683e9b766756de3ea85a0ff1d95be40dc63c54",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-teachers-day-cake.jpg",
+      "sourceSha256": "9c53a5814e50b3b239a3a1394df94410ad09ea559d898baf94cf2e0943f635d8"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 87903,
+          "height": 1200,
+          "path": "gallery/gallery-teachers-day-w1600.avif",
+          "sha256": "34d2251af49aa49d93323856418849b4522b0fcfc234080c87dfd28f5affd5f5",
+          "width": 1600
+        },
+        {
+          "bytes": 243589,
+          "height": 1200,
+          "path": "gallery/gallery-teachers-day-w1600.jpg",
+          "sha256": "ccde0fcbbddde89a8f1328dac0dfad3d22a810d9230ef0089618962e5a55c661",
+          "width": 1600
+        },
+        {
+          "bytes": 132668,
+          "height": 1200,
+          "path": "gallery/gallery-teachers-day-w1600.webp",
+          "sha256": "98347a05cb7dd2e42e08085d4e446caddd8d6af937c8492c366c3736ed03d543",
+          "width": 1600
+        },
+        {
+          "bytes": 14553,
+          "height": 360,
+          "path": "gallery/gallery-teachers-day-w480.avif",
+          "sha256": "7691d9a74cac9a7df02fb9dbf32669ad90a506517be27f3cfd4f5dcd1bbbbcd4",
+          "width": 480
+        },
+        {
+          "bytes": 34894,
+          "height": 360,
+          "path": "gallery/gallery-teachers-day-w480.jpg",
+          "sha256": "47110bebe7267800a9e953970a5470e7f501a280902ba87faa65785db4802361",
+          "width": 480
+        },
+        {
+          "bytes": 22806,
+          "height": 360,
+          "path": "gallery/gallery-teachers-day-w480.webp",
+          "sha256": "1bc2d8a50332a897d2292ccc7fb7f5c6ccc1145812b232a10eed1e98434ea1db",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-teachers-day.jpg",
+      "sourceSha256": "0fa76def5eaf1596a552f3a91ad04bc97fb12deda9e28187f27447ea06534769"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 80763,
+          "height": 1711,
+          "path": "gallery/gallery-woosub-birthday-w1600.avif",
+          "sha256": "5d21da7c62f5313a3c2636bd520ae3b489bea80856e0e1efa4778ee65c93defa",
+          "width": 1600
+        },
+        {
+          "bytes": 241759,
+          "height": 1711,
+          "path": "gallery/gallery-woosub-birthday-w1600.jpg",
+          "sha256": "3b184addc1614d879fe0aeeb370418d73efe3de76ceef1e0061ac6d90103ce4c",
+          "width": 1600
+        },
+        {
+          "bytes": 109758,
+          "height": 1711,
+          "path": "gallery/gallery-woosub-birthday-w1600.webp",
+          "sha256": "c837375f1577d17a4ddb9d6e995a5d43cf3e5c9b86460c38f594c46ef8e4c695",
+          "width": 1600
+        },
+        {
+          "bytes": 16812,
+          "height": 513,
+          "path": "gallery/gallery-woosub-birthday-w480.avif",
+          "sha256": "de3d09004093525da9f71da35876aedbd4584d2c05f9f48d126f680e2a14043f",
+          "width": 480
+        },
+        {
+          "bytes": 40601,
+          "height": 513,
+          "path": "gallery/gallery-woosub-birthday-w480.jpg",
+          "sha256": "5f8f84d635a00babc9c33a834b167c9a742618f5cd8f6b49b79157a454e83a27",
+          "width": 480
+        },
+        {
+          "bytes": 25382,
+          "height": 513,
+          "path": "gallery/gallery-woosub-birthday-w480.webp",
+          "sha256": "caa5d6467934be29e324b2f50b45f3ae905763e7fb555f75281aa87749bdc4cf",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-woosub-birthday.png",
+      "sourceSha256": "3816b65dd5380a2508c5efa50a445528e60c0cddc9dbbf49044dfc7fabfe340e"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 165281,
+          "height": 2133,
+          "path": "gallery/gallery-woosub-choi-w1600.avif",
+          "sha256": "1bc6e85e26601bc918b4eade7b756e8eecc7e1c3b36986c72de1574ec14865b3",
+          "width": 1600
+        },
+        {
+          "bytes": 431366,
+          "height": 2133,
+          "path": "gallery/gallery-woosub-choi-w1600.jpg",
+          "sha256": "3c07ee5506d906bebba6ef7ef613cd84703e1a0cf2ebf06e59e0f5e780a4d667",
+          "width": 1600
+        },
+        {
+          "bytes": 214476,
+          "height": 2133,
+          "path": "gallery/gallery-woosub-choi-w1600.webp",
+          "sha256": "3b3a1a14a60b71f6654524b68aab2162ed9688fdd3bbd9604a247576a83a4a21",
+          "width": 1600
+        },
+        {
+          "bytes": 25257,
+          "height": 640,
+          "path": "gallery/gallery-woosub-choi-w480.avif",
+          "sha256": "8b6dd9753d23c4f55a8136f5efaadc3e347f12434a29c39a80e5fc3a143341ac",
+          "width": 480
+        },
+        {
+          "bytes": 58788,
+          "height": 640,
+          "path": "gallery/gallery-woosub-choi-w480.jpg",
+          "sha256": "cb75775262d2b8a8a1288a33f8f4c72d290b21a08a1a4de564952c96081596e2",
+          "width": 480
+        },
+        {
+          "bytes": 38990,
+          "height": 640,
+          "path": "gallery/gallery-woosub-choi-w480.webp",
+          "sha256": "2eced114fcf69c2077a554906382bcd9164896de5aba852e254a55152cff4b1a",
+          "width": 480
+        }
+      ],
+      "source": "gallery/gallery-woosub-choi.jpg",
+      "sourceSha256": "2980ba3d3ae53d69e07337364bb4d1f66a8219cb5454240efbec34ac894a4791"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 29096,
+          "height": 600,
+          "path": "hero/main-banner-w1280.avif",
+          "sha256": "f9a054c6e6b69ceb97c761d31cb8c7addc43cf654efcbc6fd76248b456a8dd60",
+          "width": 1280
+        },
+        {
+          "bytes": 68113,
+          "height": 600,
+          "path": "hero/main-banner-w1280.jpg",
+          "sha256": "512dca51c161494d4a05f5416abef38f044b4c1f0cc9c7571be0bf5a82d195c8",
+          "width": 1280
+        },
+        {
+          "bytes": 41444,
+          "height": 600,
+          "path": "hero/main-banner-w1280.webp",
+          "sha256": "abf4c61e74e5f608315e0f2f957c7f2edcf12c6b6aedc8a6e01e2c1751a51d0f",
+          "width": 1280
+        },
+        {
+          "bytes": 53882,
+          "height": 900,
+          "path": "hero/main-banner-w1920.avif",
+          "sha256": "19774bd322490f7f9a0763c5849d7df1421755eed5d3885b1a9085ea3906c491",
+          "width": 1920
+        },
+        {
+          "bytes": 130055,
+          "height": 900,
+          "path": "hero/main-banner-w1920.jpg",
+          "sha256": "6d3aa554ae23f597b7e78c682efe1a63597fbb218ac2ea0c3172c1a1a3394ebd",
+          "width": 1920
+        },
+        {
+          "bytes": 74718,
+          "height": 900,
+          "path": "hero/main-banner-w1920.webp",
+          "sha256": "817071b1791b357be32483d33178c2d8af70e051e871d786aa691d04130bac64",
+          "width": 1920
+        },
+        {
+          "bytes": 10652,
+          "height": 300,
+          "path": "hero/main-banner-w640.avif",
+          "sha256": "bf8b4077ac6f478b1c61b3489467f09af622f37d86266bc7106e5ba07f222c90",
+          "width": 640
+        },
+        {
+          "bytes": 22105,
+          "height": 300,
+          "path": "hero/main-banner-w640.jpg",
+          "sha256": "5f7c66cc199fa67ebae64f57da0fb57557a7b1c59b26d29fe444769b859c0625",
+          "width": 640
+        },
+        {
+          "bytes": 14452,
+          "height": 300,
+          "path": "hero/main-banner-w640.webp",
+          "sha256": "d169bcb7932204d3405f5bb108adef7df4cc1656a1bbf31518b23c0fb3f5278e",
+          "width": 640
+        }
+      ],
+      "source": "main-banner.png",
+      "sourceSha256": "d048065f42c7456d980764f4ba6430cd2137d404e770ae9392ea066c932e9573"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 5089,
+          "height": 423,
+          "path": "brand/mid-logo-w620.png",
+          "sha256": "7360488054d0aaa7f6e5fc3a1145e15cd1d0c0fd9a589b08ca57aa2be04a0b73",
+          "width": 620
+        }
+      ],
+      "source": "mid-logo.png",
+      "sourceSha256": "ec3f97addc16e6b042cc73895394bc77078380dfdce0719885fc85a5eedb346a"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 6954,
+          "height": 427,
+          "path": "people/gangsan-kim-w320.avif",
+          "sha256": "28e8d91f3ac53ecb75c853c538e1338f3e304971b8c395f9547575e9d99767b3",
+          "width": 320
+        },
+        {
+          "bytes": 16630,
+          "height": 427,
+          "path": "people/gangsan-kim-w320.jpg",
+          "sha256": "74cbbb8d73fd0fef5f951bed6624fce807a1e131ce8ca66b93427137d1a3c4ca",
+          "width": 320
+        },
+        {
+          "bytes": 9160,
+          "height": 427,
+          "path": "people/gangsan-kim-w320.webp",
+          "sha256": "38f5a7d6326a1b66eb4a208b4af7bf6d5ed3123e2bf756fa86e12200051c72c3",
+          "width": 320
+        },
+        {
+          "bytes": 12546,
+          "height": 630,
+          "path": "people/gangsan-kim-w472.avif",
+          "sha256": "18f74b0670bce250297e945274af873aa90a5339d34f6dbeee466cc43245bee3",
+          "width": 472
+        },
+        {
+          "bytes": 30491,
+          "height": 630,
+          "path": "people/gangsan-kim-w472.jpg",
+          "sha256": "84f93203f4b074f64737d72c789521c8dd01ba886ab73e1060c1a6471bd91ea3",
+          "width": 472
+        },
+        {
+          "bytes": 15926,
+          "height": 630,
+          "path": "people/gangsan-kim-w472.webp",
+          "sha256": "e65a5fb932f9dafe06a20ac3de87ee32b0a25e23c9db32103436be215aa809a9",
+          "width": 472
+        }
+      ],
+      "source": "people/gangsan-kim.jpg",
+      "sourceSha256": "550791218e6d50ccba8867931ade5cbb87f7904151d4f8570e7f46fb26a374e9"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 8275,
+          "height": 413,
+          "path": "people/giuk-song-w320.avif",
+          "sha256": "222acc22e300984603433330129d6b6dad9e6f85496f8a15adbf5f4625955327",
+          "width": 320
+        },
+        {
+          "bytes": 19303,
+          "height": 413,
+          "path": "people/giuk-song-w320.jpg",
+          "sha256": "063cf72bf7ed106eaf2a8c3d8b85080099bf667b72fe61aeb623e899cb78ad8c",
+          "width": 320
+        },
+        {
+          "bytes": 10722,
+          "height": 413,
+          "path": "people/giuk-song-w320.webp",
+          "sha256": "ba182711bda64796e3eaa224ddf1fc35c8458864c301b9decef94998bc84887c",
+          "width": 320
+        },
+        {
+          "bytes": 17809,
+          "height": 722,
+          "path": "people/giuk-song-w559.avif",
+          "sha256": "60a352ec30b6914bf73eaefd0300a6d5599eb559810038122df944fdab699354",
+          "width": 559
+        },
+        {
+          "bytes": 48612,
+          "height": 722,
+          "path": "people/giuk-song-w559.jpg",
+          "sha256": "31f5fa2d33eb54b605ee0b06d0ac78a6307f575fdaceabcc4adb640d51be3ef4",
+          "width": 559
+        },
+        {
+          "bytes": 22228,
+          "height": 722,
+          "path": "people/giuk-song-w559.webp",
+          "sha256": "fc9e94c33aa232975df2225a6b3270962553f36136d7cd51dc8c1a82676815cc",
+          "width": 559
+        }
+      ],
+      "source": "people/giuk-song.jpg",
+      "sourceSha256": "4404a6b9a685841c5a19324ca0743a5d54eab7ef761baf7d691e54f84c229341"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 8303,
+          "height": 427,
+          "path": "people/heeju-ahn-w320.avif",
+          "sha256": "2e152c7b5f3b0583913b21e55b37e9c3e8de723c814c31746354da139ef227dd",
+          "width": 320
+        },
+        {
+          "bytes": 18733,
+          "height": 427,
+          "path": "people/heeju-ahn-w320.jpg",
+          "sha256": "cdb01356cec0f896c59d0bc6091a69b745e027cd971120c59f692bccc4c81fe1",
+          "width": 320
+        },
+        {
+          "bytes": 10188,
+          "height": 427,
+          "path": "people/heeju-ahn-w320.webp",
+          "sha256": "a9d0cdc08c917e78e497f1d71be06233d510860ba0cc468435d42c74d44a678d",
+          "width": 320
+        },
+        {
+          "bytes": 24096,
+          "height": 800,
+          "path": "people/heeju-ahn-w600.avif",
+          "sha256": "011b7dab8da95e60cbb4249b9d861fab84b4a320f16a2faa0496a6ec30c84728",
+          "width": 600
+        },
+        {
+          "bytes": 56051,
+          "height": 800,
+          "path": "people/heeju-ahn-w600.jpg",
+          "sha256": "47ba23651519fe953ea71efe6e9cfbcbee11b4a4c7298a2fcb66b53754780f35",
+          "width": 600
+        },
+        {
+          "bytes": 30070,
+          "height": 800,
+          "path": "people/heeju-ahn-w600.webp",
+          "sha256": "c0fd1b1013e41bee85bb2e067900d62e97d3427f2020242099935399f4519e36",
+          "width": 600
+        }
+      ],
+      "source": "people/heeju-ahn.jpg",
+      "sourceSha256": "de29ad4fe313642dd244129765183e00e6c1d770a03e61b763258ea76728e0a0"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 3493,
+          "height": 273,
+          "path": "people/heemook-kang-w202.avif",
+          "sha256": "32efa2e129816edcce4737c717ac2092de57f9856cd0cd9785646ffbf8665034",
+          "width": 202
+        },
+        {
+          "bytes": 8018,
+          "height": 273,
+          "path": "people/heemook-kang-w202.jpg",
+          "sha256": "83238cd0c681a208ce321d95325ef0efcfc6dca0071fde521f0250ea85d950bb",
+          "width": 202
+        },
+        {
+          "bytes": 3546,
+          "height": 273,
+          "path": "people/heemook-kang-w202.webp",
+          "sha256": "9e2fba7d324276e383c59cb8aaf4ec663c3fc41f650b22bb327401aa64e62939",
+          "width": 202
+        }
+      ],
+      "source": "people/heemook-kang.jpg",
+      "sourceSha256": "6832b0edd4567e7b44260f364935a18ec6a17b1c7e4190d9e10d3b50985ec975"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 3182,
+          "height": 265,
+          "path": "people/hoon-jeong-w206.avif",
+          "sha256": "67d9081828bbef74f6f37738d11792250a5d645f56191a324ef20473e412f8bf",
+          "width": 206
+        },
+        {
+          "bytes": 59045,
+          "height": 265,
+          "path": "people/hoon-jeong-w206.png",
+          "sha256": "d4105324b12204d4e9558037faa006a0f423882d66f42ac44bb181f62cc96354",
+          "width": 206
+        },
+        {
+          "bytes": 3338,
+          "height": 265,
+          "path": "people/hoon-jeong-w206.webp",
+          "sha256": "ad7395937b9b3f0eb8a8e7aa5028048efd30254ab717572d8fe0bf11f1ffe29c",
+          "width": 206
+        }
+      ],
+      "source": "people/hoon-jeong.png",
+      "sourceSha256": "52cbb623dbdd18f437384355991891afe32207d3348e3ecf2da3c56ef5195803"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 3831,
+          "height": 239,
+          "path": "people/jumin-kwon-w179.avif",
+          "sha256": "df37857e79eda0cdb01e49329397bf90fe38d99ed0a55f32b5ef799030267bd1",
+          "width": 179
+        },
+        {
+          "bytes": 7759,
+          "height": 239,
+          "path": "people/jumin-kwon-w179.jpg",
+          "sha256": "6fe1a709fdbc117436bf9a2be24c9e11cde98d4b97daa423626c8875f6a9e53c",
+          "width": 179
+        },
+        {
+          "bytes": 4006,
+          "height": 239,
+          "path": "people/jumin-kwon-w179.webp",
+          "sha256": "dcdb1b18b14f10a59ae61b59edbd33afe6df54a436e60c76f0466fe9609522b4",
+          "width": 179
+        }
+      ],
+      "source": "people/jumin-kwon.jpg",
+      "sourceSha256": "812fd5f2dce7a6ada6df3dd23b67089a5de8f1192a15dbb41ddeaf6a6b80123c"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 6066,
+          "height": 426,
+          "path": "people/kyeongjae-jeong-w320.avif",
+          "sha256": "3172e1413a7289b803ccdb2655036d713a05c770133d75bd1e60100211e0b2e6",
+          "width": 320
+        },
+        {
+          "bytes": 15175,
+          "height": 426,
+          "path": "people/kyeongjae-jeong-w320.jpg",
+          "sha256": "c29e9d92795a68d9b13711607f072b3d08259b0e6aac4d653b16575145ea4e9c",
+          "width": 320
+        },
+        {
+          "bytes": 7268,
+          "height": 426,
+          "path": "people/kyeongjae-jeong-w320.webp",
+          "sha256": "65a34ef7ca6ab92d37fffd542a6c4a4c10e46158ce51036a072e4f303f60cb8e",
+          "width": 320
+        },
+        {
+          "bytes": 14342,
+          "height": 853,
+          "path": "people/kyeongjae-jeong-w640.avif",
+          "sha256": "9e6f3a2f5715c047695fac00b236d14978da63371813ae071b9a2167edcfa48f",
+          "width": 640
+        },
+        {
+          "bytes": 39358,
+          "height": 853,
+          "path": "people/kyeongjae-jeong-w640.jpg",
+          "sha256": "841fbd96955b14c9bce2d34ecb4d19aff66f2fff930c4d606099c532838e8321",
+          "width": 640
+        },
+        {
+          "bytes": 16244,
+          "height": 853,
+          "path": "people/kyeongjae-jeong-w640.webp",
+          "sha256": "cc634c37d2253fb85575a0e20ee1502126ef834ddf04f448446ce80e1883e960",
+          "width": 640
+        }
+      ],
+      "source": "people/kyeongjae-jeong.jpg",
+      "sourceSha256": "b28ce389d600f9a9e35a313b1c4cc1275e7d12a3e307d7f3a5048094d6a7a406"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 3007,
+          "height": 239,
+          "path": "people/woosub-choi-w179.avif",
+          "sha256": "1dd9dfe8813f1df42475161986b79ad21a4219b8ad791d5429623f5a0311cd87",
+          "width": 179
+        },
+        {
+          "bytes": 6409,
+          "height": 239,
+          "path": "people/woosub-choi-w179.jpg",
+          "sha256": "350be8bb98ceec252f394f510650c7b2c3c5929fb7492b3d64a3f6b4ac3baac6",
+          "width": 179
+        },
+        {
+          "bytes": 3094,
+          "height": 239,
+          "path": "people/woosub-choi-w179.webp",
+          "sha256": "506b50e5fd8f80fe6a14f7716e55a1b2542d4de7b1b4f2babef68b415aaad6ad",
+          "width": 179
+        }
+      ],
+      "source": "people/woosub-choi.jpg",
+      "sourceSha256": "d3fd40d53508f76d29f3bf2d4be874c730b1112f4ea8ec529b68d47588f9554f"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 61908,
+          "height": 1064,
+          "path": "project/mxene-2d-semiconductor-magnet-w1280.avif",
+          "sha256": "c89d5e54034db6eecc65866b286682d06099e8015c79473697eae4c88ecbdb98",
+          "width": 1280
+        },
+        {
+          "bytes": 552437,
+          "height": 1064,
+          "path": "project/mxene-2d-semiconductor-magnet-w1280.png",
+          "sha256": "e881f906978bfb394eb639c47cbdb6fd1a1136ac17b40dc3854d21fdc86caf23",
+          "width": 1280
+        },
+        {
+          "bytes": 100192,
+          "height": 1064,
+          "path": "project/mxene-2d-semiconductor-magnet-w1280.webp",
+          "sha256": "f0f629d060a6e2c831cc5ccd01ee00015e6bb3da28054a873ba814adbe671a4f",
+          "width": 1280
+        },
+        {
+          "bytes": 83147,
+          "height": 1330,
+          "path": "project/mxene-2d-semiconductor-magnet-w1600.avif",
+          "sha256": "e0670462a0ba4341d9bcec796908708e113f4281465c464690e4fb5ca8dce26d",
+          "width": 1600
+        },
+        {
+          "bytes": 730548,
+          "height": 1330,
+          "path": "project/mxene-2d-semiconductor-magnet-w1600.png",
+          "sha256": "ba1c35914838f1b24a5e16147a868b843a55fe8d6f158f773658f6dad6e8c016",
+          "width": 1600
+        },
+        {
+          "bytes": 129474,
+          "height": 1330,
+          "path": "project/mxene-2d-semiconductor-magnet-w1600.webp",
+          "sha256": "2c4cd5b83f07b4dd5c8bffb457a45e50bedd040e4753984da5347a04000f1edc",
+          "width": 1600
+        },
+        {
+          "bytes": 26119,
+          "height": 532,
+          "path": "project/mxene-2d-semiconductor-magnet-w640.avif",
+          "sha256": "20bc90e43a36d4e93bcc1ab3a04b89735d436e98922d9124d10f4aeba34a1ccc",
+          "width": 640
+        },
+        {
+          "bytes": 196845,
+          "height": 532,
+          "path": "project/mxene-2d-semiconductor-magnet-w640.png",
+          "sha256": "6a755874af0d3b377b365a9a7a13ffd1c929a5a84be0506182a88e12ce5af46c",
+          "width": 640
+        },
+        {
+          "bytes": 40686,
+          "height": 532,
+          "path": "project/mxene-2d-semiconductor-magnet-w640.webp",
+          "sha256": "984c003f46777fd8fba2602e7c7b50c890031b8ec74dc5a1b4309afd989e2b94",
+          "width": 640
+        }
+      ],
+      "source": "project/mxene-2d-semiconductor-magnet.png",
+      "sourceSha256": "e2bd2af9d72fba92c5fa4a34a81b0147fc4c08270b2ba45be8ae389491579897"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 54532,
+          "height": 596,
+          "path": "project/stmp-steel-platform-w1280.avif",
+          "sha256": "a9bfa9136b65e9c5bb2505603da7fcb10f8f645a2dbbbb5d267597b79482948d",
+          "width": 1280
+        },
+        {
+          "bytes": 527776,
+          "height": 596,
+          "path": "project/stmp-steel-platform-w1280.png",
+          "sha256": "7e186dd33da1f31ae5c39b2a3ade35107dae0e884d650a0371e66f8b22a32bd4",
+          "width": 1280
+        },
+        {
+          "bytes": 83740,
+          "height": 596,
+          "path": "project/stmp-steel-platform-w1280.webp",
+          "sha256": "8091bf02d97b5ab9e3b165ccf4b5a774a26675a792bdcbbc7474e844ca1ec0d3",
+          "width": 1280
+        },
+        {
+          "bytes": 69741,
+          "height": 745,
+          "path": "project/stmp-steel-platform-w1600.avif",
+          "sha256": "0e3fd7a844a9e244075f5e8203b9f47208a01636a6cc99abb7712d15ee353c25",
+          "width": 1600
+        },
+        {
+          "bytes": 725784,
+          "height": 745,
+          "path": "project/stmp-steel-platform-w1600.png",
+          "sha256": "410f71f29c9695eea032b2d2539b85351f306ca20d7ef3d9fc2d51cab85568f3",
+          "width": 1600
+        },
+        {
+          "bytes": 103532,
+          "height": 745,
+          "path": "project/stmp-steel-platform-w1600.webp",
+          "sha256": "b17a41ebe0115e9e75707bf43f0734ffb53f91fca7a95d0cfd0007a5dddd8866",
+          "width": 1600
+        },
+        {
+          "bytes": 24277,
+          "height": 298,
+          "path": "project/stmp-steel-platform-w640.avif",
+          "sha256": "17a91dd6f86c1b70a97b003a5ad4bb4395a8a78ac499bc9d452ec296e05f5666",
+          "width": 640
+        },
+        {
+          "bytes": 181391,
+          "height": 298,
+          "path": "project/stmp-steel-platform-w640.png",
+          "sha256": "e3ff4053a920702cb1bfe09a83f75e7364130668b795ae7e58e505e5ac2386f8",
+          "width": 640
+        },
+        {
+          "bytes": 36250,
+          "height": 298,
+          "path": "project/stmp-steel-platform-w640.webp",
+          "sha256": "324d12810af9f5f34f79134408702860ecf5a4cca2c657bb256a293e854c93c2",
+          "width": 640
+        }
+      ],
+      "source": "project/stmp-steel-platform.png",
+      "sourceSha256": "f9d6e9c77b0e8c78c93a75151d9848d672821171a7e4bf1e6539aa544a7b6782"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 67858,
+          "height": 612,
+          "path": "research/artificial-intelligence-w1200.avif",
+          "sha256": "ee207cdc46171e5d94865c7847449ab7a24706355e2a36cefe6756203d8b0ae8",
+          "width": 1200
+        },
+        {
+          "bytes": 794312,
+          "height": 612,
+          "path": "research/artificial-intelligence-w1200.png",
+          "sha256": "bb519ee821f3cbfcbb81dd9c77d221bea2387353784694f4948b00241a1c5456",
+          "width": 1200
+        },
+        {
+          "bytes": 110288,
+          "height": 612,
+          "path": "research/artificial-intelligence-w1200.webp",
+          "sha256": "e3d1830e47fffe700017ea771409295578b132f6e8a101972009be12816b8218",
+          "width": 1200
+        },
+        {
+          "bytes": 31534,
+          "height": 327,
+          "path": "research/artificial-intelligence-w640.avif",
+          "sha256": "cda5eff580617372f3068bdfb2d22d7b18085becc23ba3310b7c8e67cc784324",
+          "width": 640
+        },
+        {
+          "bytes": 277552,
+          "height": 327,
+          "path": "research/artificial-intelligence-w640.png",
+          "sha256": "6264dc88c6eaf31e1f8298fcf25bac3dd47e7291515d823f8f956826f15d2b34",
+          "width": 640
+        },
+        {
+          "bytes": 48122,
+          "height": 327,
+          "path": "research/artificial-intelligence-w640.webp",
+          "sha256": "25950c092ab1010ff902285b64d42aed703409a1b6dafef69520ff919e66e29d",
+          "width": 640
+        }
+      ],
+      "source": "research/artificial-intelligence.png",
+      "sourceSha256": "d332f97e60d6f53a92f2ca939b0fc18bba7be0d0433cdde82b073b0f601556cb"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 43577,
+          "height": 514,
+          "path": "research/calphad-w1200.avif",
+          "sha256": "92029d33b3c56b0236bff6e122b65f6f0d336e6ca5bdd15af134c5cbf6784275",
+          "width": 1200
+        },
+        {
+          "bytes": 351022,
+          "height": 514,
+          "path": "research/calphad-w1200.png",
+          "sha256": "257d6074fb115e056767e727ae4dea38335de666ccf95cb9360f320a182091b1",
+          "width": 1200
+        },
+        {
+          "bytes": 65792,
+          "height": 514,
+          "path": "research/calphad-w1200.webp",
+          "sha256": "6db51146caefe7459436671ac00b10c022654ca30c3cd6aadfb6e48cf026f871",
+          "width": 1200
+        },
+        {
+          "bytes": 18339,
+          "height": 274,
+          "path": "research/calphad-w640.avif",
+          "sha256": "03c0a514ea52cc181207dbf7979cf13560ea52163b8f804deb2498fe487202bf",
+          "width": 640
+        },
+        {
+          "bytes": 134701,
+          "height": 274,
+          "path": "research/calphad-w640.png",
+          "sha256": "4545bf3d59697cb3a3c0613dc24d9a59ac77fcc33035ed55c4bcf63f86915c14",
+          "width": 640
+        },
+        {
+          "bytes": 25494,
+          "height": 274,
+          "path": "research/calphad-w640.webp",
+          "sha256": "8e1204b895b5f84576fb45a22ac5fbe1ff39bae6cbf38c139a78e76d1b0f8e00",
+          "width": 640
+        }
+      ],
+      "source": "research/calphad.png",
+      "sourceSha256": "cd4e7b72c3b6770886be94cb22536205c8a85b0b6d7d22dc7e520cf5ec587516"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 50985,
+          "height": 582,
+          "path": "research/fe-simulation-w1200.avif",
+          "sha256": "f916a42cd647ffa117981aea9e1dc61c74d04b4302a7d014f183b1db4ea52d67",
+          "width": 1200
+        },
+        {
+          "bytes": 625411,
+          "height": 582,
+          "path": "research/fe-simulation-w1200.png",
+          "sha256": "8040412746fcaf895b7c9e53394086a69545991bd532be3ffeebc94dd034e303",
+          "width": 1200
+        },
+        {
+          "bytes": 81158,
+          "height": 582,
+          "path": "research/fe-simulation-w1200.webp",
+          "sha256": "a489ea866a405374e106fe41cccce3b9508cbac490404ffd8e56cb27406ac55a",
+          "width": 1200
+        },
+        {
+          "bytes": 24695,
+          "height": 310,
+          "path": "research/fe-simulation-w640.avif",
+          "sha256": "4c1eaa8e061f858f37c360cc3467d4011b4f98837f231037ecd14c269470ad72",
+          "width": 640
+        },
+        {
+          "bytes": 216274,
+          "height": 310,
+          "path": "research/fe-simulation-w640.png",
+          "sha256": "31feb9d5aabb4321b5417601b25f4f3215b7022a74b5bec73634a158f173ec03",
+          "width": 640
+        },
+        {
+          "bytes": 37556,
+          "height": 310,
+          "path": "research/fe-simulation-w640.webp",
+          "sha256": "6022a34c09e0bfcdb66b87dc79ff03e7cbe6aa918b81c5c936ab4fbf7be0d455",
+          "width": 640
+        }
+      ],
+      "source": "research/fe-simulation.png",
+      "sourceSha256": "ee328d702df3e6591875a74414a12a42f89b9f16f612f43027ab8db6b2813315"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 45005,
+          "height": 543,
+          "path": "research/materials-design-w1154.avif",
+          "sha256": "62e2cffbc73e55c3d7a84a8d87e0271a48af3879781bb6e42946010c7f4f1483",
+          "width": 1154
+        },
+        {
+          "bytes": 589933,
+          "height": 543,
+          "path": "research/materials-design-w1154.png",
+          "sha256": "b0538e4be76de5bc0dc8860072f103e27d41c5d40ada1def1b6feab4bf74a0e4",
+          "width": 1154
+        },
+        {
+          "bytes": 71454,
+          "height": 543,
+          "path": "research/materials-design-w1154.webp",
+          "sha256": "3d2f85e50c1cd56689020ff2d014964395d5598b4eebc6b9e39e65b383262e6d",
+          "width": 1154
+        },
+        {
+          "bytes": 20723,
+          "height": 301,
+          "path": "research/materials-design-w640.avif",
+          "sha256": "dbf660c861c531b27c25cefff330707461f46275471764c82f852e4bbb7e6879",
+          "width": 640
+        },
+        {
+          "bytes": 217217,
+          "height": 301,
+          "path": "research/materials-design-w640.png",
+          "sha256": "bd3fb0fa51d8cb16c00397f8e876cedce218d0347ec1914382c7a0b34be4d5be",
+          "width": 640
+        },
+        {
+          "bytes": 31906,
+          "height": 301,
+          "path": "research/materials-design-w640.webp",
+          "sha256": "e5267d1ce005c96c45c99f8a6ea0cb8e9e67373d7fa804880179cf17b16b26db",
+          "width": 640
+        }
+      ],
+      "source": "research/materials-design.png",
+      "sourceSha256": "e913b4408bed5b79969778cc6b60f4acdbd728f138ba3ce25433b134b120a0f3"
+    },
+    {
+      "outputs": [
+        {
+          "bytes": 137473,
+          "height": 640,
+          "path": "brand/skku-emblem-w640.png",
+          "sha256": "b1e28068c6caf58f54638d84eb85ba562f9bb285201d54f6c7686d49b73b5056",
+          "width": 640
+        }
+      ],
+      "source": "skku-emblem.png",
+      "sourceSha256": "8e2a7c9516f5b360fbd2043946238146c85a7f183b06097990290dcf589a25ff"
+    }
+  ],
+  "schemaVersion": 1
+}

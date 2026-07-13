@@ -3,7 +3,6 @@
    News records milestone events — new grants, graduations, awards, press.
    No entries yet: the page shows an honest empty state, and the entry layout
    below (.news-list / .news-entry) is styled and ready for the first story. */
-@import url("./principal-advisor.css?v=20260711-kr2");
 
 .news-page {
   min-height: 100vh;

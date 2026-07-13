@@ -139,3 +139,7 @@ const requestScrollStateUpdate = () => {
 
 window.addEventListener("scroll", requestScrollStateUpdate, { passive: true });
 updateScrollState();
+
+// Added only after navigation and reveal observers are ready. Without a
+// successful script run, the no-JS CSS path remains readable and navigable.
+document.documentElement.classList.add("has-js");

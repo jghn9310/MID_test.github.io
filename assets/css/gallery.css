@@ -1,6 +1,5 @@
 /* Board / Gallery page. Reuses shared chrome, tokens, .eyebrow, .reveal-block,
    .section-label, .team-subnav and the footer from principal-advisor.css. */
-@import url("./principal-advisor.css?v=20260711-kr2");
 
 .gallery-page {
   min-height: 100vh;
@@ -68,6 +67,12 @@
     box-shadow 220ms var(--ease-out);
 }
 
+.gallery-card-media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .gallery-card-media img {
   display: block;
   width: 100%;
@@ -75,6 +80,23 @@
   object-fit: cover;
   transform: scale(1.008);
   transition: transform 460ms var(--ease-out);
+}
+
+.gallery-card-media--placeholder {
+  display: grid;
+  place-items: center;
+  cursor: default;
+  background:
+    linear-gradient(135deg, rgba(32, 35, 32, 0.035), transparent 58%),
+    var(--paper-deep);
+}
+
+.gallery-card-media--placeholder span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .gallery-card-media:hover,
@@ -267,6 +289,10 @@
     visibility 0s;
 }
 
+body.lightbox-open {
+  overflow: hidden;
+}
+
 .lightbox-backdrop {
   position: absolute;
   inset: 0;
@@ -299,6 +325,12 @@
   background: var(--paper-deep);
   border-radius: 6px;
   box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-figure picture {
+  display: grid;
+  place-items: center;
+  min-width: 0;
 }
 
 .lightbox-figure figcaption {

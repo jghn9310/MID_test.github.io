@@ -3,12 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="../assets/img/public/brand/mid-logo-w620.png">
+    <meta name="robots" content="noindex, nofollow">
     <title>Lab Log | MID Lab</title>
     <meta
       name="description"
       content="A running log of small, fun moments at the Materials Informatics and Design Laboratory (SKKU) — streamed like a live terminal inside a lab console window, newest line first."
     >
-    <script>document.documentElement.classList.add("has-js");</script>
+    <script src="../assets/js/security.js?v=20260713-security1" defer></script>
+    <link rel="stylesheet" href="../assets/css/theme.css?v=20260711-kr2">
+    <link rel="stylesheet" href="../assets/css/principal-advisor.css?v=20260711-kr2">
     <link rel="stylesheet" href="../assets/css/lab-log.css?v=20260711-kr2">
     <script src="../assets/js/team-page.js?v=20260710-term-v4i" defer></script>
     <script src="../assets/js/lab-log.js?v=20260710-term-v4i" defer></script>
@@ -18,7 +22,7 @@
 
     <header class="site-header term-header" data-site-header>
       <a class="brand-mark" href="../index.html" aria-label="MID Lab home">
-        <img src="../assets/img/mid-logo.png" alt="MID Lab logo">
+        <img src="../assets/img/public/brand/mid-logo-w620.png" alt="MID Lab logo" width="620" height="423" decoding="async">
       </a>
       <p class="header-group-label term-prompt" aria-hidden="true"><span class="term-user">mid@lab</span>:<span class="term-path">~/board/lab-log</span> <span class="term-cmd">&mdash; tail -f</span></p>
 
@@ -82,25 +86,67 @@
         <a href="lab-log.html" aria-current="page">lab-log</a>
       </nav>
 
-      <!-- 콘솔 창(윈도)·연도 로그파일 사이드바·스트림은 lab-log.js 가
-           LAB_LOG(또는 구글 시트) 데이터로부터 그립니다.
-           로그 추가는 assets/js/lab-log.js 상단의 SHEET_CSV_URL 시트 또는 LAB_LOG 배열로. -->
-      <section class="log-body" aria-labelledby="lab-log-title" data-lab-log>
-        <noscript>
-          <p class="term-noscript">
-            This page streams the lab log with JavaScript. Board pages are still
-            reachable from the menu above:
-            <a href="news.html">News</a>, <a href="gallery.html">Gallery</a>,
-            <a href="lab-log.html">lab-log</a>.
-          </p>
-        </noscript>
+      <!-- Validated local snapshot: mid-lab-log/v1, generated 2026-07-13. -->
+      <section class="log-body" aria-labelledby="lab-log-title" data-lab-log
+        data-content-source="local-snapshot" data-schema-version="mid-lab-log/v1" data-generated-at="2026-07-13">
+        <div class="labos">
+          <div class="labos-titlebar">
+            <span class="labos-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="labos-title"><span class="labos-title-file">lab-log.log</span><span class="labos-title-sep" aria-hidden="true"> — </span><span class="labos-title-host">MID Lab</span></span>
+            <span class="labos-titlebar-spacer" aria-hidden="true"></span>
+          </div>
+          <div class="labos-body">
+            <aside class="labos-side">
+              <p class="labos-side-label" id="labos-files-label" aria-hidden="true">~/lab-log</p>
+              <div class="labos-files" role="tablist" aria-orientation="vertical" aria-label="Lab log files by year">
+                <button class="labos-file is-active" id="labos-file-all" type="button" role="tab" aria-controls="labos-feed" aria-selected="true" data-year="all">
+                  <span class="labos-file-ico" aria-hidden="true">›</span><span class="labos-file-name">all.log</span><span class="labos-file-n">6</span>
+                </button>
+                <button class="labos-file" id="labos-file-2026" type="button" role="tab" aria-controls="labos-feed" aria-selected="false" tabindex="-1" data-year="2026">
+                  <span class="labos-file-ico" aria-hidden="true">›</span><span class="labos-file-name">2026.log</span><span class="labos-file-n">6</span>
+                </button>
+              </div>
+            </aside>
+            <div class="labos-pane">
+              <div class="labos-prompt">
+                <span class="labos-prompt-sign" aria-hidden="true">grep</span>
+                <label class="labos-vh" for="labos-search">Search lab log</label>
+                <input id="labos-search" class="labos-search-input" type="search" placeholder="filter the feed…   ( / to focus )" autocomplete="off" spellcheck="false">
+              </div>
+              <div class="labos-feed" id="labos-feed" tabindex="0" role="tabpanel" aria-labelledby="labos-file-all">
+                <div class="term-band" data-year="2026"><span class="term-band-tag" aria-hidden="true">##</span><span class="term-band-year">2026</span><span class="term-band-count">6 logs</span></div>
+                <div class="term-line is-in" data-year="2026">
+                  <time class="tl-date" datetime="2026-07-08">2026-07-08</time><span class="tl-emoji" aria-hidden="true">⚽</span><span class="tl-event">연구실 풋살 3파전에서 Woosub Choi가 3골을 기록</span>
+                </div>
+                <div class="term-line is-in" data-year="2026">
+                  <time class="tl-date" datetime="2026-05-15">2026-05-15</time><span class="tl-emoji" aria-hidden="true">🎂</span><span class="tl-event">스승의 날 — 케이크와 함께 정경재 교수님께 감사 인사</span>
+                </div>
+                <div class="term-line is-in" data-year="2026">
+                  <time class="tl-date" datetime="2026-03-18">2026-03-18</time><span class="tl-emoji" aria-hidden="true">🎈</span><span class="tl-event">Jumin Kwon 생일 — 연구실 단체 사진 각도 논쟁 발생</span>
+                </div>
+                <div class="term-line is-in" data-year="2026">
+                  <time class="tl-date" datetime="2026-03-04">2026-03-04</time><span class="tl-emoji" aria-hidden="true">🧹</span><span class="tl-event">새 학기 시작. 화이트보드 완전 초기화 성공(3개월 만)</span>
+                </div>
+                <div class="term-line is-in" data-year="2026">
+                  <time class="tl-date" datetime="2026-02-02">2026-02-02</time><span class="tl-emoji" aria-hidden="true">🎉</span><span class="tl-event">Woosub Choi, Jumin Kwon 학생이 연구실에 합류</span>
+                </div>
+                <div class="term-line is-in" data-year="2026">
+                  <time class="tl-date" datetime="2026-01-09">2026-01-09</time><span class="tl-emoji" aria-hidden="true">🚀</span><span class="tl-event">MID Lab 2026년 첫 랩세미나</span>
+                </div>
+                <div class="term-caret-line" aria-hidden="true"><span class="tl-date tl-date-live">tail -f</span><span class="term-cursor">&#9619;</span></div>
+              </div>
+              <p class="labos-empty term-empty" hidden>No matching lines in the log.</p>
+            </div>
+          </div>
+          <div class="labos-status"><span class="labos-status-mode" aria-hidden="true"><span class="labos-status-dot"></span>tail -f</span><span class="labos-status-count" role="status" aria-live="polite">6 / 6 lines</span><span class="labos-caret" aria-hidden="true"></span></div>
+        </div>
       </section>
     </main>
 
     <footer class="site-footer" id="footer" aria-label="Site footer">
       <div class="footer-inner">
         <div class="footer-emblem-wrap">
-          <img class="footer-emblem" src="../assets/img/skku-emblem.png" alt="Sungkyunkwan University emblem">
+          <img class="footer-emblem" src="../assets/img/public/brand/skku-emblem-w640.png" alt="Sungkyunkwan University emblem" width="640" height="640" loading="lazy" decoding="async">
         </div>
         <div class="footer-text">
           <p class="footer-lab">Materials Informatics and Design Laboratory</p>
@@ -110,30 +156,8 @@
             Sungkyunkwan University (SKKU)
           </p>
         </div>
-        <p class="footer-copy">&copy; Copyright 2025. All Rights Reserved.<a
-          href="../tools/theme-editor.html" id="admin-gate" aria-hidden="true" tabindex="-1"
-          title="" style="margin-left:8px;opacity:.32;text-decoration:none;cursor:pointer;user-select:none;color:inherit;">&#9619;</a></p>
+        <p class="footer-copy">&copy; Copyright 2025. All Rights Reserved.</p>
       </div>
     </footer>
-
-    <!-- 관리자(디자인 편집기) 비밀 진입: 커서 블록(▓) 클릭 → 비밀번호 → 편집기.
-         브라우저 비번은 강한 보안이 아니며(소스에서 보임), '지나가는 방문자 차단' 용도. -->
-    <script>
-      (function () {
-        var g = document.getElementById("admin-gate");
-        if (!g) return;
-        g.addEventListener("click", function (e) {
-          e.preventDefault();
-          var p = prompt("관리자 비밀번호");
-          if (p === null) return;                 // 취소
-          if (p === "8756") {
-            try { sessionStorage.setItem("mid-admin-ok", "yes"); } catch (_) {}
-            window.location.href = "../tools/theme-editor.html";
-          } else {
-            alert("비밀번호가 올바르지 않습니다.");
-          }
-        });
-      })();
-    </script>
   </body>
 </html>
