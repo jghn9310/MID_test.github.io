@@ -23,7 +23,7 @@
    ===================================================================== */
 
 // ▼ 구글 시트 '웹에 게시(CSV)' 링크를 여기에 붙여넣으세요. 비우면 아래 NEWS 를 씁니다.
-const NEWS_CSV_URL = "";
+const NEWS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQaxf0HFFTmpGJJ2a3Je1nlOC_kthvrVSY7tQUyLGt8Nlmkr7Ym1uVw-o4WBilFS7oEuPeGxeT-Btxb/pub?gid=753733163&single=true&output=csv";
 
 // 시트를 못 불러오면(또는 링크를 안 넣었으면) 이 목록으로 그립니다.
 // 지금은 '빈 소식 3개'입니다. 시트를 연결하거나 아래 값을 채우면 됩니다.
