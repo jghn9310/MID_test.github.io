@@ -367,15 +367,19 @@ html:not(.has-js) .nav-group:focus-within .nav-dropdown {
 }
 
 .nav-dropdown a[href$="lab-log.html"] {
-  margin-top: 5px;
-  padding-top: 9px;
-  border-top: 1px solid var(--line);
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(32, 35, 32, 0.28);
 }
 
 .nav-dropdown a[href$="lab-log.html"]::before,
 .board-subnav a[href$="lab-log.html"]::before {
   content: "\276F\A0";
-  opacity: 0.5;
+  display: inline-block;
+  margin-right: 0.15em;
+  color: var(--graphite);
+  font-weight: 700;
+  opacity: 0.78;
 }
 
 .nav-dropdown-research {
@@ -1084,6 +1088,10 @@ html:not(.has-js) .nav-group:focus-within .nav-dropdown {
     border-bottom: 0;
     border-radius: 6px;
     font-size: 0.8rem;
+  }
+
+  .nav-dropdown a[href$="lab-log.html"] {
+    padding-top: 10px;
   }
 
   .nav-dropdown-research .nav-primary-topic {
