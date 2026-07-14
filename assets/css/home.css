@@ -436,14 +436,16 @@ html:not(.has-js) .nav-group:focus-within .nav-dropdown {
    Neutral only (mono + a prompt glyph + a hairline above), no accent color, so
    the home page keeps its tone. Mirrors the rule in principal-advisor.css
    (the home page defines its own nav styles instead of importing that file). */
-.nav-dropdown a[href$="lab-log.html"] {
+.nav-dropdown a[href$="lab-log.html"],
+.nav-dropdown a[href$="/lab-log"] {
   margin-top: 8px;
   padding-top: 10px;
   border-top: 1px solid rgba(32, 35, 32, 0.28);
   font-family: var(--font-mono);
   letter-spacing: 0.01em;
 }
-.nav-dropdown a[href$="lab-log.html"]::before {
+.nav-dropdown a[href$="lab-log.html"]::before,
+.nav-dropdown a[href$="/lab-log"]::before {
   content: "\276F\A0";
   display: inline-block;
   margin-right: 0.15em;
@@ -1787,7 +1789,8 @@ h1 {
     font-size: 0.8rem;
   }
 
-  .nav-dropdown a[href$="lab-log.html"] {
+  .nav-dropdown a[href$="lab-log.html"],
+  .nav-dropdown a[href$="/lab-log"] {
     padding-top: 10px;
   }
 
